@@ -11,4 +11,9 @@
 #  updated_at  :datetime         not null
 #
 class Review < ApplicationRecord
+    validates_presence_of :rating, :comment, :user_id, :business_id
+
+    belongs_to :user
+
+    belongs_to :business
 end
