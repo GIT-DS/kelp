@@ -16,6 +16,7 @@
 class User < ApplicationRecord
     validates_presence_of :username, :email, :first_name, :last_name, :zip_code, :password_digest, :session_token
     validates_uniqueness_of :username, :email, :session_token
+    validates :password, length: { minimum: 2, allow_nil: true}
 
     has_many :reviews,
     foreign_key: :user_id,
