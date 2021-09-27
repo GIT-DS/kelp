@@ -22,7 +22,9 @@
     "lib": "lib",
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "file-loader": "^6.2.0"
+  },
   "engines": {
     "node": "12.5.0",
     "npm": "6.9.0"
