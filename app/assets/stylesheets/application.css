@@ -63,14 +63,21 @@ a:hover{
     opacity: 1;
     text-decoration: none;
 }
-.logo{
+.logoContainer{
+    background-image: url('b1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
     display:flex;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
     height: 600px;
     align-items: center;
+    font-family: Helvetica;
 }
 #logo{
+    background: none;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -78,6 +85,41 @@ a:hover{
     font-size: 50px;
     font-weight: bold;
     
+}
+.logoContainer > * {
+    background:none;
+}
+.search-bar {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background:white;
+    overflow: hidden;
+}
+.search-bar > * {
+    border: none;
+    padding:5px;
+    display:flex;
+    align-items: center;
+}
+
+.search-bar h2 {
+    font-weight: bold;
+}
+
+.search-bar input:focus-visible {
+    outline: none;
+}
+
+.search-bar i {
+    display:flex;
+    background: #728C3B;
+    padding-right: 15px;
+    padding-left: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .session-form{

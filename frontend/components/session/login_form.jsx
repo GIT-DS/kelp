@@ -26,6 +26,11 @@ class LoginForm extends React.Component{
         this.props.processForm({username:'alpha', password:'alpha'})
     }
 
+    componentWillUnmount(){
+        this.props.removeErrors()
+    }
+
+
     render (){ 
         return(
             <div className='session-container'>

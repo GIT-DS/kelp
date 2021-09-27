@@ -25,6 +25,10 @@ class SignupForm extends React.Component{
         // .then(()=>this.props.history.push('/'))
     }
     
+    componentWillUnmount(){
+        this.props.removeErrors()
+    }
+
 
     render (){ 
         
