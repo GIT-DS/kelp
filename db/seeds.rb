@@ -65,13 +65,20 @@ user6 = User.create!({
 
 # Business Seeds
 
-# business1 = Business.create!({
-#     title: '',
-#     phone_num: '',
-#     time_open: '08:00',
-#     time_close: '20:00',
-    
-# })
+business1 = Business.create!({
+    title: 'Hop Li Seafood Restaurant',
+    phone_num: '(213) 680-3939',
+    time_open: '11:00',
+    time_close: '20:00',
+    website: '',
+    cost: '$$',
+    address: '526 Alpine St.',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip_code: '90012',
+    longitude: 34.067347503798935, 
+    latitude: -118.2408155940718
+})
 
 
 

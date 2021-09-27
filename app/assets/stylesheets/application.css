@@ -87,7 +87,8 @@ a:hover{
     font-family: Helvetica;
     font-size: 50px;
     font-weight: bold;
-    
+    /* -webkit-text-stroke: 1px black; */
+    text-shadow: -1.11px -1.11px 0 #FFF, 1.11px -1.11px 0 #FFF, -1.11px 1.11px 0 #FFF, 1.11px 1.11px 0 #FFF;
 }
 .logoContainer > * {
     background:none;

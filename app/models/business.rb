@@ -18,7 +18,7 @@
 #  updated_at :datetime         not null
 #
 class Business < ApplicationRecord
-    validates_presence_of :title, :phone_num, :time_open, :time_close, :cost, :address, :city, :zip_code, :longitude, :latitude
+    validates_presence_of :title, :phone_num, :time_open, :time_close, :cost, :address, :city, :state, :zip_code, :longitude, :latitude
     validates_uniqueness_of :address
 
     has_many :reviews,
