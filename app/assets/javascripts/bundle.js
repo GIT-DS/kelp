@@ -400,7 +400,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _app_assets_images_form_image_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../app/assets/images/form_image.png */ "./app/assets/images/form_image.png");
+/* harmony import */ var _app_assets_images_formimage_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../app/assets/images/formimage.png */ "./app/assets/images/formimage.png");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -525,7 +525,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         }, error);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "form-image",
-        src: _app_assets_images_form_image_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+        src: _app_assets_images_formimage_png__WEBPACK_IMPORTED_MODULE_1__["default"],
         width: "300",
         height: "300"
       })));
@@ -592,7 +592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _app_assets_images_form_image_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../app/assets/images/form_image.png */ "./app/assets/images/form_image.png");
+/* harmony import */ var _app_assets_images_formimage_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../app/assets/images/formimage.png */ "./app/assets/images/formimage.png");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -728,7 +728,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         }, error);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "form-image",
-        src: _app_assets_images_form_image_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+        src: _app_assets_images_formimage_png__WEBPACK_IMPORTED_MODULE_1__["default"],
         width: "300",
         height: "300"
       })));
@@ -1104,10 +1104,10 @@ var logout = function logout() {
 
 /***/ }),
 
-/***/ "./app/assets/images/form_image.png":
-/*!******************************************!*\
-  !*** ./app/assets/images/form_image.png ***!
-  \******************************************/
+/***/ "./app/assets/images/formimage.png":
+/*!*****************************************!*\
+  !*** ./app/assets/images/formimage.png ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

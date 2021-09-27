@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from 'react'
-import formImage from '../../../app/assets/images/form_image.png'
+import formimage from '../../../app/assets/images/formimage.png'
 
 class SignupForm extends React.Component{
     constructor(props){
@@ -64,7 +64,7 @@ class SignupForm extends React.Component{
                         </form>
                         {this.props.errors.map((error, i) => <li key={i}>{error}</li>)}
                     </div>
-                    <img id='form-image'src={formImage} width='300' height='300'/>
+                    <img id='form-image'src={formimage} width='300' height='300'/>
                 </div>
             </div>
         )
