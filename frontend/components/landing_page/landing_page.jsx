@@ -5,7 +5,7 @@ import SearchBar from '../search_bar/search_bar';
 const LandingPage = (props) => (
     <div>
         <NavBarContainer/>
-        <div className='logoContainer' >
+        <div className='logoContainer'>
             <h1 id='logo'>Kelp</h1>
             <SearchBar/>
         </div>    
