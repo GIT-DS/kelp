@@ -64,7 +64,7 @@ class SignupForm extends React.Component{
                         </form>
                         {this.props.errors.map((error, i) => <li key={i}>{error}</li>)}
                     </div>
-                    <img id='form-image'src={formimage} width='300' height='300'/>
+                    <img id='form-image'src={window.formimage} width='300' height='300'/>
                 </div>
             </div>
         )

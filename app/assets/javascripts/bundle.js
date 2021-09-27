@@ -525,7 +525,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         }, error);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "form-image",
-        src: _app_assets_images_formimage_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+        src: window.formimage,
         width: "300",
         height: "300"
       })));
@@ -728,7 +728,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         }, error);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "form-image",
-        src: _app_assets_images_formimage_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+        src: window.formimage,
         width: "300",
         height: "300"
       })));
