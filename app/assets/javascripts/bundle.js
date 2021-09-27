@@ -686,8 +686,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "ZIP Code",
         value: this.state.zipcode,
         onChange: this.update('zip_code'),
-        min: "5",
-        max: "5"
+        min: "00001",
+        max: "99999"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", (_React$createElement = {
         type: true
       }, _defineProperty(_React$createElement, "type", "password"), _defineProperty(_React$createElement, "placeholder", "Password"), _defineProperty(_React$createElement, "value", this.state.password), _defineProperty(_React$createElement, "onChange", this.update('password')), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {

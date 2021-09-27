@@ -51,7 +51,7 @@ class SignupForm extends React.Component{
                         <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.update('last_name')}/>
                     </div>
                 
-                    <input type='number' placeholder='ZIP Code' value={this.state.zipcode} onChange={this.update('zip_code')} min='5' max='5'/>
+                    <input type='number' placeholder='ZIP Code' value={this.state.zipcode} onChange={this.update('zip_code')} min='00001'max='99999'/>
                     
                     <input type type='password' placeholder='Password' value={this.state.password} onChange={this.update('password')} />
                     
