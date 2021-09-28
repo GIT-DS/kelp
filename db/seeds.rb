@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Business.destroy_all
+Review.destroy_all
 
 #User Seeds
 user1 = User.create!({
@@ -88,80 +90,81 @@ business1 = Business.create!({
 
 
 
-# Review Seeds
+#Review Seeds
 
-# review1 = Review.create!({
-#     rating: 2,
-#     comment: "I didn't have a good experience here",
-#     user_id: 1,
-#     business_id: 2
-# })
+review1 = Review.create!({
+    rating: 2,
+    comment: "I didn't have a good experience here",
+    user_id: user1.id,
+    business_id: business1.id
+})
+
 # review2 = Review.create!({
 #     rating: 5,
 #     comment: 'This place is amazing!',
-#     user_id: 1,
-#     business_id: 1 
+#     user_id: user1.id,
+#     business_id: business2.id 
 # })
 # review3 = Review.create!({
 #     rating: 4,
 #     comment: 'The ambience is just right',
-#     user_id: 2,
-#     business_id: 3 
+#     user_id: user2.id,
+#     business_id: business3.id 
 # })
 # review4 = Review.create!({
 #     rating: 3,
 #     comment: 'Not too great, not too bad',
-#     user_id: 2,
-#     business_id: 4
+#     user_id: user2.id,
+#     business_id: business4.id
 # })
 # review5 = Review.create!({
 #     rating: 1,
 #     comment: "I'm angry and you should be too",
-#     user_id: 3,
-#     business_id: 5 
+#     user_id: user3.id,
+#     business_id: business5.id 
 # })
 # review6 = Review.create!({
 #     rating: 1,
 #     comment: "I really dislike the staff here",
-#     user_id: 3,
-#     business_id: 6 
+#     user_id: user3.id,
+#     business_id: business6.id 
 # })
-# review7 = Review.create!({
-#     rating: 5,
-#     comment: "Just here for the freebies",
-#     user_id: 4,
-#     business_id: 1 
-# })
+review7 = Review.create!({
+    rating: 5,
+    comment: "Just here for the freebies",
+    user_id: user4.id,
+    business_id: business1.id 
+})
 # review8 = Review.create!({
 #     rating: 5,
 #     comment: "MORE FREEBIES!",
-#     user_id: 4,
-#     business_id: 2
+#     user_id: user4.id,
+#     business_id: business2.id
 # })
 # review9 = Review.create!({
 #     rating: 3,
 #     comment: "I'm a middle of road kind of guy",
-#     user_id: 5,
-#     business_id: 3 
+#     user_id: user5.id,
+#     business_id: business3.id 
 # })
 
 # review10 = Review.create!({
 #     rating: 4,
 #     comment: "Slightly better than expected",
-#     user_id: 5,
-#     business_id: 4 
+#     user_id: user5.id,
+#     business_id: business4.id 
 # })
 
 # review11 = Review.create!({
 #     rating: 5,
 #     comment: "Great Fantastic Love it",
-#     user_id: 6,
-#     business_id: 5 
+#     user_id: user6.id,
+#     business_id: business5.id 
 # })
 
 # review12 = Review.create!({
 #     rating: 1,
 #     comment: "The entire kitchen and wait staff saw an ice cream truck and ran outside, leaving me alone in the restaurant. 10 minutes later they all came back with ice cream cones... I still can't believe this actually happened",
-#     user_id: 6,
-#     business_id: 6 
+#     user_id: user6.id,
+#     business_id: business6.id 
 # })

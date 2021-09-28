@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 import { fetchBusiness } from '../../actions/business_actions';
 import Business from './business';
 
-const mapStateToProps = (state, ownProps) => {
-    // console.log(state.entities.businesses)
-    return {
+const mapStateToProps = (state, ownProps) => ({
     business: state.entities.businesses[ownProps.match.params.id]
-}}
+})
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchBusiness: () => dispatch(fetchBusiness(ownProps.match.params.id))

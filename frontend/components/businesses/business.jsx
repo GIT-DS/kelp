@@ -1,4 +1,6 @@
 import React from 'react'
+import Reviews from '../reviews/reviews';
+import ReviewsContainer from '../reviews/reviews_container'
 class Business extends React.Component{
     constructor(props){
         super(props)
@@ -26,13 +28,14 @@ class Business extends React.Component{
                     </div>
                 </div>
                 <div className='business-content'>
-                    <div classNamee='left-content'>
+                    <div className='left-content'>
                         <div className='social-bar'>
                             <button className='green-button' id='review-button'>Write a Review</button>
                             <button className='clear-button'>Add Photo</button>
                             <button className='clear-button'>Share</button>
                             <button className='clear-button'>Save</button>
                         </div>
+                        <ReviewsContainer businessId={this.props.business.id}/>
                     </div>
                     <div className='side-bar-info'>
                         <ul>
