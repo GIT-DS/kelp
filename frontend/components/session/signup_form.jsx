@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from 'react'
-import formimage from '../../../app/assets/images/formimage.png'
+import OtherNavBar from "../nav_bar/other_nav_bar";
 
 class SignupForm extends React.Component{
     constructor(props){
@@ -35,7 +35,7 @@ class SignupForm extends React.Component{
         
         return (
             <div className="form-page">
-                <Link to='/' className='nav-bar'>Kelp</Link>
+                <OtherNavBar/>
                 <div className="form-content">
                     <div className='session-container'>
                         <h1>Sign Up for Kelp</h1>

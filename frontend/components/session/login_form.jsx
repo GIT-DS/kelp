@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from 'react'
-import formimage from '../../../app/assets/images/formimage.png'
+import OtherNavBar from "../nav_bar/other_nav_bar";
+
 
 class LoginForm extends React.Component{
     constructor(props){
@@ -35,7 +36,7 @@ class LoginForm extends React.Component{
     render (){ 
         return(
             <div className="form-page">
-                <Link to='/' className='nav-bar'>Kelp</Link>
+                <OtherNavBar/>
                 <div className='form-content'>
                     <div className='session-container'>
                         <h1>Log in to Kelp</h1>
@@ -46,12 +47,12 @@ class LoginForm extends React.Component{
                         </p>
                         <form className="session-form">
 
-                            <input type='text' value={this.state.username} onChange={this.update('username')} placeholder='Username'/>
+                            <input required type='text' value={this.state.username} onChange={this.update('username')} placeholder='Username'/>
 
-                            <input type type='password' value={this.state.password} onChange={this.update('password')} placeholder='Password'/>
+                            <input required type='password' value={this.state.password} onChange={this.update('password')} placeholder='Password'/>
                             <Link to='#' className='align-right'>Forgot password?</Link>
                             <button className='green-button' onClick={this.handleSubmit}>Log In</button>
-                            <p>or</p>
+                            <p id='line'>or</p>
                             <button className='green-button' onClick={this.demoSubmit}>Demo Log In</button>
                         <p className='align-right'>New to Kelp? <Link to='/signup'>Sign Up</Link></p>
                         </form>
