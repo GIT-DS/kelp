@@ -30,12 +30,18 @@
 
 .social-bar{
     display:flex;
+    width: 50%;
+}
+.social-bar * {
+    font-size: 15px;
+    padding: 5px;
+    margin: 5px;
 }
 
 #review-button{
     width: inherit;
 }
 
-.user-info{
-    margin-left: 10px;
+.business-show{
+    margin: 10px;
 }

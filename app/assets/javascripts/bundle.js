@@ -270,6 +270,39 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./frontend/components/business_components/social_bar.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/business_components/social_bar.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var SocialBar = function SocialBar(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "social-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "green-button",
+    id: "review-button"
+  }, "Write a Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "clear-button"
+  }, "Add Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "clear-button"
+  }, "Share"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "clear-button"
+  }, "Save"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SocialBar);
+
+/***/ }),
+
 /***/ "./frontend/components/businesses/business.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/businesses/business.jsx ***!
@@ -284,6 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _reviews_reviews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reviews/reviews */ "./frontend/components/reviews/reviews.jsx");
 /* harmony import */ var _reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/reviews_container */ "./frontend/components/reviews/reviews_container.jsx");
+/* harmony import */ var _business_components_social_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../business_components/social_bar */ "./frontend/components/business_components/social_bar.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -310,6 +344,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Business = /*#__PURE__*/function (_React$Component) {
   _inherits(Business, _React$Component);
 
@@ -327,44 +362,69 @@ var Business = /*#__PURE__*/function (_React$Component) {
       this.props.fetchBusiness();
     }
   }, {
+    key: "open",
+    value: function open() {
+      var _this$props$business = this.props.business,
+          timeOpen = _this$props$business.timeOpen,
+          timeClose = _this$props$business.timeClose;
+      var currTime = new Date();
+      var currHour = currTime.getHours();
+      var currMin = currTime.getMinutes();
+      var openHour = new Date(timeOpen).getHours();
+      var openMin = new Date(timeOpen).getMinutes();
+      var closeHour = new Date(timeClose).getHours();
+      var closeMin = new Date(timeClose).getMinutes();
+
+      if (currHour >= openHour && currMin >= openMin && currHour <= closeHour && currMin <= closeMin) {
+        return 'Open';
+      } else {
+        return 'Closed';
+      }
+    }
+  }, {
+    key: "formatTime",
+    value: function formatTime(time) {
+      var hours = parseInt(time.getHours());
+      console.log(hours);
+      var M = 'AM';
+
+      if (hours > 12 && hours !== 24) {
+        hours -= 12;
+        M = 'PM';
+      }
+
+      hours = (hours < 10 ? '0' : '') + hours;
+      var minutes = (time.getMinutes() < 10 ? '0' : '') + time.getMinutes();
+      return "".concat(hours, ":").concat(minutes, " ").concat(M);
+    }
+  }, {
     key: "render",
     value: function render() {
       if (this.props.business) {
-        var _this$props$business = this.props.business,
-            title = _this$props$business.title,
-            timeOpen = _this$props$business.timeOpen,
-            timeClose = _this$props$business.timeClose,
-            _this$props$business$ = _this$props$business.website,
-            website = _this$props$business$ === void 0 ? '' : _this$props$business$,
-            phoneNum = _this$props$business.phoneNum,
-            address = _this$props$business.address,
-            city = _this$props$business.city,
-            state = _this$props$business.state,
-            zipCode = _this$props$business.zipCode;
-        var timeOpenDateTime = new Date(timeOpen).toLocaleTimeString();
-        var timeCloseDateTime = new Date(timeClose).toLocaleTimeString();
+        var _this$props$business2 = this.props.business,
+            title = _this$props$business2.title,
+            timeOpen = _this$props$business2.timeOpen,
+            timeClose = _this$props$business2.timeClose,
+            _this$props$business3 = _this$props$business2.website,
+            website = _this$props$business3 === void 0 ? '' : _this$props$business3,
+            phoneNum = _this$props$business2.phoneNum,
+            address = _this$props$business2.address,
+            city = _this$props$business2.city,
+            state = _this$props$business2.state,
+            zipCode = _this$props$business2.zipCode;
+        var localTimeOpen = new Date(timeOpen);
+        var localTimeClose = new Date(timeClose);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "show-head"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
           id: "title"
-        }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " ", timeOpenDateTime, " - ", timeCloseDateTime))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " ", this.open(), " ", this.formatTime(localTimeOpen), " - ", this.formatTime(localTimeClose)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-content"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "left-content"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "social-bar"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "green-button",
-          id: "review-button"
-        }, "Write a Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "clear-button"
-        }, "Add Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "clear-button"
-        }, "Share"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "clear-button"
-        }, "Save")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_components_social_bar__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
           businessId: this.props.business.id
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "side-bar-info"
@@ -432,6 +492,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _businesses_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./businesses_container */ "./frontend/components/businesses/businesses_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -457,6 +519,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Businesses = /*#__PURE__*/function (_React$Component) {
   _inherits(Businesses, _React$Component);
 
@@ -476,7 +539,14 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "business-list"
+      }, this.props.businesses.map(function (business, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+          to: "/businesses/".concat(business.id),
+          key: business.id
+        }, business.title);
+      }));
     }
   }]);
 
@@ -509,7 +579,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    businesses: state.entities.businesses
+    businesses: Object.values(state.entities.businesses)
   };
 };
 
@@ -859,7 +929,9 @@ var Review = /*#__PURE__*/function (_React$Component) {
         height: "50px"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info"
-      }, userContent)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.props.review.comment));
+      }, userContent)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        className: "comment"
+      }, this.props.review.comment));
     }
   }]);
 
@@ -967,10 +1039,10 @@ var Reviews = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.props.reviews.map(function (review, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: i,
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: review.id,
           review: review
-        });
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null));
       }));
     }
   }]);

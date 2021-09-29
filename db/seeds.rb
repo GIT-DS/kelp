@@ -70,8 +70,8 @@ user6 = User.create!({
 business1 = Business.create!({
     title: 'Hop Li Seafood Restaurant',
     phone_num: '(213) 680-3939',
-    time_open: '11:00',
-    time_close: '20:00',
+    time_open: '09:00 AM PST',
+    time_close: '07:00 PM PST',
     website: '',
     cost: '$$',
     address: '526 Alpine St.',
@@ -80,6 +80,21 @@ business1 = Business.create!({
     zip_code: '90012',
     longitude: 34.067347503798935, 
     latitude: -118.2408155940718
+})
+
+business2 = Business.create!({
+    title: "Rock'N Fish Restaurant",
+    phone_num: '(213) 536-5020',
+    time_open: '10:30 AM PST',
+    time_close: '07:00 PM PST',
+    website: '',
+    cost: '$$$',
+    address: '800 W. Olympic Blvd A-160',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip_code: '90015',
+    longitude: 34.0462312861572, 
+    latitude: -118.26394516974035, 
 })
 
 
@@ -99,12 +114,12 @@ review1 = Review.create!({
     business_id: business1.id
 })
 
-# review2 = Review.create!({
-#     rating: 5,
-#     comment: 'This place is amazing!',
-#     user_id: user1.id,
-#     business_id: business2.id 
-# })
+review2 = Review.create!({
+    rating: 5,
+    comment: 'This place is amazing!',
+    user_id: user1.id,
+    business_id: business2.id 
+})
 # review3 = Review.create!({
 #     rating: 4,
 #     comment: 'The ambience is just right',
@@ -135,12 +150,12 @@ review7 = Review.create!({
     user_id: user4.id,
     business_id: business1.id 
 })
-# review8 = Review.create!({
-#     rating: 5,
-#     comment: "MORE FREEBIES!",
-#     user_id: user4.id,
-#     business_id: business2.id
-# })
+review8 = Review.create!({
+    rating: 5,
+    comment: "MORE FREEBIES!",
+    user_id: user4.id,
+    business_id: business2.id
+})
 # review9 = Review.create!({
 #     rating: 3,
 #     comment: "I'm a middle of road kind of guy",

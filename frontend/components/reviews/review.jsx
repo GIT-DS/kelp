@@ -29,7 +29,7 @@ class Review extends React.Component{
                     {userContent}
                 </div>
             </div>        
-            <p>{this.props.review.comment}</p>
+            <p className='comment'>{this.props.review.comment}</p>
         </div>
     }
 } 

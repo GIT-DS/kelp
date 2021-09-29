@@ -5,7 +5,7 @@ import Businesses from './businesses';
 
 
 const mapStateToProps = state => ({
-    businesses: state.entities.businesses
+    businesses: Object.values(state.entities.businesses)
 })
 
 const mapDispatchToProps = dispatch => ({
