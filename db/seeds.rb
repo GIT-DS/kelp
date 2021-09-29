@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'open-uri'
 
 User.destroy_all
 Business.destroy_all
@@ -19,6 +20,10 @@ user1 = User.create!({
     last_name: 'pha',
     zip_code: 10001
 })
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/darrick.jpeg')
+user1.photo.attach(io: file, filename: 'darrick.jpeg')
+
 user2 = User.create!({
     username:"bravo",
     password:"bravo",
@@ -27,6 +32,10 @@ user2 = User.create!({
     last_name: 'vo',
     zip_code: 10002
 })
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/jimmy.jpeg')
+user2.photo.attach(io: file, filename: 'jimmy.jpeg')
+
 user3 = User.create!({
     username:"charlie",
     password:"charlie",
@@ -35,6 +44,10 @@ user3 = User.create!({
     last_name: 'lie',
     zip_code: 10003
 })
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/david.jpeg')
+user3.photo.attach(io: file, filename: 'david.jpeg')
+
 user4 = User.create!({
     username:"delta",
     password:"delta",
@@ -43,6 +56,11 @@ user4 = User.create!({
     last_name: 'ta',
     zip_code: 10004
 })
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/ian.jpeg')
+user4.photo.attach(io: file, filename: 'ian.jpeg')
+
+
 user5 = User.create!({
     username:"echo",
     password:"echo",
@@ -51,6 +69,11 @@ user5 = User.create!({
     last_name: 'ho',
     zip_code: 10005
 })
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/mike.jpeg')
+user5.photo.attach(io: file, filename: 'mike.jpeg')
+
+
 user6 = User.create!({
     username:"foxtrot",
     password:"foxtrot",
@@ -60,10 +83,8 @@ user6 = User.create!({
     zip_code: 10006
 })
 
-
-
-
-
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/vincent.png')
+user6.photo.attach(io: file, filename: 'vincent.png')
 
 # Business Seeds
 
@@ -81,6 +102,9 @@ business1 = Business.create!({
     longitude: 34.067347503798935, 
     latitude: -118.2408155940718
 })
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/restaurants/rockin/o.jpg')
+business1.photos.attach([{io: file, filename: 'o.jpg'}])
 
 business2 = Business.create!({
     title: "Rock'N Fish Restaurant",
