@@ -22,16 +22,15 @@ class Business extends React.Component{
         const closeMin = new Date(timeClose).getMinutes()
 
         if ((currHour >= openHour && currMin >= openMin) && (currHour <= closeHour && currMin <= closeMin)){
-            return 'Open'
+            return <span id='green'>Open</span>
         } else {
-            return 'Closed'
+            return <span id='red'>Closed</span>
         }
 
     }
 
     formatTime(time){
         let hours = parseInt(time.getHours())
-        console.log(hours)
         let M = 'AM';
 
         if (hours > 12 && hours !== 24) {
@@ -49,11 +48,11 @@ class Business extends React.Component{
             const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode} = this.props.business
             let localTimeOpen = new Date(timeOpen)
             let localTimeClose = new Date(timeClose)
+            console.log(this.props.business)
             return (
             <div className='business-show'>
-                <div className='show-head'>
-                    <img></img>
-                    <div>
+                <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photoUrl})`}}>
+                    <div className='business-header-info'>
                         <h1 id="title">{title}</h1>
                         <p> {this.open()} {this.formatTime(localTimeOpen)} - {this.formatTime(localTimeClose)}</p>
                     </div>

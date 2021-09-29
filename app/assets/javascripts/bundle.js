@@ -376,16 +376,19 @@ var Business = /*#__PURE__*/function (_React$Component) {
       var closeMin = new Date(timeClose).getMinutes();
 
       if (currHour >= openHour && currMin >= openMin && currHour <= closeHour && currMin <= closeMin) {
-        return 'Open';
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          id: "green"
+        }, "Open");
       } else {
-        return 'Closed';
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          id: "red"
+        }, "Closed");
       }
     }
   }, {
     key: "formatTime",
     value: function formatTime(time) {
       var hours = parseInt(time.getHours());
-      console.log(hours);
       var M = 'AM';
 
       if (hours > 12 && hours !== 24) {
@@ -414,11 +417,17 @@ var Business = /*#__PURE__*/function (_React$Component) {
             zipCode = _this$props$business2.zipCode;
         var localTimeOpen = new Date(timeOpen);
         var localTimeClose = new Date(timeClose);
+        console.log(this.props.business);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "show-head"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+          className: "show-head",
+          style: {
+            backgroundImage: "linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(".concat(this.props.business.photoUrl, ")")
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "business-header-info"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
           id: "title"
         }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " ", this.open(), " ", this.formatTime(localTimeOpen), " - ", this.formatTime(localTimeClose)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-content"
@@ -914,22 +923,20 @@ var Review = /*#__PURE__*/function (_React$Component) {
             firstName = _this$props$user.firstName,
             lastName = _this$props$user.lastName,
             zipCode = _this$props$user.zipCode;
-        console.log(zipCode);
         userContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "user-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          src: this.props.user.photoUrl,
+          width: "50px",
+          height: "50px"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "user-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, firstName, " ", lastName.slice(0, 1), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, firstName, " ", lastName.slice(0, 1), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode)));
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "review-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "user-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        width: "50px",
-        height: "50px"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "user-info"
-      }, userContent)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      }, userContent, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "comment"
       }, this.props.review.comment));
     }
@@ -1039,7 +1046,9 @@ var Reviews = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, this.props.reviews.map(function (review, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          key: i
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_review_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: review.id,
           review: review
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", null));

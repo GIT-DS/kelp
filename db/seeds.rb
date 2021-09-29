@@ -151,8 +151,8 @@ review7 = Review.create!({
     business_id: business1.id 
 })
 review8 = Review.create!({
-    rating: 5,
-    comment: "MORE FREEBIES!",
+    rating: 1,
+    comment: "THIS PLACE DOESN'T SELL ROCKS AT ALL!",
     user_id: user4.id,
     business_id: business2.id
 })

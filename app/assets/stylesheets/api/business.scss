@@ -24,6 +24,7 @@
     border: 1px solid black;
 }
 .business-content{
+    position: relative;
     display:flex;
     justify-content: space-around;
 }
@@ -44,4 +45,39 @@
 
 .business-show{
     margin: 10px;
+}
+
+.show-head{
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    width: 100%;
+}
+
+.business-header-info {
+    display: flex;
+    height: 80%;
+    padding-left: 50px;
+    flex-direction: column;
+    justify-content: end;
+    color: white;
+}
+
+.business-header-info h1 {
+    color: white;
+    font-size: 50px;
+}
+
+#red{
+    color: red;
+    font-weight: bold;
+    margin: 5px;
+}
+
+#green{
+    color: #66D4AE;
+    font-weight:bold;
+    margin: 5px;
 }
