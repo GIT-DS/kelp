@@ -8,7 +8,6 @@ class Business extends React.Component{
 
     componentDidMount(){
         this.props.fetchBusiness();
-        // console.log(this.props.business)
     }
 
 

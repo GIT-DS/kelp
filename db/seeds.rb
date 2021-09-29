@@ -17,7 +17,7 @@ user1 = User.create!({
     email:"alpha.io",
     first_name: 'al',
     last_name: 'pha',
-    zip_code: 00001
+    zip_code: 10001
 })
 user2 = User.create!({
     username:"bravo",
@@ -25,7 +25,7 @@ user2 = User.create!({
     email:"bravo.io",
     first_name: 'bra',
     last_name: 'vo',
-    zip_code: 00002
+    zip_code: 10002
 })
 user3 = User.create!({
     username:"charlie",
@@ -33,7 +33,7 @@ user3 = User.create!({
     email:"charlie.io",
     first_name: 'char',
     last_name: 'lie',
-    zip_code: 00003
+    zip_code: 10003
 })
 user4 = User.create!({
     username:"delta",
@@ -41,7 +41,7 @@ user4 = User.create!({
     email:"delta.io",
     first_name: 'del',
     last_name: 'ta',
-    zip_code: 00004
+    zip_code: 10004
 })
 user5 = User.create!({
     username:"echo",
@@ -49,7 +49,7 @@ user5 = User.create!({
     email:"echo.io",
     first_name: 'ec',
     last_name: 'ho',
-    zip_code: 00005
+    zip_code: 10005
 })
 user6 = User.create!({
     username:"foxtrot",
@@ -57,7 +57,7 @@ user6 = User.create!({
     email:"foxtrot.io",
     first_name: 'fox',
     last_name: 'trot',
-    zip_code: 00006
+    zip_code: 10006
 })
 
 

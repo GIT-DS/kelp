@@ -1,8 +1,8 @@
 import React from 'react'
+import ReviewContainer from './review_container'
 class Reviews extends React.Component{
     constructor(props){
         super(props)
-        console.log(props)
     }
     
     componentDidMount(){
@@ -12,7 +12,7 @@ class Reviews extends React.Component{
     render(){
         return(
         <div>
-            {this.props.reviews.map((review, i) => <li key={i}>{review.comment}</li>)}
+            {this.props.reviews.map((review, i) => <ReviewContainer key={i} review={review}/>)}
         </div> 
         )   
     }

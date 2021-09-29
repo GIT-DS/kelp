@@ -1,0 +1,41 @@
+.user-container{
+    display:flex;
+    align-items: center;
+}
+.review-container{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+.side-bar-info ul{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    // align-items: end;
+}
+.side-bar-info li{
+    padding-bottom: 15px;
+}
+.social-bar .clear-button{
+    border: 1px solid black;
+}
+.business-content{
+    display:flex;
+    justify-content: space-around;
+}
+
+.social-bar{
+    display:flex;
+}
+
+#review-button{
+    width: inherit;
+}
+
+.user-info{
+    margin-left: 10px;
+}
