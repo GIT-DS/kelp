@@ -6,14 +6,23 @@ class BusinessMap extends React.Component{
     }
 
     componentDidMount (){
-        const mapOptions = {
-            center: {lat: this.props.lat, lng: this.props.lng},
-            zoom: 1
-        };
+        const {latitude, longitude, title} = this.props.business
+
         this.map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: this.props.lat, lng: this.props.lng},
-            zoom: 15
+            center: {lat: latitude, lng: longitude},
+            zoom: 15,
+            disableDefaultUI: true
         })
+
+        new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: this.map,
+            label: title.slice(0,1),
+            title: title,
+            animation: google.maps.Animation.DROP,
+        })
+
+
     }
     render(){
         return <div id='map'></div>

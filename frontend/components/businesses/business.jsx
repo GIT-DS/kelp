@@ -95,7 +95,7 @@ class Business extends React.Component{
                             <h3>Location and Hours</h3>
                             <div className='lc-content'>
                                 <div className='map-container'>
-                                    <BusinessMap lat={latitude} lng={longitude}/>
+                                    <BusinessMap business={this.props.business}/>
                                     <div className='map-address'>
                                         <p>{address}</p>
                                         <p>{city}, {state}</p>

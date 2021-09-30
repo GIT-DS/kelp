@@ -487,8 +487,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "map-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_business_map__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          lat: latitude,
-          lng: longitude
+          business: this.props.business
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "map-address"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -949,19 +948,27 @@ var BusinessMap = /*#__PURE__*/function (_React$Component) {
   _createClass(BusinessMap, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var mapOptions = {
-        center: {
-          lat: this.props.lat,
-          lng: this.props.lng
-        },
-        zoom: 1
-      };
+      var _this$props$business = this.props.business,
+          latitude = _this$props$business.latitude,
+          longitude = _this$props$business.longitude,
+          title = _this$props$business.title;
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: {
-          lat: this.props.lat,
-          lng: this.props.lng
+          lat: latitude,
+          lng: longitude
         },
-        zoom: 15
+        zoom: 15,
+        disableDefaultUI: true
+      });
+      new google.maps.Marker({
+        position: {
+          lat: latitude,
+          lng: longitude
+        },
+        map: this.map,
+        label: title.slice(0, 1),
+        title: title,
+        animation: google.maps.Animation.DROP
       });
     }
   }, {
