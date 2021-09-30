@@ -104,7 +104,7 @@ business1 = Business.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/restaurants/rockin/o.jpg')
-business1.photos.attach([{io: file, filename: 'o.jpg'}])
+business1.photos.attach(io: file, filename: 'o.jpg')
 
 business2 = Business.create!({
     title: "Rock'N Fish Restaurant",

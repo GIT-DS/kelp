@@ -16,12 +16,14 @@ class Business extends React.Component{
         const currTime = new Date();
         const currHour = currTime.getHours()
         const currMin = currTime.getMinutes()
+        const currTotalMinutes = currHour * 60 + currMin
         const openHour = new Date(timeOpen).getHours()
         const openMin = new Date(timeOpen).getMinutes()
+        const openTotalMinutes = openHour * 60 + openMin
         const closeHour = new Date(timeClose).getHours()
         const closeMin = new Date(timeClose).getMinutes()
-
-        if ((currHour >= openHour && currMin >= openMin) && (currHour <= closeHour && currMin <= closeMin)){
+        const closeTotalMinutes = closeHour * 60 + closeMin
+        if (currTotalMinutes >= openTotalMinutes && currTotalMinutes <= closeTotalMinutes){
             return <span id='green'>Open</span>
         } else {
             return <span id='red'>Closed</span>
@@ -48,10 +50,9 @@ class Business extends React.Component{
             const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode} = this.props.business
             let localTimeOpen = new Date(timeOpen)
             let localTimeClose = new Date(timeClose)
-            console.log(this.props.business)
             return (
             <div className='business-show'>
-                <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photoUrl})`}}>
+                <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photosUrl[0]})`}}>
                     <div className='business-header-info'>
                         <h1 id="title">{title}</h1>
                         <p> {this.open()} {this.formatTime(localTimeOpen)} - {this.formatTime(localTimeClose)}</p>

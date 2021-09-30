@@ -1,4 +1,5 @@
 import React from 'react'
+import StaticRating from '../rating/static_rating';
 
 class Review extends React.Component{
     constructor(props){
@@ -11,11 +12,13 @@ class Review extends React.Component{
     
     render(){
         let userContent = "";
+        const {rating, createdAt, comment} = this.props.review
         if (this.props.user){
             const{ firstName, lastName, zipCode} = this.props.user
+
             userContent = (
                 <div className='user-container'>
-                    <img src={this.props.user.photoUrl}width='50px' height='50px'/>
+                    <img src={this.props.user.photoUrl} width='50px' height='50px'/>
                     <div className='user-info'>
                         <h4>{firstName} {lastName.slice(0,1)}.</h4>
                         <p>{zipCode}</p>
@@ -24,8 +27,9 @@ class Review extends React.Component{
             )
         }
         return <div className='review-container'>
-            {userContent}     
-            <p className='comment'>{this.props.review.comment}</p>
+            {userContent}
+            <StaticRating rating={rating} createdAt={createdAt}/>
+            <p className='comment'>{comment}</p>
         </div>
     }
 } 

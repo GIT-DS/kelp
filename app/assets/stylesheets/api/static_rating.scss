@@ -1,0 +1,36 @@
+#rating-bar{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+
+#rating-bar > div {
+    // padding: 10px;
+    // border: 1px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 2px;
+}
+
+// .outer div{
+//     padding: 10px;
+// }
+
+#filled{
+    background-color: rgba(0, 128, 0, 0.466);
+    width: 100%;
+    height: 100%;
+}
+
+#unfilled{
+    background-color: rgba(0, 128, 0, 0.157);
+}
+
+#small{
+    padding: 10px;
+    opacity: 5;
+}
+
+#created{
+    margin-left: 10px;
+}

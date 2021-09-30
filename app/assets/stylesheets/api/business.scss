@@ -43,17 +43,18 @@
     width: inherit;
 }
 
-.business-show{
-    margin: 10px;
-}
+// .business-show{
+//     margin: 10px;
+// }
 
 .show-head{
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 500px;
-    width: 100%;
+    height: 300px;
+    width: 100vw;
+    margin-bottom: 15px;
 }
 
 .business-header-info {
@@ -80,4 +81,15 @@
     color: #66D4AE;
     font-weight:bold;
     margin: 5px;
+}
+
+.side-bar-info {
+    // position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    width: 25%;
+  }
+
+.left-content{
+    width: 50%;
 }
