@@ -11,7 +11,14 @@ class BusinessMap extends React.Component{
         this.map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: latitude, lng: longitude},
             zoom: 15,
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            styles: [
+                {
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{visibility: 'off'}]
+                }
+            ]
         })
 
         new google.maps.Marker({

@@ -315,10 +315,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _reviews_reviews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reviews/reviews */ "./frontend/components/reviews/reviews.jsx");
-/* harmony import */ var _reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/reviews_container */ "./frontend/components/reviews/reviews_container.jsx");
-/* harmony import */ var _business_components_social_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../business_components/social_bar */ "./frontend/components/business_components/social_bar.jsx");
-/* harmony import */ var _map_business_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../map/business_map */ "./frontend/components/map/business_map.jsx");
+/* harmony import */ var _reviews_reviews_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reviews/reviews_container */ "./frontend/components/reviews/reviews_container.jsx");
+/* harmony import */ var _business_components_social_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../business_components/social_bar */ "./frontend/components/business_components/social_bar.jsx");
+/* harmony import */ var _map_business_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../map/business_map */ "./frontend/components/map/business_map.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -340,7 +339,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -425,21 +423,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "fas fa-external-link-alt"
         }));
       }
-    } // dayHours(dayName, day){
-    //     let localTimeOpen = new Date(timeOpen)
-    //     let localTimeClose = new Date(timeClose)
-    //     let LTOS = this.formatTime(localTimeOpen)
-    //     let LTCS = this.formatTime(localTimeClose)
-    //     let currDay = new Date().getDay()
-    //     return(
-    //         <li key={dayName}>
-    //             {currDay ==== day ? <b>{dayName}</b> : <p>{dayName}</p>}
-    //             <p>{LTOS} - {LTCS}</p>
-    //             {currDay === 1 ? this.open() : ''}
-    //         </li>
-    //     )
-    // }
-    )
+    })
   }, {
     key: "render",
     value: function render() {
@@ -478,7 +462,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "business-content"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "left-content"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_components_social_bar__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_components_social_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
           id: "review-hr"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "location-hours"
@@ -486,11 +470,16 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "lc-content"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "map-container"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_business_map__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_business_map__WEBPACK_IMPORTED_MODULE_3__["default"], {
           business: this.props.business
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "under-map"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "map-address"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+          className: "border-button",
+          href: "https://www.google.com/maps/dir//".concat(latitude, ",+").concat(longitude, "/")
+        }, "Get Directions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "day-hours-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "days"
@@ -514,7 +503,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "open"
         }, currDay === 1 ? this.open() : " ", currDay === 2 ? this.open() : " ", currDay === 3 ? this.open() : " ", currDay === 4 ? this.open() : " ", currDay === 5 ? this.open() : " ", currDay === 6 ? this.open() : " ", currDay === 0 ? this.open() : " ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
           id: "review-hr"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           businessId: this.props.business.id
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "side-bar-info"
@@ -524,7 +513,9 @@ var Business = /*#__PURE__*/function (_React$Component) {
           id: "side-hr"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "side-directions"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Get Directions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state, " ", zipCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+          href: "https://www.google.com/maps/dir//".concat(latitude, ",+").concat(longitude, "/")
+        }, "Get Directions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state, " ", zipCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
           className: "fas fa-directions"
         }))))));
       } else {
@@ -537,6 +528,47 @@ var Business = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Business);
+
+/***/ }),
+
+/***/ "./frontend/components/businesses/business_box.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/businesses/business_box.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _rating_static_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rating/static_rating */ "./frontend/components/rating/static_rating.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+var BusinessBox = function BusinessBox(props) {
+  var _props$business = props.business,
+      id = _props$business.id,
+      averageRating = _props$business.averageRating,
+      sampleComment = _props$business.sampleComment,
+      title = _props$business.title;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "business-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "business-box-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/businesses/".concat(id)
+  }, props.index + 1, ". ", title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rating_static_rating__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    rating: averageRating
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    id: "sample-comment"
+  }, sampleComment)));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BusinessBox);
 
 /***/ }),
 
@@ -590,8 +622,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _businesses_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./businesses_container */ "./frontend/components/businesses/businesses_container.jsx");
+/* harmony import */ var _business_box__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./business_box */ "./frontend/components/businesses/business_box.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -618,15 +650,21 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Businesses = /*#__PURE__*/function (_React$Component) {
   _inherits(Businesses, _React$Component);
 
   var _super = _createSuper(Businesses);
 
   function Businesses(props) {
+    var _this;
+
     _classCallCheck(this, Businesses);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props); // this.map = google.maps.Map;
+
+    _this.makeMap = _this.makeMap.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Businesses, [{
@@ -635,15 +673,65 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
       this.props.fetchAllBusinesses();
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.makeMap();
+    }
+  }, {
+    key: "makeMap",
+    value: function makeMap() {
+      var _this2 = this;
+
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: 34.0462312861572,
+          lng: -118.26394516974035
+        },
+        zoom: 11,
+        disableDefaultUI: true,
+        styles: [{
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{
+            visibility: 'off'
+          }]
+        }]
+      });
+      console.log(this.props.businesses);
+      this.props.businesses.map(function (business, i) {
+        var latitude = business.latitude,
+            longitude = business.longitude,
+            title = business.title;
+        var marker = new google.maps.Marker({
+          position: {
+            lat: latitude,
+            lng: longitude
+          },
+          map: _this2.map,
+          label: title.slice(0, 1),
+          title: title,
+          animation: google.maps.Animation.DROP
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+          window.location.href = "#/businesses/".concat(business.id);
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "business-index"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "business-list"
       }, this.props.businesses.map(function (business, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-          to: "/businesses/".concat(business.id),
-          key: business.id
-        }, business.title);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_box__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          business: business,
+          key: i,
+          index: i
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "map"
       }));
     }
   }]);
@@ -958,7 +1046,14 @@ var BusinessMap = /*#__PURE__*/function (_React$Component) {
           lng: longitude
         },
         zoom: 15,
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        styles: [{
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{
+            visibility: 'off'
+          }]
+        }]
       });
       new google.maps.Marker({
         position: {
@@ -1159,6 +1254,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var StaticRating = function StaticRating(props) {
   var rating = props.rating;
+  rating = Math.floor(rating);
   var kelpFilled = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "filled"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -1185,10 +1281,18 @@ var StaticRating = function StaticRating(props) {
     ratingContent.push(kelpUnfilled);
   }
 
-  var date = new Date(props.createdAt);
-  var month = date.getMonth();
-  var day = date.getDay();
-  var year = date.getFullYear();
+  var created = "";
+
+  if (props.createdAt !== undefined) {
+    var date = new Date(props.createdAt);
+    var month = date.getMonth();
+    var day = date.getDay();
+    var year = date.getFullYear();
+    created = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      id: "created"
+    }, month, "/", day, "/", year);
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "rating-bar"
   }, ratingContent.map(function (rating, i) {
@@ -1196,9 +1300,7 @@ var StaticRating = function StaticRating(props) {
       className: "outer",
       key: i
     }, rating);
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    id: "created"
-  }, month, "/", day, "/", year));
+  }), created);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StaticRating);

@@ -24,19 +24,7 @@ $border: rgba(0, 0, 0, 0.103);
     flex-direction: column;
 }
 
-.side-bar-info ul{
-    padding: 10px;
-}
 
-.side-bar-info li{
-    padding-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.side-bar-info li div{
-    padding-right: 40px;
-}
 
 .social-bar .clear-button{
     border: 1px solid $border;
@@ -107,7 +95,28 @@ $border: rgba(0, 0, 0, 0.103);
     top: 10px;
     width: auto;
     align-self: flex-start;
+
+    a{
+        padding-bottom: 5px;
+    }
+
+    ul{
+        padding: 10px;
+    }
+    li{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            padding-right: 40px;
+        }
+    }
 }
+
+
 
 .left-content{
     width: 50%;
@@ -177,5 +186,27 @@ i{
     padding-right: 20px;
     p {
         padding-bottom: 10px;
+    }
+}
+
+.under-map{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .border-button{
+        border: 1px solid $border;
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: normal;
+        color: black;
+    }
+
+    .border-button:hover{
+        // border: 1px solid $border;
+        // border-radius: 5px;
+        // padding: 10px;
+        background-color: $border;
+        transition: 0.5s;
     }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import Reviews from '../reviews/reviews';
 import ReviewsContainer from '../reviews/reviews_container'
 import SocialBar from '../business_components/social_bar';
 import BusinessMap from '../map/business_map';
@@ -55,20 +54,6 @@ class Business extends React.Component{
         }
     }
 
-    // dayHours(dayName, day){
-    //     let localTimeOpen = new Date(timeOpen)
-    //     let localTimeClose = new Date(timeClose)
-    //     let LTOS = this.formatTime(localTimeOpen)
-    //     let LTCS = this.formatTime(localTimeClose)
-    //     let currDay = new Date().getDay()
-    //     return(
-    //         <li key={dayName}>
-    //             {currDay ==== day ? <b>{dayName}</b> : <p>{dayName}</p>}
-    //             <p>{LTOS} - {LTCS}</p>
-    //             {currDay === 1 ? this.open() : ''}
-    //         </li>
-    //     )
-    // }
 
 
     render (){
@@ -96,10 +81,13 @@ class Business extends React.Component{
                             <div className='lc-content'>
                                 <div className='map-container'>
                                     <BusinessMap business={this.props.business}/>
-                                    <div className='map-address'>
-                                        <p>{address}</p>
-                                        <p>{city}, {state}</p>
-                                        <p>{zipCode}</p>
+                                    <div className='under-map'>
+                                        <div className='map-address'>
+                                            <p>{address}</p>
+                                            <p>{city}, {state}</p>
+                                            <p>{zipCode}</p>
+                                        </div>
+                                        <a className='border-button' href={`https://www.google.com/maps/dir//${latitude},+${longitude}/`}>Get Directions</a>
                                     </div>
                                 </div>
                                 <div className='day-hours-container'>
@@ -147,7 +135,7 @@ class Business extends React.Component{
                             <hr id='side-hr'/>  
                             <li>
                                 <div id='side-directions'>
-                                    <p>Get Directions</p>
+                                    <a href={`https://www.google.com/maps/dir//${latitude},+${longitude}/`}>Get Directions</a>
                                     <p>{address}</p>
                                     <p>{city}, {state} {zipCode}</p>
                                 </div>

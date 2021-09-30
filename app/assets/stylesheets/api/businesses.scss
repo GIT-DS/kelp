@@ -5,4 +5,14 @@
 #business-list{
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.business-index{
+    display: flex;
+    justify-content: space-between;
+    #map{
+        width: 50%;
+        height: 100vh;
+    }
 }
