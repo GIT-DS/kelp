@@ -1,6 +1,7 @@
 // Place all the styles related to the api::reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$border: rgba(0, 0, 0, 0.103);
 .user-info{
     margin-left: 10px;
 }
@@ -10,4 +11,12 @@
 
 .user-container > img {
     border-radius: 50%;
+}
+
+#review-hr{
+    height: 1px;
+    width: 90%;
+    border-width: 0;
+    color: $border;
+    background-color: $border;
 }

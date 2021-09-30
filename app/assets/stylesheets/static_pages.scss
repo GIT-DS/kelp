@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$colored-background: #66D4AE;
+$links: #03A6A6;
+
 body{
     background:white;
     font-family: "Helvetica Neue", Helvetica,Arial,sans-serif;
@@ -13,7 +16,7 @@ p{
 .nav-bar{
     display:flex;
     justify-content: space-between;
-    background: #66D4AE;
+    background: $colored-background;
     width: 100%;
     overflow: hidden;
     // padding: 10px;
@@ -21,13 +24,13 @@ p{
 a{
     text-decoration: none;
     font-weight: bold;
-    color: #03A6A6;
+    color: $links;
 }
 
 .other-nav-bar{
     display:flex;
     justify-content: center;
-    background: #66D4AE;
+    background: $colored-background;
     width: 100%;
     overflow: hidden;
     font-size: 50px;
@@ -146,7 +149,7 @@ a{
 
 .search-bar i {
     display:flex;
-    background: #66D4AE;
+    background: $colored-background;
     padding-right: 15px;
     padding-left: 15px;
     align-items: center;
@@ -156,13 +159,13 @@ a{
 
 
 h1{
-    color: #66D4AE;
+    color: $colored-background;
     font-size: 30px;
     font-weight: bold;
     margin: 5px;
 }
 h2{
-    color: #66D4AE;
+    color: $colored-background;
     font-size: 25px;
     font-weight: bold;
 }
@@ -181,7 +184,7 @@ button{
     justify-content: center;
     align-items: center;
     color: white;
-    background-color: #66D4AE;
+    background-color: $colored-background;
     font-size: 30px;
     font-weight: bold;
     border-radius: 5px;

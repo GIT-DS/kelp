@@ -45,6 +45,16 @@ class Business extends React.Component{
         return `${hours}:${minutes} ${M}`
     }
 
+    website(){
+        if(this.props.website){
+            return <li>
+                <div><a href={website}>{webiste}</a></div>
+                <i class="fas fa-external-link-alt"></i>
+            </li>
+        }
+    }
+
+
     render (){
         if (this.props.business){
             const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode} = this.props.business
@@ -61,17 +71,24 @@ class Business extends React.Component{
                 <div className='business-content'>
                     <div className='left-content'>
                         <SocialBar/>
-                        <hr />
+                        <hr id='review-hr'/>
                         <ReviewsContainer businessId={this.props.business.id}/>
                     </div>
                     <div className='side-bar-info'>
                         <ul>
-                            <li>{website}</li>
-                            <li>{phoneNum}</li>
+                            {this.website()}
                             <li>
-                                <p>Get Directions</p>
-                                <p>{address}</p>
-                                <p>{city}, {state} {zipCode}</p>
+                                <div>{phoneNum}</div>
+                                <i class="fas fa-phone-alt"></i>
+                            </li>
+                            <hr id='side-hr'/>  
+                            <li>
+                                <div id='side-directions'>
+                                    <p>Get Directions</p>
+                                    <p>{address}</p>
+                                    <p>{city}, {state} {zipCode}</p>
+                                </div>
+                                <i class="fas fa-directions"></i>
                             </li>
                         </ul>
                     </div>

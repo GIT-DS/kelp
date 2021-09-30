@@ -16,8 +16,8 @@ user1 = User.create!({
     username:"alpha",
     password:"alpha",
     email:"alpha.io",
-    first_name: 'al',
-    last_name: 'pha',
+    first_name: 'Darrick',
+    last_name: 'Shin',
     zip_code: 10001
 })
 
@@ -28,8 +28,8 @@ user2 = User.create!({
     username:"bravo",
     password:"bravo",
     email:"bravo.io",
-    first_name: 'bra',
-    last_name: 'vo',
+    first_name: 'Jimmy',
+    last_name: 'Kuang',
     zip_code: 10002
 })
 
@@ -40,8 +40,8 @@ user3 = User.create!({
     username:"charlie",
     password:"charlie",
     email:"charlie.io",
-    first_name: 'char',
-    last_name: 'lie',
+    first_name: 'David',
+    last_name: 'Oh',
     zip_code: 10003
 })
 
@@ -52,8 +52,8 @@ user4 = User.create!({
     username:"delta",
     password:"delta",
     email:"delta.io",
-    first_name: 'del',
-    last_name: 'ta',
+    first_name: 'Ian',
+    last_name: 'Mcgrath',
     zip_code: 10004
 })
 
@@ -65,8 +65,8 @@ user5 = User.create!({
     username:"echo",
     password:"echo",
     email:"echo.io",
-    first_name: 'ec',
-    last_name: 'ho',
+    first_name: 'Mike',
+    last_name: 'Le',
     zip_code: 10005
 })
 
@@ -78,8 +78,8 @@ user6 = User.create!({
     username:"foxtrot",
     password:"foxtrot",
     email:"foxtrot.io",
-    first_name: 'fox',
-    last_name: 'trot',
+    first_name: 'Vincent',
+    last_name: 'Hsu',
     zip_code: 10006
 })
 
@@ -121,7 +121,8 @@ business2 = Business.create!({
     latitude: -118.26394516974035, 
 })
 
-
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/q.jpg')
+business2.photos.attach(io: file, filename: 'q.jpg')
 
 
 
@@ -144,30 +145,30 @@ review2 = Review.create!({
     user_id: user1.id,
     business_id: business2.id 
 })
-# review3 = Review.create!({
-#     rating: 4,
-#     comment: 'The ambience is just right',
-#     user_id: user2.id,
-#     business_id: business3.id 
-# })
-# review4 = Review.create!({
-#     rating: 3,
-#     comment: 'Not too great, not too bad',
-#     user_id: user2.id,
-#     business_id: business4.id
-# })
-# review5 = Review.create!({
-#     rating: 1,
-#     comment: "I'm angry and you should be too",
-#     user_id: user3.id,
-#     business_id: business5.id 
-# })
-# review6 = Review.create!({
-#     rating: 1,
-#     comment: "I really dislike the staff here",
-#     user_id: user3.id,
-#     business_id: business6.id 
-# })
+review3 = Review.create!({
+    rating: 4,
+    comment: "I'm angry and you should be too" ,
+    user_id: user2.id,
+    business_id: business1.id 
+})
+review4 = Review.create!({
+    rating: 3,
+    comment: "I really dislike the staff here",
+    user_id: user2.id,
+    business_id: business2.id
+})
+review5 = Review.create!({
+    rating: 1,
+    comment: 'The ambience is just right',
+    user_id: user3.id,
+    business_id: business1.id 
+})
+review6 = Review.create!({
+    rating: 1,
+    comment: 'Not too great, not too bad',
+    user_id: user3.id,
+    business_id: business2.id 
+})
 review7 = Review.create!({
     rating: 5,
     comment: "Just here for the freebies",
@@ -180,30 +181,30 @@ review8 = Review.create!({
     user_id: user4.id,
     business_id: business2.id
 })
-# review9 = Review.create!({
-#     rating: 3,
-#     comment: "I'm a middle of road kind of guy",
-#     user_id: user5.id,
-#     business_id: business3.id 
-# })
+review9 = Review.create!({
+    rating: 3,
+    comment: "I'm a middle of road kind of guy",
+    user_id: user5.id,
+    business_id: business1.id 
+})
 
-# review10 = Review.create!({
-#     rating: 4,
-#     comment: "Slightly better than expected",
-#     user_id: user5.id,
-#     business_id: business4.id 
-# })
+review10 = Review.create!({
+    rating: 4,
+    comment: "Slightly better than expected",
+    user_id: user5.id,
+    business_id: business2.id 
+})
 
-# review11 = Review.create!({
-#     rating: 5,
-#     comment: "Great Fantastic Love it",
-#     user_id: user6.id,
-#     business_id: business5.id 
-# })
+review11 = Review.create!({
+    rating: 5,
+    comment: "Great Fantastic Love it",
+    user_id: user6.id,
+    business_id: business1.id 
+})
 
-# review12 = Review.create!({
-#     rating: 1,
-#     comment: "The entire kitchen and wait staff saw an ice cream truck and ran outside, leaving me alone in the restaurant. 10 minutes later they all came back with ice cream cones... I still can't believe this actually happened",
-#     user_id: user6.id,
-#     business_id: business6.id 
-# })
+review12 = Review.create!({
+    rating: 1,
+    comment: "The entire kitchen and wait staff saw an ice cream truck and ran outside, leaving me alone in the restaurant. 10 minutes later they all came back with ice cream cones... I still can't believe this actually happened",
+    user_id: user6.id,
+    business_id: business2.id 
+})

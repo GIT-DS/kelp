@@ -15,7 +15,7 @@ class Reviews extends React.Component{
             {this.props.reviews.map((review, i) => (
                 <div key={i}>
                     <ReviewContainer key={review.id} review={review}/>
-                    <hr />
+                    <hr id='review-hr'/>
                 </div>
             ))}
         </div> 
