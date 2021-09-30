@@ -318,6 +318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reviews_reviews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reviews/reviews */ "./frontend/components/reviews/reviews.jsx");
 /* harmony import */ var _reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/reviews_container */ "./frontend/components/reviews/reviews_container.jsx");
 /* harmony import */ var _business_components_social_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../business_components/social_bar */ "./frontend/components/business_components/social_bar.jsx");
+/* harmony import */ var _map_business_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../map/business_map */ "./frontend/components/map/business_map.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -339,6 +340,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -420,10 +422,24 @@ var Business = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           href: website
         }, webiste)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-          "class": "fas fa-external-link-alt"
+          className: "fas fa-external-link-alt"
         }));
       }
-    })
+    } // dayHours(dayName, day){
+    //     let localTimeOpen = new Date(timeOpen)
+    //     let localTimeClose = new Date(timeClose)
+    //     let LTOS = this.formatTime(localTimeOpen)
+    //     let LTCS = this.formatTime(localTimeClose)
+    //     let currDay = new Date().getDay()
+    //     return(
+    //         <li key={dayName}>
+    //             {currDay ==== day ? <b>{dayName}</b> : <p>{dayName}</p>}
+    //             <p>{LTOS} - {LTCS}</p>
+    //             {currDay === 1 ? this.open() : ''}
+    //         </li>
+    //     )
+    // }
+    )
   }, {
     key: "render",
     value: function render() {
@@ -438,10 +454,15 @@ var Business = /*#__PURE__*/function (_React$Component) {
             address = _this$props$business2.address,
             city = _this$props$business2.city,
             state = _this$props$business2.state,
-            zipCode = _this$props$business2.zipCode;
+            zipCode = _this$props$business2.zipCode,
+            latitude = _this$props$business2.latitude,
+            longitude = _this$props$business2.longitude;
 
         var localTimeOpen = new Date(timeOpen);
         var localTimeClose = new Date(timeClose);
+        var LTOS = this.formatTime(localTimeOpen);
+        var LTCS = this.formatTime(localTimeClose);
+        var currDay = new Date().getDay();
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -453,24 +474,59 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "business-header-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
           id: "title"
-        }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " ", this.open(), " ", this.formatTime(localTimeOpen), " - ", this.formatTime(localTimeClose)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " ", this.open(), " ", LTOS, " - ", LTCS))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-content"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "left-content"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_components_social_bar__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+          id: "review-hr"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "location-hours"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Location and Hours"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "lc-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "map-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_map_business_map__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          lat: latitude,
+          lng: longitude
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "map-address"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "day-hours-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "days"
+        }, currDay === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Mon") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Mon"), currDay === 2 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Tue") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Tue"), currDay === 3 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Wed") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Wed"), currDay === 4 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Thu") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Thu"), currDay === 5 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Fri") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Fri"), currDay === 6 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Sat") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Sat"), currDay === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          id: "bold"
+        }, "Sun") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Sun")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "hours"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, LTOS, " - ", LTCS)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "open"
+        }, currDay === 1 ? this.open() : " ", currDay === 2 ? this.open() : " ", currDay === 3 ? this.open() : " ", currDay === 4 ? this.open() : " ", currDay === 5 ? this.open() : " ", currDay === 6 ? this.open() : " ", currDay === 0 ? this.open() : " ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
           id: "review-hr"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reviews_reviews_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
           businessId: this.props.business.id
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "side-bar-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.website(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, phoneNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-          "class": "fas fa-phone-alt"
+          className: "fas fa-phone-alt"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
           id: "side-hr"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "side-directions"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Get Directions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state, " ", zipCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-          "class": "fas fa-directions"
+          className: "fas fa-directions"
         }))))));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
@@ -727,7 +783,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Footer = function Footer(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
     className: "footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "footer-links"
@@ -765,7 +823,7 @@ var Footer = function Footer(props) {
   }, "Countries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     to: "#",
     className: "col-content"
-  }, "United States"))));
+  }, "United States")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -834,6 +892,91 @@ var Logo = function Logo(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Logo);
+
+/***/ }),
+
+/***/ "./frontend/components/map/business_map.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/map/business_map.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var BusinessMap = /*#__PURE__*/function (_React$Component) {
+  _inherits(BusinessMap, _React$Component);
+
+  var _super = _createSuper(BusinessMap);
+
+  function BusinessMap(props) {
+    var _this;
+
+    _classCallCheck(this, BusinessMap);
+
+    _this = _super.call(this, props);
+    _this.map = google.maps.Map;
+    return _this;
+  }
+
+  _createClass(BusinessMap, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var mapOptions = {
+        center: {
+          lat: this.props.lat,
+          lng: this.props.lng
+        },
+        zoom: 1
+      };
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: this.props.lat,
+          lng: this.props.lng
+        },
+        zoom: 15
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "map"
+      });
+    }
+  }]);
+
+  return BusinessMap;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BusinessMap);
 
 /***/ }),
 

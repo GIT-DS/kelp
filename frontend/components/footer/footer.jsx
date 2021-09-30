@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Footer = props => (
-
+    <div className='footer-container'>
     <footer className='footer'>
         <div className="footer-links">
             <div className="col">
@@ -48,7 +48,7 @@ const Footer = props => (
             </div>
         </div>
     </footer>
-
+    </div>
 
 
 )

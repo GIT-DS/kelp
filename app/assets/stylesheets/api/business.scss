@@ -124,3 +124,58 @@ $border: rgba(0, 0, 0, 0.103);
 i{
     color: rgba(0, 0, 0, 0.404);
 }
+
+
+.location-hours{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lc-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+#hours li {
+    padding: 10px;
+}
+
+.map-address{
+    margin-top: 20px;
+}
+
+#bold{
+    font-weight: bold;
+    color: green;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.day-hours-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+#days{
+    // display:flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    padding-right: 20px;
+    p {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+#hours{
+    padding-right: 20px;
+    p {
+        padding-bottom: 10px;
+    }
+}

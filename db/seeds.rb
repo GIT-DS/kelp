@@ -99,8 +99,8 @@ business1 = Business.create!({
     city: 'Los Angeles',
     state: 'CA',
     zip_code: '90012',
-    longitude: 34.067347503798935, 
-    latitude: -118.2408155940718
+    latitude: 34.067347503798935, 
+    longitude: -118.2408155940718
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/restaurants/rockin/o.jpg')
@@ -117,8 +117,8 @@ business2 = Business.create!({
     city: 'Los Angeles',
     state: 'CA',
     zip_code: '90015',
-    longitude: 34.0462312861572, 
-    latitude: -118.26394516974035, 
+    latitude: 34.0462312861572, 
+    longitude: -118.26394516974035, 
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/q.jpg')

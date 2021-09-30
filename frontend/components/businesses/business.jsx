@@ -2,6 +2,7 @@ import React from 'react'
 import Reviews from '../reviews/reviews';
 import ReviewsContainer from '../reviews/reviews_container'
 import SocialBar from '../business_components/social_bar';
+import BusinessMap from '../map/business_map';
 class Business extends React.Component{
     constructor(props){
         super(props)
@@ -49,28 +50,90 @@ class Business extends React.Component{
         if(this.props.website){
             return <li>
                 <div><a href={website}>{webiste}</a></div>
-                <i class="fas fa-external-link-alt"></i>
+                <i className="fas fa-external-link-alt"></i>
             </li>
         }
     }
 
+    // dayHours(dayName, day){
+    //     let localTimeOpen = new Date(timeOpen)
+    //     let localTimeClose = new Date(timeClose)
+    //     let LTOS = this.formatTime(localTimeOpen)
+    //     let LTCS = this.formatTime(localTimeClose)
+    //     let currDay = new Date().getDay()
+    //     return(
+    //         <li key={dayName}>
+    //             {currDay ==== day ? <b>{dayName}</b> : <p>{dayName}</p>}
+    //             <p>{LTOS} - {LTCS}</p>
+    //             {currDay === 1 ? this.open() : ''}
+    //         </li>
+    //     )
+    // }
+
 
     render (){
         if (this.props.business){
-            const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode} = this.props.business
+            const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode, latitude, longitude} = this.props.business
             let localTimeOpen = new Date(timeOpen)
             let localTimeClose = new Date(timeClose)
+            let LTOS = this.formatTime(localTimeOpen)
+            let LTCS = this.formatTime(localTimeClose)
+            let currDay = new Date().getDay()
             return (
             <div className='business-show'>
                 <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photosUrl[0]})`}}>
                     <div className='business-header-info'>
                         <h1 id="title">{title}</h1>
-                        <p> {this.open()} {this.formatTime(localTimeOpen)} - {this.formatTime(localTimeClose)}</p>
+                        <p> {this.open()} {LTOS} - {LTCS}</p>
                     </div>
                 </div>
                 <div className='business-content'>
                     <div className='left-content'>
                         <SocialBar/>
+                        <hr id='review-hr'/>
+                        <div className='location-hours'>
+                            <h3>Location and Hours</h3>
+                            <div className='lc-content'>
+                                <div className='map-container'>
+                                    <BusinessMap lat={latitude} lng={longitude}/>
+                                    <div className='map-address'>
+                                        <p>{address}</p>
+                                        <p>{city}, {state}</p>
+                                        <p>{zipCode}</p>
+                                    </div>
+                                </div>
+                                <div className='day-hours-container'>
+                                    <div id='days'>
+                                        {currDay === 1 ? <p id='bold'>Mon</p> : <p>Mon</p>}
+                                        {currDay === 2 ? <p id='bold'>Tue</p> : <p>Tue</p>}
+                                        {currDay === 3 ? <p id='bold'>Wed</p> : <p>Wed</p>}
+                                        {currDay === 4 ? <p id='bold'>Thu</p> : <p>Thu</p>}
+                                        {currDay === 5 ? <p id='bold'>Fri</p> : <p>Fri</p>}
+                                        {currDay === 6 ? <p id='bold'>Sat</p> : <p>Sat</p>}
+                                        {currDay === 0 ? <p id='bold'>Sun</p> : <p>Sun</p>}
+                                    </div>
+                                    <div id='hours'>
+                                        <p>{LTOS} - {LTCS}</p>
+                                        <p>{LTOS} - {LTCS}</p>
+                                        <p>{LTOS} - {LTCS}</p>
+                                        <p>{LTOS} - {LTCS}</p>
+                                        <p>{LTOS} - {LTCS}</p>
+                                        <p>{LTOS} - {LTCS}</p>
+                                        <p>{LTOS} - {LTCS}</p>
+                                    </div>
+                                    <div className='open'>
+                                        {currDay === 1 ? this.open() : " "}
+                                        {currDay === 2 ? this.open() : " " }
+                                        {currDay === 3 ? this.open() : " " }
+                                        {currDay === 4 ? this.open() : " " }
+                                        {currDay === 5 ? this.open() : " " }
+                                        {currDay === 6 ? this.open() : " " }
+                                        {currDay === 0 ? this.open() : " " }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <hr id='review-hr'/>
                         <ReviewsContainer businessId={this.props.business.id}/>
                     </div>
@@ -79,7 +142,7 @@ class Business extends React.Component{
                             {this.website()}
                             <li>
                                 <div>{phoneNum}</div>
-                                <i class="fas fa-phone-alt"></i>
+                                <i className="fas fa-phone-alt"></i>
                             </li>
                             <hr id='side-hr'/>  
                             <li>
@@ -88,7 +151,7 @@ class Business extends React.Component{
                                     <p>{address}</p>
                                     <p>{city}, {state} {zipCode}</p>
                                 </div>
-                                <i class="fas fa-directions"></i>
+                                <i className="fas fa-directions"></i>
                             </li>
                         </ul>
                     </div>
