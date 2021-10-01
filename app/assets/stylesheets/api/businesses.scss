@@ -13,12 +13,12 @@ $fade: rgba(0, 0, 0, 0.226);
 
 
 
-.business-content{
+.business-index-content{
     display: flex;
     justify-content: space-between;
     .businesses-map{
         width: 50%;
-        height: 100vh;
+        height: .8* 100vh;
     }
     #business-list{
         display: flex;
@@ -26,9 +26,24 @@ $fade: rgba(0, 0, 0, 0.226);
         width: 100%;
         box-shadow: 10px 0 5px -5px #888;
         z-index: 998;
+        padding-right: 5px;
+        padding-left: 5px;
     }
     a{
         color: black;
+    }
+}
+
+#business-box-categories{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    a{
+        border-radius: 5px;
+        background-color: $border;
+        padding: 5px;
+        margin-right: 5px;
+        color: $fade;
     }
 }
 
@@ -42,6 +57,10 @@ $fade: rgba(0, 0, 0, 0.226);
     h2{
         color: $fade
     }
+}
+
+.business-box:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #sample-comment{
@@ -58,7 +77,6 @@ $fade: rgba(0, 0, 0, 0.226);
         position: sticky;
         top:0;
         align-self: flex-start;
-
-
+        height: 10%;
     }
 }

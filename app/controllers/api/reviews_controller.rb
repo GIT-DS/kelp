@@ -24,10 +24,13 @@ class Api::ReviewsController < ApplicationController
     end
 
     def update
-    #     @review = Review.find_by(id: params[:id])
-    #     if @review
-            
-    #     end
+        @review = Review.find_by(id: params[:id])
+        if @review
+            # update(@review(review_params))
+            render :show
+        else
+            render json: ['Invalid']
+        end
     end
 
 

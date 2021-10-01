@@ -11,4 +11,10 @@ firstComment = business.reviews.first.comment
 
 json.sampleComment firstComment
 
+categories = []
+business.categories.each do |cat|
+    categories.push(cat.title)
+end
+json.categories categories
+
 json.photosUrl business.photos.map {|file| url_for(file)}

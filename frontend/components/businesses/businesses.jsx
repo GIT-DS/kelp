@@ -56,7 +56,7 @@ class Businesses extends React.Component{
         return (
             <div className='business-index'>
                 <BusinessNavBarContainer/>
-                <div className='business-content'>
+                <div className='business-index-content'>
                     <div id='business-list'>
                         {this.props.businesses.map((business,i) => <BusinessBox business={business} key={i} index={i}/>)}
                     </div>

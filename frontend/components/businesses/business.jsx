@@ -60,7 +60,7 @@ class Business extends React.Component{
 
     render (){
         if (this.props.business){
-            const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode, latitude, longitude} = this.props.business
+            const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode, latitude, longitude, cost, categories} = this.props.business
             let localTimeOpen = new Date(timeOpen)
             let localTimeClose = new Date(timeClose)
             let LTOS = this.formatTime(localTimeOpen)
@@ -72,6 +72,11 @@ class Business extends React.Component{
                 <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photosUrl[0]})`}}>
                     <div className='business-header-info'>
                         <h1 id="title">{title}</h1>
+                        <div id='sub-info'>
+                            <p>{cost}</p>
+                            <p>●</p>
+                            {categories.map((cat,i) => <p>{cat}{i < categories.length - 1 ? ',  ' : ''}</p>)}
+                        </div>
                         <p> {this.open()} {LTOS} - {LTCS}</p>
                     </div>
                 </div>

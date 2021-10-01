@@ -16,5 +16,5 @@ class Category < ApplicationRecord
 
     has_many :businesses,
     through: :business_categories,
-    source: :Business
+    source: :business
 end

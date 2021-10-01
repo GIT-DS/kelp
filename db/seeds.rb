@@ -7,9 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
 
-User.destroy_all
+BusinessCategory.destroy_all
+Category.destroy_all
 Business.destroy_all
 Review.destroy_all
+User.destroy_all
 
 #User Seeds
 user1 = User.create!({
@@ -208,3 +210,48 @@ review12 = Review.create!({
     user_id: user6.id,
     business_id: business2.id 
 })
+
+#Categories
+
+c1 = Category.create!({
+    title: 'Seafood'
+})
+
+c2 = Category.create!({
+    title: 'Chinese'
+})
+
+c3 = Category.create!({
+    title: 'Gastropubs'
+})
+
+c4 = Category.create!({
+    title: 'American'
+})
+
+#Business Categories
+
+bc1 = BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: business1.id,
+})
+
+bc2 = BusinessCategory.create!({
+    category_id: c2.id,
+    business_id: business1.id,
+})
+
+bc3 = BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: business2.id,
+})
+
+bc4 = BusinessCategory.create!({
+    category_id: c3.id,
+    business_id: business2.id,
+})
+
+bc5 = BusinessCategory.create!({
+    category_id: c4.id,
+    business_id: business2.id,
+}) 

@@ -24,7 +24,12 @@ $border: rgba(0, 0, 0, 0.103);
     flex-direction: column;
 }
 
-
+#sub-info{
+    display:flex;
+    p {
+        padding: 5px;
+    }
+}
 
 .social-bar .clear-button{
     border: 1px solid $border;
@@ -164,7 +169,7 @@ i{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    min-width: 300px;
     p {
         margin-bottom: 10px;
         padding-bottom: 10px;

@@ -10,7 +10,9 @@
 #
 class BusinessCategory < ApplicationRecord
     validates_presence_of :category_id, :business_id
-    belongs_to :category
+    belongs_to :category,
+    foreign_key: :category_id,
+    class_name: :Category
 
     belongs_to :business
 end
