@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Logo = (props) => (
     <div className='logo-container'>
-        <Link to='/'><h1 id='logo'>Kelp</h1></Link>
+        <h1 id='logo'>Kelp</h1>
         <img src={window.logo} width='50px'/>   
         
     </div>

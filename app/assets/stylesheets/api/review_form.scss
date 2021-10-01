@@ -1,0 +1,50 @@
+$colored-background: #66D4AE;
+.review-form-container{
+    display:flex;
+    position: center;
+    flex-direction: column;
+
+    .other-nav-bar{
+        padding: 0;
+    }
+
+    .review-form-content{
+        // margin: 15px;
+        // width: 100vw;
+        form{
+            display: flex;
+            flex-direction: column;
+            // width: 100vw;
+            align-items: center;
+            justify-content: center;
+            position: center;
+            padding: 10px;
+            
+            #inputs{
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 15px;
+                width: 90%;
+                input{
+                    width: 100%;
+                    border: none;
+                }
+                #comment{
+                    width: 100%;
+                    height: 200px;
+                    border:none;
+                }
+  
+            }
+            button{
+                margin-top: 20px;
+                background-color: $colored-background;
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+}

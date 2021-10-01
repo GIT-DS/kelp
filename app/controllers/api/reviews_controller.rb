@@ -26,7 +26,7 @@ class Api::ReviewsController < ApplicationController
     def update
         @review = Review.find_by(id: params[:id])
         if @review
-            # update(@review(review_params))
+            @review.update(review_params)
             render :show
         else
             render json: ['Invalid']
