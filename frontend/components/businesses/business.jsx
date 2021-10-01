@@ -2,6 +2,8 @@ import React from 'react'
 import ReviewsContainer from '../reviews/reviews_container'
 import SocialBar from '../business_components/social_bar';
 import BusinessMap from '../map/business_map';
+import OtherNavBar from '../nav_bar/other_nav_bar';
+import BusinessNavBarContainer from '../nav_bar/business_nav_bar_container';
 class Business extends React.Component{
     constructor(props){
         super(props)
@@ -66,6 +68,7 @@ class Business extends React.Component{
             let currDay = new Date().getDay()
             return (
             <div className='business-show'>
+                <BusinessNavBarContainer/>
                 <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photosUrl[0]})`}}>
                     <div className='business-header-info'>
                         <h1 id="title">{title}</h1>

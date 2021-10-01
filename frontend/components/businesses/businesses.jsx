@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import BusinessesContainer from './businesses_container';
+import BusinessNavBarContainer from '../nav_bar/business_nav_bar_container';
+// import SearchBar from '../search_bar/search_bar';
+// import BusinessesContainer from './businesses_container';
 import BusinessBox from './business_box';
 
 class Businesses extends React.Component{
@@ -53,10 +55,13 @@ class Businesses extends React.Component{
     render(){
         return (
             <div className='business-index'>
-                <div id='business-list'>
-                    {this.props.businesses.map((business,i) => <BusinessBox business={business} key={i} index={i}/>)}
+                <BusinessNavBarContainer/>
+                <div className='business-content'>
+                    <div id='business-list'>
+                        {this.props.businesses.map((business,i) => <BusinessBox business={business} key={i} index={i}/>)}
+                    </div>
+                    <div className='businesses-map' id='map'></div>
                 </div>
-                <div id='map'></div>
             </div>
         )
     }

@@ -33,6 +33,8 @@ $border: rgba(0, 0, 0, 0.103);
     position: relative;
     display:flex;
     justify-content: space-around;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .social-bar{
@@ -49,9 +51,7 @@ $border: rgba(0, 0, 0, 0.103);
     width: inherit;
 }
 
-// .business-show{
-//     margin: 10px;
-// }
+
 
 .show-head{
     position: relative;

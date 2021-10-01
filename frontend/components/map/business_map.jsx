@@ -32,7 +32,7 @@ class BusinessMap extends React.Component{
 
     }
     render(){
-        return <div id='map'></div>
+        return <div className='bus-map' id='map'></div>
     }
 }
 

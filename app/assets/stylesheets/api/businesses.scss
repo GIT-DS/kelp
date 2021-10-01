@@ -2,17 +2,63 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#business-list{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+$border: rgba(0, 0, 0, 0.103);
+$fade: rgba(0, 0, 0, 0.226);
+
 
 .business-index{
+    display:flex;
+    flex-direction: column;
+}
+
+
+
+.business-content{
     display: flex;
     justify-content: space-between;
-    #map{
+    .businesses-map{
         width: 50%;
         height: 100vh;
+    }
+    #business-list{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        box-shadow: 10px 0 5px -5px #888;
+        z-index: 998;
+    }
+    a{
+        color: black;
+    }
+}
+
+.business-box{
+    #sample-comment{
+        display: flex;
+        margin-top: 5px;
+        color: $fade
+    }
+
+    h2{
+        color: $fade
+    }
+}
+
+#sample-comment{
+    i{
+        padding-right: 5px;
+    }
+}
+.business-index{
+
+
+    .business-nav{
+
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top:0;
+        align-self: flex-start;
+
+
     }
 }

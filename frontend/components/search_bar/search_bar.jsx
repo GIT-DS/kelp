@@ -13,7 +13,7 @@ class SearchBar extends React.Component{
             <div className='search-bar'>
                 <h2>Find</h2>
                 <input type='text' placeholder='seafood, seafood, seafood...'/>
-                <h2>| Near</h2>
+                <h2>Near</h2>
                 <input type='text' placeholder='Los Angeles, CA'/>
                 <i className="fa fa-search"></i>
             </div>
