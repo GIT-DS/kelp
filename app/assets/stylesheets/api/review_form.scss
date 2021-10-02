@@ -45,6 +45,66 @@ $colored-background: #66D4AE;
                 color: white;
                 font-weight: bold;
             }
+
+
+
+            .txt-center {
+                text-align: center;
+            }
+            .hide {
+                display: none;
+            }
+            
+            .clear {
+                float: none;
+                clear: both;
+            }
+            
+            .rating {
+                width: 160px;
+                unicode-bidi: bidi-override;
+                direction: rtl;
+                text-align: start;
+                position: relative;
+            }
+            
+            .rating > label {
+                float: right;
+                display: inline;
+                padding: 5px;
+                margin: 0;
+                position: relative;
+                width: 1.1em;
+                cursor: pointer;
+                color: #000;
+                img{
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+            }
+            
+            .rating > label:hover,
+            .rating > label:hover ~ label,
+            .rating > input.radio-btn:checked ~ label {
+                color: transparent;
+            }
+            
+            .rating > label:hover:before,
+            .rating > label:hover ~ label:before,
+            .rating > input.radio-btn:checked ~ label:before,
+            .rating > input.radio-btn:checked ~ label:before {
+                content: image-url('small_kelp_logo.png');
+                position: absolute;
+                left: 0;
+                background-color: #FFD700;
+                border-radius: 5px;
+                margin-left: 8px;
+                padding: 5px;
+            }
+
+
+
+
         }
     }
 }

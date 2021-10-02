@@ -1559,7 +1559,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           height: "50px"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "user-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, firstName, " ", lastName.slice(0, 1), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode)));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, firstName, " ", lastName, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode)));
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1698,9 +1698,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submitHandler",
     value: function submitHandler(e) {
-      e.preventDefault(); // console.log(this.props)
-      // console.log('helpppp')
-
+      e.preventDefault();
       this.props.submitForm(this.state);
       this.props.history.push("/businesses/".concat(this.state.businessId));
     }
@@ -1714,7 +1712,66 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "review-form-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, this.props.review.businessTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "inputs"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "rating"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "rating5",
+        name: "rating",
+        type: "radio",
+        value: "5",
+        className: "radio-btn hide",
+        onChange: this.update('rating')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "rating5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.smalllogo
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "rating4",
+        name: "rating",
+        type: "radio",
+        value: "4",
+        className: "radio-btn hide",
+        onChange: this.update('rating')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "rating4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.smalllogo
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "rating3",
+        name: "rating",
+        type: "radio",
+        value: "3",
+        className: "radio-btn hide",
+        onChange: this.update('rating')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "rating3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.smalllogo
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "rating2",
+        name: "rating",
+        type: "radio",
+        value: "2",
+        className: "radio-btn hide",
+        onChange: this.update('rating')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "rating2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.smalllogo
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "rating1",
+        name: "rating",
+        type: "radio",
+        value: "1",
+        className: "radio-btn hide",
+        onChange: this.update('rating')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "rating1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.smalllogo
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "clear"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         id: "comment",
         value: this.state.comment,
         placeholder: "comment",

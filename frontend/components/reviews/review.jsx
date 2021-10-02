@@ -20,7 +20,7 @@ class Review extends React.Component{
                 <div className='user-container'>
                     <img src={this.props.user.photoUrl} width='50px' height='50px'/>
                     <div className='user-info'>
-                        <h4>{firstName} {lastName.slice(0,1)}.</h4>
+                        <h4>{firstName} {lastName}.</h4>
                         <p>{zipCode}</p>
                     </div>
                 </div>      
