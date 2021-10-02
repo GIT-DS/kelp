@@ -104,10 +104,10 @@ $fade: rgba(0, 0, 0, 0.226);
                 color: transparent;
             }
             
-            .rating > label:hover:before,
-            .rating > label:hover ~ label:before,
-            .rating > input.radio-btn:checked ~ label:before,
-            .rating > input.radio-btn:checked ~ label:before {
+            .rating > label:hover:after,
+            .rating > label:hover ~ label:after,
+            .rating > input.radio-btn:checked ~ label:after,
+            .rating > input.radio-btn:checked ~ label:after {
                 content: image-url('small_kelp_logo.png');
                 position: absolute;
                 left: 0;

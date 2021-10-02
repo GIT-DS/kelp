@@ -1681,7 +1681,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       if (!this.props.review) {
-        this.props.fetchReview(this.props.match.params.businessId, this.props.match.params.reviewId).then(function (res) {
+        this.props.fetchReview(this.props.match.params.reviewId).then(function (res) {
           return _this2.setState(res.review);
         });
       }
@@ -1726,12 +1726,27 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "radioButtons",
+    value: function radioButtons(number) {
       var logo = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: window.smalllogo
       });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "rating".concat(number),
+        name: "rating",
+        type: "radio",
+        value: "".concat(number),
+        className: "radio-btn hide",
+        onChange: this.update('rating')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "rating".concat(number)
+      }, logo));
+    }
+  }, {
+    key: "render",
+    value: function render() {
       if (!this.props.review) return null;
+      var rating = this.state.rating;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "review-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1742,54 +1757,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "radio-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "rating"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "rating5",
-        name: "rating",
-        type: "radio",
-        value: "5",
-        className: "radio-btn hide",
-        onChange: this.update('rating')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "rating5"
-      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "rating4",
-        name: "rating",
-        type: "radio",
-        value: "4",
-        className: "radio-btn hide",
-        onChange: this.update('rating')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "rating4"
-      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "rating3",
-        name: "rating",
-        type: "radio",
-        value: "3",
-        className: "radio-btn hide",
-        onChange: this.update('rating')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "rating3"
-      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "rating2",
-        name: "rating",
-        type: "radio",
-        value: "2",
-        className: "radio-btn hide",
-        onChange: this.update('rating')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "rating2"
-      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "rating1",
-        name: "rating",
-        type: "radio",
-        value: "1",
-        className: "radio-btn hide",
-        onChange: this.update('rating')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "rating1"
-      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "clear"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+      }, this.radioButtons(5), this.radioButtons(4), this.radioButtons(3), this.radioButtons(2), this.radioButtons(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         id: "comment",
         value: this.state.comment,
         onChange: this.update('comment')
@@ -1833,13 +1801,13 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     submitForm: function submitForm(review) {
-      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__.updateReview)(ownProps.match.params.businessId, review));
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__.updateReview)(review));
     },
-    fetchReview: function fetchReview(businessId, reviewId) {
-      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__.fetchReview)(businessId, reviewId));
+    fetchReview: function fetchReview(reviewId) {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__.fetchReview)(reviewId));
     }
   };
 };

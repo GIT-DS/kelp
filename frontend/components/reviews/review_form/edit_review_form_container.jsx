@@ -8,9 +8,9 @@ const mapStateToProps = (state,ownProps)=>({
     formType: 'Update Review'
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    submitForm: (review) => dispatch(updateReview(ownProps.match.params.businessId, review)),
-    fetchReview: (businessId, reviewId) => dispatch(fetchReview(businessId, reviewId))
+const mapDispatchToProps = (dispatch) => ({
+    submitForm: (review) => dispatch(updateReview(review)),
+    fetchReview: (reviewId) => dispatch(fetchReview(reviewId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditReviewForm)

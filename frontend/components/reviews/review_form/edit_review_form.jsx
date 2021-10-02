@@ -9,7 +9,7 @@ class EditReviewForm extends React.Component{
     }
     componentDidMount(){
         if (!this.props.review){
-            this.props.fetchReview(this.props.match.params.businessId, this.props.match.params.reviewId)
+            this.props.fetchReview(this.props.match.params.reviewId)
             .then(res => this.setState(res.review))
         }
     }
@@ -43,11 +43,28 @@ class EditReviewForm extends React.Component{
         }
     }
 
+    radioButtons(number){
+        const logo = <img src={window.smalllogo}/>
+
+        return (
+            
+            <>
+                <input id={`rating${number}`}
+                    name="rating" 
+                    type="radio" value={`${number}`} 
+                    className="radio-btn hide" 
+                    onChange={this.update('rating')}  
+                />
+                <label htmlFor={`rating${number}`}>{logo}</label>
+            </>
+        )
+        }
+
     render(){
 
-        const logo = <img src={window.smalllogo}/>
+        
         if (!this.props.review) return null
-
+        const {rating} = this.state
         return(
             <div className='review-form-container'>
                 <OtherNavBar/>
@@ -56,18 +73,12 @@ class EditReviewForm extends React.Component{
                     <form>
                             <div id='inputs'>
                                 <div className='radio-container'>
-                                    <div className="rating">
-                                        <input id="rating5" name="rating" type="radio" value="5" className="radio-btn hide" onChange={this.update('rating')}/>
-                                        <label htmlFor="rating5">{logo}</label>
-                                        <input id="rating4" name="rating" type="radio" value="4" className="radio-btn hide" onChange={this.update('rating')}/>
-                                        <label htmlFor="rating4">{logo}</label>
-                                        <input id="rating3" name="rating" type="radio" value="3" className="radio-btn hide" onChange={this.update('rating')}/>
-                                        <label htmlFor="rating3">{logo}</label>
-                                        <input id="rating2" name="rating" type="radio" value="2" className="radio-btn hide" onChange={this.update('rating')}/>
-                                        <label htmlFor="rating2">{logo}</label>
-                                        <input id="rating1" name="rating" type="radio" value="1" className="radio-btn hide" onChange={this.update('rating')}/>
-                                        <label htmlFor="rating1">{logo}</label>
-                                        <div className="clear"></div>
+                                    <div className='rating'>
+                                        {this.radioButtons(5)}
+                                        {this.radioButtons(4)}
+                                        {this.radioButtons(3)}
+                                        {this.radioButtons(2)}
+                                        {this.radioButtons(1)}
                                     </div>
                                     <p>{this.reviewDescription()}</p>
                                 </div>
