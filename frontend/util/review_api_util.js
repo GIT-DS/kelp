@@ -1,27 +1,27 @@
-export const fetchReviews = (businessId) => (
+export const fetchReviews = () => (
     $.ajax({
-        url: `/api/businesses/${businessId}/reviews`,
+        url: `/api/reviews`,
     })
 )
 
-export const fetchReview = (businessId, reviewId) => (
+export const fetchReview = (reviewId) => (
     $.ajax({
-        url: `/api/businesses/${businessId}/reviews/${reviewId}`
+        url: `/api/reviews/${reviewId}`
     })
 )
 
-export const createReview = (businessId, review) => (
+export const createReview = (review) => (
     $.ajax({
         method: 'POST',
-        url: `/api/businesses/${businessId}/reviews/`,
+        url: `/api/reviews/`,
         data: {review}
     })
 )
 
-export const updateReview = (businessId, review) => (
+export const updateReview = (review) => (
     $.ajax({
         method: 'PATCH',
-        url: `/api/businesses/${businessId}/reviews/${review.id}`,
+        url: `/api/reviews/${review.id}`,
         data: {review}
     })
 )

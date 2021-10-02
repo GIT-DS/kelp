@@ -86,30 +86,30 @@ var receiveReview = function receiveReview(review) {
   };
 };
 
-var fetchAllReviews = function fetchAllReviews(businessId) {
+var fetchAllReviews = function fetchAllReviews() {
   return function (dispatch) {
-    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReviews(businessId).then(function (reviews) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReviews().then(function (reviews) {
       return dispatch(receiveAllReviews(reviews));
     });
   };
 };
-var fetchReview = function fetchReview(businessId, reviewId) {
+var fetchReview = function fetchReview(reviewId) {
   return function (dispatch) {
-    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReview(businessId, reviewId).then(function (review) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReview(reviewId).then(function (review) {
       return dispatch(receiveReview(review));
     });
   };
 };
-var createReview = function createReview(businessId, review) {
+var createReview = function createReview(review) {
   return function (dispatch) {
-    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(businessId, review).then(function (review) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (review) {
       return dispatch(receiveReview(review));
     });
   };
 };
-var updateReview = function updateReview(businessId, review) {
+var updateReview = function updateReview(review) {
   return function (dispatch) {
-    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.updateReview(businessId, review).then(function (review) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.updateReview(review).then(function (review) {
       return dispatch(receiveReview(review));
     });
   };
@@ -269,7 +269,7 @@ var App = function App() {
     path: "/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
-    path: "/businesses/:businessId/reviews/:reviewId/edit",
+    path: "/reviews/:reviewId/edit",
     component: _reviews_review_form_edit_review_form_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/businesses/:id",
@@ -1703,8 +1703,34 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
       this.props.history.push("/businesses/".concat(this.state.businessId));
     }
   }, {
+    key: "reviewDescription",
+    value: function reviewDescription() {
+      switch (parseInt(this.state.rating)) {
+        case 1:
+          return 'Not Good';
+
+        case 2:
+          return "Could've been better";
+
+        case 3:
+          return 'OK';
+
+        case 4:
+          return 'Good';
+
+        case 5:
+          return 'Great';
+
+        default:
+          return "";
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var logo = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.smalllogo
+      });
       if (!this.props.review) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "review-form-container"
@@ -1712,6 +1738,8 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "review-form-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, this.props.review.businessTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "inputs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "radio-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "rating"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -1723,9 +1751,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('rating')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "rating5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.smalllogo
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "rating4",
         name: "rating",
         type: "radio",
@@ -1734,9 +1760,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('rating')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "rating4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.smalllogo
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "rating3",
         name: "rating",
         type: "radio",
@@ -1745,9 +1769,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('rating')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "rating3"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.smalllogo
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "rating2",
         name: "rating",
         type: "radio",
@@ -1756,9 +1778,7 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('rating')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "rating2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.smalllogo
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "rating1",
         name: "rating",
         type: "radio",
@@ -1767,14 +1787,11 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('rating')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "rating1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.smalllogo
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, logo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "clear"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         id: "comment",
         value: this.state.comment,
-        placeholder: "comment",
         onChange: this.update('comment')
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.submitHandler
@@ -2820,29 +2837,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "updateReview": () => (/* binding */ updateReview)
 /* harmony export */ });
-var fetchReviews = function fetchReviews(businessId) {
+var fetchReviews = function fetchReviews() {
   return $.ajax({
-    url: "/api/businesses/".concat(businessId, "/reviews")
+    url: "/api/reviews"
   });
 };
-var fetchReview = function fetchReview(businessId, reviewId) {
+var fetchReview = function fetchReview(reviewId) {
   return $.ajax({
-    url: "/api/businesses/".concat(businessId, "/reviews/").concat(reviewId)
+    url: "/api/reviews/".concat(reviewId)
   });
 };
-var createReview = function createReview(businessId, review) {
+var createReview = function createReview(review) {
   return $.ajax({
     method: 'POST',
-    url: "/api/businesses/".concat(businessId, "/reviews/"),
+    url: "/api/reviews/",
     data: {
       review: review
     }
   });
 };
-var updateReview = function updateReview(businessId, review) {
+var updateReview = function updateReview(review) {
   return $.ajax({
     method: 'PATCH',
-    url: "/api/businesses/".concat(businessId, "/reviews/").concat(review.id),
+    url: "/api/reviews/".concat(review.id),
     data: {
       review: review
     }
@@ -2860,7 +2877,8 @@ var updateReview = function updateReview(businessId, review) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AuthRoute": () => (/* binding */ AuthRoute)
+/* harmony export */   "AuthRoute": () => (/* binding */ AuthRoute),
+/* harmony export */   "ProtectedRoute": () => (/* binding */ ProtectedRoute)
 /* harmony export */ });
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
@@ -2886,6 +2904,22 @@ var Auth = function Auth(_ref) {
   });
 };
 
+var Protected = function Protected(_ref2) {
+  var Component = _ref2.component,
+      path = _ref2.path,
+      loggedIn = _ref2.loggedIn,
+      exact = _ref2.exact;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__.Route, {
+    path: path,
+    exact: exact,
+    render: function render(props) {
+      return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__.Redirect, {
+        to: "/login"
+      });
+    }
+  });
+};
+
 var mapStateToProps = function mapStateToProps(state) {
   return {
     loggedIn: Boolean(state.session.id)
@@ -2893,6 +2927,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var AuthRoute = (0,react_router__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, null)(Auth));
+var ProtectedRoute = (0,react_router__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(Protected));
 
 /***/ }),
 

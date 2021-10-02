@@ -15,7 +15,7 @@ const App = () => (
     <Switch>
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
-      <Route path='/businesses/:businessId/reviews/:reviewId/edit' component={EditReviewFormContainer}/>
+      <Route path='/reviews/:reviewId/edit' component={EditReviewFormContainer}/>
       <Route path='/businesses/:id' component={BusinessContainer}/>
       <Route exact path='/businesses' component={BusinessesContainer}/>
       <Route exact path='/' component={LandingPage} />
