@@ -16,6 +16,7 @@ p{
 .nav-bar{
     display:flex;
     justify-content: space-between;
+    align-items: center;
     background: $colored-background;
     width: 100%;
     overflow: hidden;
@@ -30,6 +31,7 @@ a{
 .other-nav-bar{
     display:flex;
     justify-content: center;
+    // align-items: center;
     background: $colored-background;
     width: 100%;
     overflow: hidden;

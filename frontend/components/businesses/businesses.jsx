@@ -32,7 +32,6 @@ class Businesses extends React.Component{
                 }
             ]
         })
-        console.log(this.props.businesses)
         this.props.businesses.map((business, i) => {
 
             let {latitude, longitude, title} = business
@@ -58,7 +57,7 @@ class Businesses extends React.Component{
                 <BusinessNavBarContainer/>
                 <div className='business-index-content'>
                     <div id='business-list'>
-                        {this.props.businesses.map((business,i) => <BusinessBox business={business} key={i} index={i}/>)}
+                        {this.props.businesses.map((business,i) => <Link to={`/businesses/${business.id}`}><BusinessBox business={business} key={i} index={i}/></Link>)}
                     </div>
                     <div className='businesses-map' id='map'></div>
                 </div>
