@@ -164,23 +164,23 @@ file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/emc.jpg')
 b4.photos.attach(io: file, filename: 'emc.jpg')
 
 
-# b3 = Business.create!({
-#     title: "",
-#     phone_num: '',
-#     time_open: '',
-#     time_close: '',
-#     website: '',
-#     cost: '',
-#     address: '',
-#     city: '',
-#     state: 'CA',
-#     zip_code: '',
-#     latitude: , 
-#     longitude: , 
-# })
+b5 = Business.create!({
+    title: "Fishwives",
+    phone_num: '(626) 219-6199',
+    time_open: '12:30 PM PST',
+    time_close: '10:30 PM PST',
+    website: 'fishwives.com',
+    cost: '$$',
+    address: '88 N Fair Oaks Ave',
+    city: 'Pasadena',
+    state: 'CA',
+    zip_code: '91103',
+    latitude: 34.14753454251796, 
+    longitude: -118.150296772164, 
+})
 
-# file = open('')
-# b3.photos.attach(io: file, filename: '')
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/fishwives.jpg')
+b5.photos.attach(io: file, filename: 'fishwives.jpg')
 
 
 # b3 = Business.create!({
@@ -239,17 +239,25 @@ Review.create!({
     business_id: b4.id
 })
 
+Review.create!({
+    rating: 5,
+    comment: "Great Fish and Chips",
+    user_id: u1.id,
+    business_id: b5.id
+})
+
+
 
 ## user 2 reviews
 Review.create!({
-    rating: 4,
+    rating: 1,
     comment: "I'm angry and you should be too" ,
     user_id: u2.id,
     business_id: b1.id 
 })
 
 Review.create!({
-    rating: 3,
+    rating: 1,
     comment: "I really dislike the staff here",
     user_id: u2.id,
     business_id: b2.id
@@ -268,6 +276,20 @@ Review.create!({
     user_id: u2.id,
     business_id: b4.id
 })
+
+Review.create!({
+    rating: 1,
+    comment: ">:(",
+    user_id: u2.id,
+    business_id: b5.id
+})
+
+# Review.create!({
+#     rating: ,
+#     comment: "",
+#     user_id: u2.id,
+#     business_id: b.id
+# })
 
 ## user 3 reviews
 
@@ -298,6 +320,19 @@ Review.create!({
     business_id: b4.id
 })
 
+Review.create!({
+    rating: 4,
+    comment: "I came here to find a wife. There were no wives to be found. Great food though!",
+    user_id: u3.id,
+    business_id: b5.id
+})
+
+# Review.create!({
+#     rating: ,
+#     comment: "",
+#     user_id: u3.id,
+#     business_id: b.id
+# })
 
 ## user 4 reviews
 
@@ -328,6 +363,19 @@ Review.create!({
     business_id: b4.id
 })
 
+Review.create!({
+    rating: 5,
+    comment: "Big Fan",
+    user_id: u4.id,
+    business_id: b5.id
+})
+
+# Review.create!({
+#     rating: ,
+#     comment: "",
+#     user_id: u4.id,
+#     business_id: b.id
+# })
 
 ## user 5 reviews
 
@@ -358,6 +406,20 @@ Review.create!({
     user_id: u5.id,
     business_id: b4.id
 })
+
+Review.create!({
+    rating: 2,
+    comment: "It was alright",
+    user_id: u5.id,
+    business_id: b5.id
+})
+
+# Review.create!({
+#     rating: ,
+#     comment: "",
+#     user_id: u5.id,
+#     business_id: b.id
+# })
 
 
 ## user 6 reviews
@@ -390,25 +452,35 @@ Review.create!({
     business_id: b4.id
 })
 
-
-
-
-
-
-
-
+Review.create!({
+    rating: 4,
+    comment: "The club isn't the best place to find a lover
+        So the bar is where I go
+        Me and my friends at the table doing shots
+        Drinking faster and then we talk slow
+        Come over and start up a conversation with just me
+        And trust me I'll give it a chance now
+        Take my hand, stop
+        Put Van The Man on the jukebox
+        And then we start to dance
+        And now I'm singing like
+        
+        Girl, you know I want your love
+        Your love was handmade for somebody like me
+        Come on now, follow my lead
+        I may be crazy, don't mind me
+        Say, boy, let's not talk too much
+        Grab on my waist and put that body on me
+        Come on now, follow my lead
+        Come, come on now, follow my lead",
+    user_id: u6.id,
+    business_id: b5.id
+})
 
 # Review.create!({
 #     rating: ,
 #     comment: "",
-#     user_id: u.id,
-#     business_id: b.id
-# })
-
-# Review.create!({
-#     rating: ,
-#     comment: "",
-#     user_id: u.id,
+#     user_id: u6.id,
 #     business_id: b.id
 # })
 
@@ -447,66 +519,84 @@ c8 = Category.create!({
     title: 'Sushi Bars'
 })
 
+c9 = Category.create!({
+    title: 'Wine Bars'
+})
+
 # c7 = Category.create!({
 #     title: ''
 # })
 
-
 #Business Categories
 
-bc1 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c1.id,
     business_id: b1.id,
 })
 
-bc2 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c2.id,
     business_id: b1.id,
 })
 
-bc3 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c1.id,
     business_id: b2.id,
 })
 
-bc4 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c3.id,
     business_id: b2.id,
 })
 
-bc5 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c4.id,
     business_id: b2.id,
 }) 
 
-bc6 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c5.id,
     business_id: b3.id
 })
 
-bc7 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c6.id,
     business_id: b3.id
 })
 
-bc8 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c1.id,
     business_id: b3.id
 })
 
-bc9 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c1.id,
     business_id: b4.id
 })
 
-bc10 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c7.id,
     business_id: b4.id
 })
 
-bc11 = BusinessCategory.create!({
+BusinessCategory.create!({
     category_id: c8.id,
     business_id: b4.id
+})
+
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b5.id
+})
+
+BusinessCategory.create!({
+    category_id: c7.id,
+    business_id: b5.id
+})
+
+BusinessCategory.create!({
+    category_id: c9.id,
+    business_id: b5.id
 })
 
 # bc6 = BusinessCategory.create!({

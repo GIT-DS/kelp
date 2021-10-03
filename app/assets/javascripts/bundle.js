@@ -354,6 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_business_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../map/business_map */ "./frontend/components/map/business_map.jsx");
 /* harmony import */ var _nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../nav_bar/other_nav_bar */ "./frontend/components/nav_bar/other_nav_bar.jsx");
 /* harmony import */ var _nav_bar_business_nav_bar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../nav_bar/business_nav_bar_container */ "./frontend/components/nav_bar/business_nav_bar_container.jsx");
+/* harmony import */ var _rating_static_rating__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../rating/static_rating */ "./frontend/components/rating/static_rating.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -375,6 +376,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -466,6 +468,8 @@ var Business = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       if (this.props.business) {
+        console.log(this.props);
+
         var _this$props$business2 = this.props.business,
             title = _this$props$business2.title,
             timeOpen = _this$props$business2.timeOpen,
@@ -480,7 +484,8 @@ var Business = /*#__PURE__*/function (_React$Component) {
             latitude = _this$props$business2.latitude,
             longitude = _this$props$business2.longitude,
             cost = _this$props$business2.cost,
-            categories = _this$props$business2.categories;
+            categories = _this$props$business2.categories,
+            averageRating = _this$props$business2.averageRating;
 
         var localTimeOpen = new Date(timeOpen);
         var localTimeClose = new Date(timeClose);
@@ -499,6 +504,10 @@ var Business = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
           id: "title"
         }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "rating-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_rating_static_rating__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          rating: averageRating
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.props.numReviews, " Reviews")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "sub-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, cost), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "\u25CF"), categories.map(function (cat, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -647,7 +656,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    business: state.entities.businesses[ownProps.match.params.id]
+    business: state.entities.businesses[ownProps.match.params.id],
+    numReviews: Object.keys(state.entities.reviews).length
   };
 };
 

@@ -75,12 +75,27 @@ $border: rgba(0, 0, 0, 0.103);
     flex-direction: column;
     justify-content: end;
     color: white;
+
+    #rating-container{
+        display:flex;
+        align-items: center;
+        p{
+            margin-left: 5px;
+        }
+    }
+    #rating-bar {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        .outer{
+            background-color: white;
+        }
+    }
+    h1 {
+        color: white;
+        font-size: 50px;
+    }
 }
 
-.business-header-info h1 {
-    color: white;
-    font-size: 50px;
-}
 
 #red{
     color: red;
@@ -170,29 +185,30 @@ i{
     flex-direction: row;
     justify-content: space-between;
     min-width: 300px;
+    
     p {
         margin-bottom: 10px;
         padding-bottom: 10px;
     }
-}
 
-#days{
-    // display:flex;
-    // flex-direction: column;
-    // justify-content: space-between;
-    padding-right: 20px;
-    p {
-        margin-bottom: 10px;
-        padding-bottom: 10px;
+    #days{
+        padding-right: 20px;
+        margin-left: 15px;
+        p {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+    }
+
+    #hours{
+        padding-right: 20px;
+        p {
+            padding-bottom: 10px;
+        }
     }
 }
 
-#hours{
-    padding-right: 20px;
-    p {
-        padding-bottom: 10px;
-    }
-}
+
 
 .under-map{
     display: flex;

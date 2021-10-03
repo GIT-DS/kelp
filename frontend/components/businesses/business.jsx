@@ -4,6 +4,7 @@ import SocialBar from '../business_components/social_bar';
 import BusinessMap from '../map/business_map';
 import OtherNavBar from '../nav_bar/other_nav_bar';
 import BusinessNavBarContainer from '../nav_bar/business_nav_bar_container';
+import StaticRating from '../rating/static_rating';
 class Business extends React.Component{
     constructor(props){
         super(props)
@@ -60,7 +61,8 @@ class Business extends React.Component{
 
     render (){
         if (this.props.business){
-            const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode, latitude, longitude, cost, categories} = this.props.business
+            console.log(this.props)
+            const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode, latitude, longitude, cost, categories, averageRating} = this.props.business
             let localTimeOpen = new Date(timeOpen)
             let localTimeClose = new Date(timeClose)
             let LTOS = this.formatTime(localTimeOpen)
@@ -71,7 +73,11 @@ class Business extends React.Component{
                 <BusinessNavBarContainer/>
                 <div className='show-head' style={{backgroundImage: `linear-gradient(rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 100%), url(${this.props.business.photosUrl[0]})`}}>
                     <div className='business-header-info'>
-                        <h1 id="title">{title}</h1>
+                            <h1 id="title">{title}</h1>
+                        <div id='rating-container'>
+                            <StaticRating rating={averageRating}/>
+                            <p>{this.props.numReviews} Reviews</p>
+                        </div>
                         <div id='sub-info'>
                             <p>{cost}</p>
                             <p>●</p>
