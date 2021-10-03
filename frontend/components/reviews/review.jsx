@@ -1,5 +1,6 @@
 import React from 'react'
 import StaticRating from '../rating/static_rating';
+import { Link } from 'react-router-dom';
 
 class Review extends React.Component{
     constructor(props){
@@ -12,7 +13,7 @@ class Review extends React.Component{
     
     render(){
         let userContent = "";
-        const {rating, createdAt, comment} = this.props.review
+        const {rating, createdAt, comment, id, userId} = this.props.review
         if (this.props.user){
             const{ firstName, lastName, zipCode} = this.props.user
 
@@ -30,6 +31,7 @@ class Review extends React.Component{
             {userContent}
             <StaticRating rating={rating} createdAt={createdAt}/>
             <p className='comment'>{comment}</p>
+            {userId == this.props.sessionId ? <Link to={`/reviews/${id}/edit`}>Edit Review</Link> : ""}
         </div>
     }
 } 

@@ -1,7 +1,7 @@
 class Api::ReviewsController < ApplicationController
 
     def index
-        @reviews = Review.all
+        @reviews = Review.where(business_id: params[:business_id])
     end
 
     def show

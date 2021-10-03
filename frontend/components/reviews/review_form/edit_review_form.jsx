@@ -1,5 +1,6 @@
 import React from 'react'
 import OtherNavBar from '../../nav_bar/other_nav_bar'
+import { Link } from 'react-router-dom'
 
 class EditReviewForm extends React.Component{
     constructor(props){
@@ -62,14 +63,25 @@ class EditReviewForm extends React.Component{
 
     render(){
 
-        
         if (!this.props.review) return null
-        const {rating} = this.state
+        if (this.props.review.userId != this.props.sessionId){
+            return (
+                
+                <div className='error'>
+                    <OtherNavBar/>
+                    <h3>You can't edit this post!</h3>
+                    <Link to='/'>Go Home</Link>
+                </div>
+            )
+        }
+
+
+
         return(
             <div className='review-form-container'>
                 <OtherNavBar/>
                 <div className='review-form-content'>
-                    <h1>{this.props.review.businessTitle}</h1>
+                    <h1><Link to={`/businesses/${this.props.review.businessId}`}>{this.props.review.businessTitle}</Link></h1>
                     <form>
                             <div id='inputs'>
                                 <div className='radio-container'>
@@ -89,9 +101,6 @@ class EditReviewForm extends React.Component{
                                 onChange={this.update('comment')}
                                 />
                         </div>
-
-
-
 
                         <button onClick={this.submitHandler}>{this.props.formType}</button>
                     </form>

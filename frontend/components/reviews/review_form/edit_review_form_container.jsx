@@ -5,7 +5,8 @@ import EditReviewForm from './edit_review_form';
 
 const mapStateToProps = (state,ownProps)=>({
     review: state.entities.reviews[ownProps.match.params.reviewId],
-    formType: 'Update Review'
+    formType: 'Update Review',
+    sessionId: state.session.id
 })
 
 const mapDispatchToProps = (dispatch) => ({

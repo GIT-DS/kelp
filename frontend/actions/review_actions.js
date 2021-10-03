@@ -13,8 +13,8 @@ const receiveReview = review => ({
     review
 })
 
-export const fetchAllReviews = () => dispatch => (
-    ReviewUtil.fetchReviews().then(reviews => dispatch(receiveAllReviews(reviews)))
+export const fetchAllReviews = (businessId) => dispatch => (
+    ReviewUtil.fetchReviews(businessId).then(reviews => dispatch(receiveAllReviews(reviews)))
 )
 
 export const fetchReview = (reviewId) => dispatch => (

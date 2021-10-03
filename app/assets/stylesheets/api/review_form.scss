@@ -12,12 +12,10 @@ $fade: rgba(0, 0, 0, 0.226);
     }
 
     .review-form-content{
-        // margin: 15px;
-        // width: 100vw;
+
         form{
             display: flex;
             flex-direction: column;
-            // width: 100vw;
             align-items: center;
             justify-content: center;
             position: center;
@@ -36,9 +34,11 @@ $fade: rgba(0, 0, 0, 0.226);
                     width: 100%;
                     height: 200px;
                     border:none;
+                    color: $fade
                 }
                 #comment:focus-visible{
                     outline: none;
+                    color: black;
                 }
                 
                 .radio-container{
@@ -78,7 +78,7 @@ $fade: rgba(0, 0, 0, 0.226);
                 align-items: center;
                 width: 160px;
                 direction: rtl;
-                text-align: end;
+                text-align: center;
                 position: relative;
             }
             
@@ -89,6 +89,7 @@ $fade: rgba(0, 0, 0, 0.226);
                 position: relative;
                 padding-left: 5px;
                 padding-right: 5px;
+                // padding: 5px;
                 cursor: pointer;
                 background-color: $fade;
                 border-radius: 5px;
@@ -120,5 +121,15 @@ $fade: rgba(0, 0, 0, 0.226);
 
 
         }
+    }
+}
+
+.error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3{
+        margin-top: 50px;
     }
 }
