@@ -14,7 +14,7 @@ Review.destroy_all
 User.destroy_all
 
 #User Seeds
-user1 = User.create!({
+u1 = User.create!({
     username:"alpha",
     password:"alpha",
     email:"alpha.io",
@@ -24,9 +24,9 @@ user1 = User.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/darrick.jpeg')
-user1.photo.attach(io: file, filename: 'darrick.jpeg')
+u1.photo.attach(io: file, filename: 'darrick.jpeg')
 
-user2 = User.create!({
+u2 = User.create!({
     username:"bravo",
     password:"bravo",
     email:"bravo.io",
@@ -36,9 +36,9 @@ user2 = User.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/jimmy.jpeg')
-user2.photo.attach(io: file, filename: 'jimmy.jpeg')
+u2.photo.attach(io: file, filename: 'jimmy.jpeg')
 
-user3 = User.create!({
+u3 = User.create!({
     username:"charlie",
     password:"charlie",
     email:"charlie.io",
@@ -48,9 +48,9 @@ user3 = User.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/david.jpeg')
-user3.photo.attach(io: file, filename: 'david.jpeg')
+u3.photo.attach(io: file, filename: 'david.jpeg')
 
-user4 = User.create!({
+u4 = User.create!({
     username:"delta",
     password:"delta",
     email:"delta.io",
@@ -60,10 +60,10 @@ user4 = User.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/ian.jpeg')
-user4.photo.attach(io: file, filename: 'ian.jpeg')
+u4.photo.attach(io: file, filename: 'ian.jpeg')
 
 
-user5 = User.create!({
+u5 = User.create!({
     username:"echo",
     password:"echo",
     email:"echo.io",
@@ -73,10 +73,10 @@ user5 = User.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/mike.jpeg')
-user5.photo.attach(io: file, filename: 'mike.jpeg')
+u5.photo.attach(io: file, filename: 'mike.jpeg')
 
 
-user6 = User.create!({
+u6 = User.create!({
     username:"foxtrot",
     password:"foxtrot",
     email:"foxtrot.io",
@@ -86,11 +86,11 @@ user6 = User.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/vincent.png')
-user6.photo.attach(io: file, filename: 'vincent.png')
+u6.photo.attach(io: file, filename: 'vincent.png')
 
 # Business Seeds
 
-business1 = Business.create!({
+b1 = Business.create!({
     title: 'Hop Li Seafood Restaurant',
     phone_num: '(213) 680-3939',
     time_open: '09:00 AM PST',
@@ -106,9 +106,9 @@ business1 = Business.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/restaurants/rockin/o.jpg')
-business1.photos.attach(io: file, filename: 'o.jpg')
+b1.photos.attach(io: file, filename: 'o.jpg')
 
-business2 = Business.create!({
+b2 = Business.create!({
     title: "Rock'N Fish Restaurant",
     phone_num: '(213) 536-5020',
     time_open: '10:30 AM PST',
@@ -124,7 +124,83 @@ business2 = Business.create!({
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/q.jpg')
-business2.photos.attach(io: file, filename: 'q.jpg')
+b2.photos.attach(io: file, filename: 'q.jpg')
+
+b3 = Business.create!({
+    title: "Señor Fish",
+    phone_num: '(323) 257-7167',
+    time_open: '12:00 PM PST',
+    time_close: '10:00 PM PST',
+    website: 'https://xn--seorfish-e3a.com/',
+    cost: '$$',
+    address: '4803 Eagle Rock Blvd',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip_code: '90041',
+    latitude: 34.0817306086936,  
+    longitude: -118.25981087533094, 
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/senor.jpg')
+b3.photos.attach(io: file, filename: 'senor.jpg')
+
+
+b4 = Business.create!({
+    title: "EMC Seafood & Raw Bar",
+    phone_num: '(213) 351-9988',
+    time_open: '6:00 PM PST',
+    time_close: '1:00 AM PST',
+    website: 'emcseafood.com',
+    cost: '$$',
+    address: '3500 W 6th St Ste 101',
+    city: 'Los Angeles',
+    state: 'CA',
+    zip_code: '90020',
+    latitude: 34.06373485044009,
+    longitude: -118.29908174559397, 
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/emc.jpg')
+b4.photos.attach(io: file, filename: 'emc.jpg')
+
+
+# b3 = Business.create!({
+#     title: "",
+#     phone_num: '',
+#     time_open: '',
+#     time_close: '',
+#     website: '',
+#     cost: '',
+#     address: '',
+#     city: '',
+#     state: 'CA',
+#     zip_code: '',
+#     latitude: , 
+#     longitude: , 
+# })
+
+# file = open('')
+# b3.photos.attach(io: file, filename: '')
+
+
+# b3 = Business.create!({
+#     title: "",
+#     phone_num: '',
+#     time_open: '',
+#     time_close: '',
+#     website: '',
+#     cost: '',
+#     address: '',
+#     city: '',
+#     state: 'CA',
+#     zip_code: '',
+#     latitude: , 
+#     longitude: , 
+# })
+
+# file = open('')
+# b3.photos.attach(io: file, filename: '')
+
 
 
 
@@ -134,82 +210,208 @@ business2.photos.attach(io: file, filename: 'q.jpg')
 
 #Review Seeds
 
-review1 = Review.create!({
+## user 1 reviews
+Review.create!({
     rating: 2,
     comment: "I didn't have a good experience here",
-    user_id: user1.id,
-    business_id: business1.id
+    user_id: u1.id,
+    business_id: b1.id
 })
 
-review2 = Review.create!({
+Review.create!({
     rating: 5,
     comment: 'This place is amazing!',
-    user_id: user1.id,
-    business_id: business2.id 
+    user_id: u1.id,
+    business_id: b2.id 
 })
-review3 = Review.create!({
+
+Review.create!({
+    rating: 3,
+    comment: "I am a robot feed me oil",
+    user_id: u1.id,
+    business_id: b3.id
+})
+
+Review.create!({
+    rating: 4,
+    comment: "Beep Boop",
+    user_id: u1.id,
+    business_id: b4.id
+})
+
+
+## user 2 reviews
+Review.create!({
     rating: 4,
     comment: "I'm angry and you should be too" ,
-    user_id: user2.id,
-    business_id: business1.id 
+    user_id: u2.id,
+    business_id: b1.id 
 })
-review4 = Review.create!({
+
+Review.create!({
     rating: 3,
     comment: "I really dislike the staff here",
-    user_id: user2.id,
-    business_id: business2.id
+    user_id: u2.id,
+    business_id: b2.id
 })
-review5 = Review.create!({
+
+Review.create!({
+    rating: 1,
+    comment: "Grumpy Grump",
+    user_id: u2.id,
+    business_id: b3.id
+})
+
+Review.create!({
+    rating: 1,
+    comment: "Grumble",
+    user_id: u2.id,
+    business_id: b4.id
+})
+
+## user 3 reviews
+
+Review.create!({
     rating: 1,
     comment: 'The ambience is just right',
-    user_id: user3.id,
-    business_id: business1.id 
+    user_id: u3.id,
+    business_id: b1.id 
 })
-review6 = Review.create!({
+Review.create!({
     rating: 1,
     comment: 'Not too great, not too bad',
-    user_id: user3.id,
-    business_id: business2.id 
+    user_id: u3.id,
+    business_id: b2.id 
 })
-review7 = Review.create!({
+
+Review.create!({
+    rating: 1,
+    comment: "Who's the senior at this establishment? I haven't met him once",
+    user_id: u3.id,
+    business_id: b3.id
+})
+
+Review.create!({
+    rating: 1,
+    comment: "EMC? What do these guys think they're Einstein?",
+    user_id: u3.id,
+    business_id: b4.id
+})
+
+
+## user 4 reviews
+
+Review.create!({
     rating: 5,
     comment: "Just here for the freebies",
-    user_id: user4.id,
-    business_id: business1.id 
+    user_id: u4.id,
+    business_id: b1.id 
 })
-review8 = Review.create!({
+Review.create!({
     rating: 1,
     comment: "THIS PLACE DOESN'T SELL ROCKS AT ALL!",
-    user_id: user4.id,
-    business_id: business2.id
+    user_id: u4.id,
+    business_id: b2.id
 })
-review9 = Review.create!({
+
+Review.create!({
+    rating: 5,
+    comment: "This place has a bar, I like bars",
+    user_id: u4.id,
+    business_id: b3.id
+})
+
+Review.create!({
+    rating: 4,
+    comment: "YES",
+    user_id: u4.id,
+    business_id: b4.id
+})
+
+
+## user 5 reviews
+
+Review.create!({
     rating: 3,
     comment: "I'm a middle of road kind of guy",
-    user_id: user5.id,
-    business_id: business1.id 
+    user_id: u5.id,
+    business_id: b1.id 
 })
 
-review10 = Review.create!({
+Review.create!({
     rating: 4,
     comment: "Slightly better than expected",
-    user_id: user5.id,
-    business_id: business2.id 
+    user_id: u5.id,
+    business_id: b2.id 
 })
 
-review11 = Review.create!({
+Review.create!({
+    rating: 4,
+    comment: "Not bad",
+    user_id: u5.id,
+    business_id: b3.id
+})
+
+Review.create!({
+    rating: 3,
+    comment: "Meh",
+    user_id: u5.id,
+    business_id: b4.id
+})
+
+
+## user 6 reviews
+
+Review.create!({
     rating: 5,
     comment: "Great Fantastic Love it",
-    user_id: user6.id,
-    business_id: business1.id 
+    user_id: u6.id,
+    business_id: b1.id 
 })
 
-review12 = Review.create!({
+Review.create!({
     rating: 1,
     comment: "The entire kitchen and wait staff saw an ice cream truck and ran outside, leaving me alone in the restaurant. 10 minutes later they all came back with ice cream cones... I still can't believe this actually happened",
-    user_id: user6.id,
-    business_id: business2.id 
+    user_id: u6.id,
+    business_id: b2.id 
 })
+
+Review.create!({
+    rating: 1,
+    comment: "How could this happen to me? I made my mistakes. Got nowhere to run. The night goes on. As I'm fading away. I'm sick of this life. I just wanna scream. How could this happen to me?",
+    user_id: u6.id,
+    business_id: b3.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Best Oysters in Town!",
+    user_id: u6.id,
+    business_id: b4.id
+})
+
+
+
+
+
+
+
+
+
+# Review.create!({
+#     rating: ,
+#     comment: "",
+#     user_id: u.id,
+#     business_id: b.id
+# })
+
+# Review.create!({
+#     rating: ,
+#     comment: "",
+#     user_id: u.id,
+#     business_id: b.id
+# })
+
 
 #Categories
 
@@ -229,29 +431,85 @@ c4 = Category.create!({
     title: 'American'
 })
 
+c5 = Category.create!({
+    title: 'Mexican'
+})
+
+c6 = Category.create!({
+    title: 'Bars'
+})
+
+c7 = Category.create!({
+    title: 'Live/Raw Food'
+})
+
+c8 = Category.create!({
+    title: 'Sushi Bars'
+})
+
+# c7 = Category.create!({
+#     title: ''
+# })
+
+
 #Business Categories
 
 bc1 = BusinessCategory.create!({
     category_id: c1.id,
-    business_id: business1.id,
+    business_id: b1.id,
 })
 
 bc2 = BusinessCategory.create!({
     category_id: c2.id,
-    business_id: business1.id,
+    business_id: b1.id,
 })
 
 bc3 = BusinessCategory.create!({
     category_id: c1.id,
-    business_id: business2.id,
+    business_id: b2.id,
 })
 
 bc4 = BusinessCategory.create!({
     category_id: c3.id,
-    business_id: business2.id,
+    business_id: b2.id,
 })
 
 bc5 = BusinessCategory.create!({
     category_id: c4.id,
-    business_id: business2.id,
+    business_id: b2.id,
 }) 
+
+bc6 = BusinessCategory.create!({
+    category_id: c5.id,
+    business_id: b3.id
+})
+
+bc7 = BusinessCategory.create!({
+    category_id: c6.id,
+    business_id: b3.id
+})
+
+bc8 = BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b3.id
+})
+
+bc9 = BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b4.id
+})
+
+bc10 = BusinessCategory.create!({
+    category_id: c7.id,
+    business_id: b4.id
+})
+
+bc11 = BusinessCategory.create!({
+    category_id: c8.id,
+    business_id: b4.id
+})
+
+# bc6 = BusinessCategory.create!({
+#     category_id: .id,
+#     business_id: .id
+# })
