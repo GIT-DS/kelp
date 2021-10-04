@@ -6,8 +6,7 @@ import Businesses from './businesses';
 
 
 const mapStateToProps = (state,ownProps) => {
-    // console.log(ownProps)
-    
+    console.log(ownProps)
     return {
     businesses: Object.values(state.entities.businesses),
     find: findTerm(ownProps.location.search),

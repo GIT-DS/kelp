@@ -2,9 +2,9 @@ import React from 'react'
 import ReviewsContainer from '../reviews/reviews_container'
 import SocialBar from '../business_components/social_bar';
 import BusinessMap from '../map/business_map';
-import OtherNavBar from '../nav_bar/other_nav_bar';
 import BusinessNavBarContainer from '../nav_bar/business_nav_bar_container';
 import StaticRating from '../rating/static_rating';
+import { Link } from 'react-router-dom';
 class Business extends React.Component{
     constructor(props){
         super(props)
@@ -80,7 +80,7 @@ class Business extends React.Component{
                         <div id='sub-info'>
                             <p>{cost}</p>
                             <p>●</p>
-                            {categories.map((cat,i) => <p key={i}>{cat}{i < categories.length - 1 ? ',  ' : ''}</p>)}
+                            {categories.map((cat,i) => <Link to={`/businesses?find=${cat}`} key={i}>{cat}{i < categories.length - 1 ? ',  ' : ''}</Link>)}
                         </div>
                         <p> {this.open()} {LTOS} - {LTCS}</p>
                     </div>

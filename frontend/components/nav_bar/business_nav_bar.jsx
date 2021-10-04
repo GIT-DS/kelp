@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import SearchBar from '../search_bar/search_bar';
+import SearchBarContainer from '../search_bar/search_bar_container';
 class BusinessNavBar extends React.Component{
     constructor(props){
         super(props)
@@ -33,7 +33,7 @@ class BusinessNavBar extends React.Component{
                         <img src={window.logo}/>
                         
                     </Link>
-                    <SearchBar/>
+                    <SearchBarContainer/>
                     {navRight}
                 </div>
             </div>

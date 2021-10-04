@@ -13,8 +13,6 @@ class Businesses extends React.Component{
         this.state = {b: []}
         this.filter = this.filter.bind(this)
         this.count = 0
-        // this.startLoc = this.props.history.path
-        // console.log(this.props)
     }
     
     filter(find, near){
@@ -34,8 +32,6 @@ class Businesses extends React.Component{
     }
 
     componentDidUpdate(prevProps){
-        console.log(prevProps)
-        console.log(this.props)
         if(prevProps.find !== this.props.find || prevProps.near !== this.props.near) {
             this.filter(this.props.find, this.props.near)
         }

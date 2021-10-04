@@ -25,7 +25,10 @@ $fade: rgba(0, 0, 0, 0.226);
         display: flex;
         justify-content: space-between;
         height:50%;
+        padding-top: 5px;
+        padding-bottom: 5px;
         input{
+            padding: 5px;
             width: auto;            
         }
         h2{

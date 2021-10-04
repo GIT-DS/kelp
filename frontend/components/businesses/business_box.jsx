@@ -12,11 +12,9 @@ class BusinessBox extends React.Component{
 
     
     clickHandler(e, cat){
-        // let history = useHistory();
-        // console.log(this.props)
+
         e.preventDefault()
         this.props.history.push(`/businesses?find=${cat}&near=0`)
-        // return <Redirect to={`/`}/>
         
     }
 
