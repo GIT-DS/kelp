@@ -512,7 +512,7 @@ c6 = Category.create!({
 })
 
 c7 = Category.create!({
-    title: 'Live/Raw Food'
+    title: 'Live-Raw Food'
 })
 
 c8 = Category.create!({

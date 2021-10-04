@@ -16,8 +16,10 @@ class Businesses extends React.Component{
     
     filter(find, near){
         let businesses = this.props.businesses
+        if (this.props.find && this.props.near) {
         if (find !== '0'){ businesses = businesses.filter(business => business.categories.map(cat => cat.toLowerCase()).includes(find.toLowerCase()))}
         if (near !== '0'){ businesses = businesses.filter(business => business.city.toLowerCase() === near.toLowerCase())}
+        }
         let preState = {b: businesses};
 
         // if (this.state !== preState) return null;
@@ -76,9 +78,9 @@ class Businesses extends React.Component{
                 <div className='business-index-content'>
                     <div id='business-list'>
                         {this.state.b.map((business,i) => (
-                        // <Link to={`/businesses/${business.id}`}>
-                            <BusinessBox business={business} key={i} index={i}/>
-                        // {/* </Link> */}
+                        <Link to={`/businesses/${business.id}`} key={i}>
+                            <BusinessBox business={business}  index={i}/>
+                        </Link>
                         ))}
                     </div>
                     <div className='businesses-map' id='map'></div>

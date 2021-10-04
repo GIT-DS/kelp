@@ -602,12 +602,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _rating_static_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rating/static_rating */ "./frontend/components/rating/static_rating.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 
 
 
 
 var BusinessBox = function BusinessBox(props) {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
+
+  function clickHandler(e, cat) {
+    e.preventDefault();
+    history.push("/businesses/".concat(cat, "/0"));
+  }
+
   var _props$business = props.business,
       id = _props$business.id,
       averageRating = _props$business.averageRating,
@@ -623,8 +630,10 @@ var BusinessBox = function BusinessBox(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "business-box-categories"
   }, categories.map(function (cat, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-      to: "/businesses/categories/".concat(cat),
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: function onClick(e) {
+        return clickHandler(e, cat);
+      },
       key: i
     }, cat);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -691,6 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _nav_bar_business_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/business_nav_bar_container */ "./frontend/components/nav_bar/business_nav_bar_container.jsx");
 /* harmony import */ var _business_box__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./business_box */ "./frontend/components/businesses/business_box.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -746,18 +756,20 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
     value: function filter(find, near) {
       var businesses = this.props.businesses;
 
-      if (find !== '0') {
-        businesses = businesses.filter(function (business) {
-          return business.categories.map(function (cat) {
-            return cat.toLowerCase();
-          }).includes(find.toLowerCase());
-        });
-      }
+      if (this.props.find && this.props.near) {
+        if (find !== '0') {
+          businesses = businesses.filter(function (business) {
+            return business.categories.map(function (cat) {
+              return cat.toLowerCase();
+            }).includes(find.toLowerCase());
+          });
+        }
 
-      if (near !== '0') {
-        businesses = businesses.filter(function (business) {
-          return business.city.toLowerCase() === near.toLowerCase();
-        });
+        if (near !== '0') {
+          businesses = businesses.filter(function (business) {
+            return business.city.toLowerCase() === near.toLowerCase();
+          });
+        }
       }
 
       var preState = {
@@ -834,16 +846,13 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "business-list"
       }, this.state.b.map(function (business, i) {
-        return (
-          /*#__PURE__*/
-          // <Link to={`/businesses/${business.id}`}>
-          react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_box__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            business: business,
-            key: i,
-            index: i
-          }) // {/* </Link> */}
-
-        );
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+          to: "/businesses/".concat(business.id),
+          key: i
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_box__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          business: business,
+          index: i
+        }));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "businesses-map",
         id: "map"
