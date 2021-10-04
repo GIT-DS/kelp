@@ -20,7 +20,8 @@ const App = () => (
       <ProtectedRoute path='/reviews/:reviewId/edit' component={EditReviewFormContainer}/>
       <ProtectedRoute path='/reviews/:businessId/create' component={CreateReviewFormContainer}/>
       <ProtectedRoute path='/reviews/create/suggestions' component={ReviewSuggestionContainer}/>
-      <Route path='/businesses/:find/:near' component={BusinessesContainer}/>
+      {/* <Route path='/businesses/:find/:near' component={BusinessesContainer}/> */}
+      <Route path='/businesses?find=:find&near=:near' component={BusinessesContainer}/>
       <Route path='/businesses/:id' component={BusinessContainer}/>
       <Route exact path='/businesses' component={BusinessesContainer}/>
       <Route exact path='/' component={LandingPage} />

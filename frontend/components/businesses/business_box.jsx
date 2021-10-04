@@ -1,28 +1,34 @@
 import React from 'react'
 import StaticRating from '../rating/static_rating'
 import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router'
 
+class BusinessBox extends React.Component{
 
-const BusinessBox = props => {
+    constructor(props){
+        super(props)
+        this.clickHandler = this.clickHandler.bind(this)
+    }
 
-    let history = useHistory();
-
-    function clickHandler(e, cat){
-         
+    
+    clickHandler(e, cat){
+        // let history = useHistory();
+        // console.log(this.props)
         e.preventDefault()
-        history.push(`/businesses/${cat}/0`)
+        this.props.history.push(`/businesses?find=${cat}&near=0`)
+        // return <Redirect to={`/`}/>
         
     }
 
-
-        const {id,  averageRating, sampleComment, title, categories} = props.business
+    render(){
+        const {id,  averageRating, sampleComment, title, categories} = this.props.business
         return (
         <div className='business-box'>
             <div className='business-box-content'>
-                <h2>{props.index + 1}. {title}</h2>
+                <h2>{this.props.index + 1}. {title}</h2>
                 <StaticRating rating={averageRating}/>
                 <div id='business-box-categories'>
-                    {categories.map((cat,i) => <button onClick={e => clickHandler(e, cat)} key={i}>{cat}</button>
+                    {categories.map((cat,i) => <button onClick={e => this.clickHandler(e, cat)} key={i}>{cat}</button>
                     )}
                 </div>
                 <div id='sample-comment'>
@@ -32,7 +38,7 @@ const BusinessBox = props => {
             </div>
         </div>
         )
-    
+    }
 }
 
 export default BusinessBox

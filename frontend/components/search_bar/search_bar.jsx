@@ -17,7 +17,7 @@ class SearchBar extends React.Component{
     clickHandler(e){
         let find = this.state.find
         let near = this.state.near
-        this.props.history.push(`/businesses/${find === '' ? 0 : find}/${near === '' ? 0 : near}`)
+        this.props.history.push(`/businesses?find=${find === '' ? 0 : find}&near=${near === '' ? 0 : near}`)
     }
 
 
