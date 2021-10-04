@@ -4,8 +4,10 @@ import { fetchAllBusinesses } from '../../actions/business_actions';
 import Businesses from './businesses';
 
 
-const mapStateToProps = state => ({
-    businesses: Object.values(state.entities.businesses)
+const mapStateToProps = (state,ownProps) => ({
+    businesses: Object.values(state.entities.businesses),
+    find: ownProps.match.params.find,
+    near: ownProps.match.params.near
 })
 
 const mapDispatchToProps = dispatch => ({

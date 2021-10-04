@@ -4,14 +4,14 @@ import SearchBar from '../search_bar/search_bar';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 
-const LandingPage = (props) => (
-    <div>
+const LandingPage = (props) => {
+    return <div>
         <NavBarContainer/>
         <div className='landing-search-container'>
             <Logo/>
-            <SearchBar/>
+            <SearchBar history={props.history}/>
         </div>    
     </div>
-)
+}
 
 export default LandingPage;

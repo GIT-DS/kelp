@@ -61,7 +61,6 @@ class Business extends React.Component{
 
     render (){
         if (this.props.business){
-            console.log(this.props)
             const {title, timeOpen, timeClose, website = '', phoneNum, address, city, state, zipCode, latitude, longitude, cost, categories, averageRating} = this.props.business
             let localTimeOpen = new Date(timeOpen)
             let localTimeClose = new Date(timeClose)

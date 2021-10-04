@@ -266,7 +266,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.AuthRoute, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "appId"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.AuthRoute, {
     path: "/login",
     component: _session_login_form_container__WEBPACK_IMPORTED_MODULE_1__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.AuthRoute, {
@@ -281,6 +283,9 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.ProtectedRoute, {
     path: "/reviews/create/suggestions",
     component: _reviews_review_form_review_suggestions_review_suggestions_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
+    path: "/businesses/:find/:near",
+    component: _businesses_businesses_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/businesses/:id",
     component: _businesses_business_container__WEBPACK_IMPORTED_MODULE_6__["default"]
@@ -468,8 +473,6 @@ var Business = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       if (this.props.business) {
-        console.log(this.props);
-
         var _this$props$business2 = this.props.business,
             title = _this$props$business2.title,
             timeOpen = _this$props$business2.timeOpen,
@@ -599,6 +602,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _rating_static_rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rating/static_rating */ "./frontend/components/rating/static_rating.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
@@ -619,9 +623,11 @@ var BusinessBox = function BusinessBox(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "business-box-categories"
   }, categories.map(function (cat, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, cat);
-  } // <Link to={`/businesses/categories/${cat}`} key={i}>{cat}</Link>
-  )), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      to: "/businesses/categories/".concat(cat),
+      key: i
+    }, cat);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "sample-comment"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     className: "far fa-comment-alt"
@@ -685,7 +691,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _nav_bar_business_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/business_nav_bar_container */ "./frontend/components/nav_bar/business_nav_bar_container.jsx");
 /* harmony import */ var _business_box__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./business_box */ "./frontend/components/businesses/business_box.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -727,16 +732,48 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Businesses);
 
-    _this = _super.call(this, props); // this.map = google.maps.Map;
-
+    _this = _super.call(this, props);
     _this.makeMap = _this.makeMap.bind(_assertThisInitialized(_this));
+    _this.state = {
+      b: []
+    };
+    _this.filter = _this.filter.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Businesses, [{
+    key: "filter",
+    value: function filter(find, near) {
+      var businesses = this.props.businesses;
+
+      if (find !== '0') {
+        businesses = businesses.filter(function (business) {
+          return business.categories.map(function (cat) {
+            return cat.toLowerCase();
+          }).includes(find.toLowerCase());
+        });
+      }
+
+      if (near !== '0') {
+        businesses = businesses.filter(function (business) {
+          return business.city.toLowerCase() === near.toLowerCase();
+        });
+      }
+
+      var preState = {
+        b: businesses
+      }; // if (this.state !== preState) return null;
+
+      this.setState(preState);
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchAllBusinesses();
+      var _this2 = this;
+
+      this.props.fetchAllBusinesses().then(function () {
+        return _this2.filter(_this2.props.find, _this2.props.near);
+      }); // this.businesses = this.filter(this.props.find, this.props.near)
     }
   }, {
     key: "componentDidUpdate",
@@ -746,13 +783,18 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "makeMap",
     value: function makeMap() {
-      var _this2 = this;
+      var _this3 = this;
 
+      var cent = {
+        lat: 34.0462312861572,
+        lng: -118.26394516974035
+      };
+      if (this.state.b.length === 1) cent = {
+        lat: this.state.b[0].latitude,
+        lng: this.state.b[0].longitude
+      };
       this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-          lat: 34.0462312861572,
-          lng: -118.26394516974035
-        },
+        center: cent,
         zoom: 11,
         disableDefaultUI: true,
         styles: [{
@@ -763,7 +805,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
           }]
         }]
       });
-      this.props.businesses.map(function (business, i) {
+      this.state.b.map(function (business, i) {
         var latitude = business.latitude,
             longitude = business.longitude,
             title = business.title;
@@ -772,7 +814,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
             lat: latitude,
             lng: longitude
           },
-          map: _this2.map,
+          map: _this3.map,
           label: title.slice(0, 1),
           title: title,
           animation: google.maps.Animation.DROP
@@ -791,14 +833,17 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
         className: "business-index-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "business-list"
-      }, this.props.businesses.map(function (business, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          to: "/businesses/".concat(business.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_box__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          business: business,
-          key: i,
-          index: i
-        }));
+      }, this.state.b.map(function (business, i) {
+        return (
+          /*#__PURE__*/
+          // <Link to={`/businesses/${business.id}`}>
+          react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_box__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            business: business,
+            key: i,
+            index: i
+          }) // {/* </Link> */}
+
+        );
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "businesses-map",
         id: "map"
@@ -833,9 +878,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    businesses: Object.values(state.entities.businesses)
+    businesses: Object.values(state.entities.businesses),
+    find: ownProps.match.params.find,
+    near: ownProps.match.params.near
   };
 };
 
@@ -1012,7 +1059,9 @@ __webpack_require__.r(__webpack_exports__);
 var LandingPage = function LandingPage(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "landing-search-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_logo_logo__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_bar_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_logo_logo__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_bar_search_bar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    history: props.history
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LandingPage);
@@ -1736,7 +1785,6 @@ var CreateReviewForm = /*#__PURE__*/function (_React$Component) {
         business_id: businessId
       };
       this.props.submitForm(snake);
-      console.log(this.state);
       this.props.history.push("/businesses/".concat(this.state.businessId));
     }
   }, {
@@ -2360,6 +2408,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2382,6 +2432,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var SearchBar = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchBar, _React$Component);
 
@@ -2397,22 +2448,44 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       find: '',
       near: ''
     };
+    _this.clickHandler = _this.clickHandler.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SearchBar, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "clickHandler",
+    value: function clickHandler(e) {
+      var find = this.state.find;
+      var near = this.state.near;
+      this.props.history.push("/businesses/".concat(find === '' ? 0 : find, "/").concat(near === '' ? 0 : near));
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "search-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Find"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        placeholder: "seafood, seafood, seafood..."
+        placeholder: "seafood, seafood, seafood...",
+        value: this.state.find,
+        onChange: this.update('find')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Near"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        placeholder: "Los Angeles, CA"
+        placeholder: "Los Angeles, CA",
+        value: this.state.near,
+        onChange: this.update('near')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "fa fa-search"
+        className: "fa fa-search",
+        onClick: this.clickHandler
       }));
     }
   }]);
@@ -2515,6 +2588,12 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       this.props.removeErrors();
     }
   }, {
+    key: "errorId",
+    value: function errorId() {
+      if (this.props.errors.length > 0) return 'error-field';
+      return null;
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2534,15 +2613,21 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         required: true,
         type: "text",
+        id: this.errorId(),
         value: this.state.username,
         onChange: this.update('username'),
         placeholder: "Username"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         required: true,
         type: "password",
+        id: this.errorId(),
         value: this.state.password,
         onChange: this.update('password'),
         placeholder: "Password"
+      }), this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          key: i
+        }, error);
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "#",
         className: "align-right"
@@ -2558,11 +2643,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "align-right"
       }, "New to Kelp? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/signup"
-      }, "Sign Up"))), this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: i
-        }, error);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      }, "Sign Up")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "form-image",
         src: window.formimage,
         width: "300",
@@ -2704,10 +2785,29 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       this.props.removeErrors();
     }
   }, {
+    key: "errorMessage",
+    value: function errorMessage(field, type) {
+      var errors = this.props.errors.map(function (error) {
+        return error.split(' ')[0];
+      });
+      if (type === 'id' && errors.filter(function (error) {
+        return error === field;
+      }).length > 0) return 'error-field';
+      if (type === 'message') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "error-message"
+      }, this.props.errors.filter(function (error) {
+        return error.split(' ')[0] === field;
+      }));
+      return null;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _React$createElement;
 
+      var errors = this.props.errors.map(function (error) {
+        return error.split(' ')[0];
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "form-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2723,46 +2823,51 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
+        id: this.errorMessage('Username', 'id'),
         placeholder: "Username",
         value: this.state.username,
         onChange: this.update('username')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), this.errorMessage('Username', 'message'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "email",
+        id: this.errorMessage('Email', 'id'),
         placeholder: "Email",
         value: this.state.email,
         onChange: this.update('email')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), this.errorMessage('Email', 'message'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "name-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "first-name-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
+        id: this.errorMessage('First', 'id'),
         placeholder: "First Name",
         value: this.state.firstName,
         onChange: this.update('first_name')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), this.errorMessage('First', 'message')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "last-name-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
+        id: this.errorMessage('Last', 'id'),
         placeholder: "Last Name",
         value: this.state.lastName,
         onChange: this.update('last_name')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), this.errorMessage('Last', 'message'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "number",
+        id: this.errorMessage('Zip', 'id'),
         placeholder: "ZIP Code",
         value: this.state.zipcode,
         onChange: this.update('zip_code'),
-        min: "00001",
+        min: "00501",
         max: "99999"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", (_React$createElement = {
+      }), this.errorMessage('Zip', 'message'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", (_React$createElement = {
         type: true
-      }, _defineProperty(_React$createElement, "type", "password"), _defineProperty(_React$createElement, "placeholder", "Password"), _defineProperty(_React$createElement, "value", this.state.password), _defineProperty(_React$createElement, "onChange", this.update('password')), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, _defineProperty(_React$createElement, "type", "password"), _defineProperty(_React$createElement, "id", this.errorMessage('Password', 'id')), _defineProperty(_React$createElement, "placeholder", "Password"), _defineProperty(_React$createElement, "value", this.state.password), _defineProperty(_React$createElement, "onChange", this.update('password')), _React$createElement)), this.errorMessage('Password', 'message'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "green-button"
       }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "align-right"
       }, "Already on Kelp? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/login"
-      }, "Log in"))), this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: i
-        }, error);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      }, "Log in")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         id: "form-image",
         src: window.formimage,
         width: "300",
@@ -39979,7 +40084,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var root = document.getElementById('root');
   var store;
 
   if (window.currentUser) {

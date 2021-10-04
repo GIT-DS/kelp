@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 class SearchBar extends React.Component{
     constructor(props){
         super(props)
@@ -7,16 +7,29 @@ class SearchBar extends React.Component{
             find: '',
             near: '',
         }
+        this.clickHandler = this.clickHandler.bind(this);
     }
+
+    update(field){
+        return e => this.setState({[field]: e.currentTarget.value})
+    }
+
+    clickHandler(e){
+        let find = this.state.find
+        let near = this.state.near
+        this.props.history.push(`/businesses/${find === '' ? 0 : find}/${near === '' ? 0 : near}`)
+    }
+
+
     render(){
         return(
-            <div className='search-bar'>
+            <form className='search-bar'>
                 <h2>Find</h2>
-                <input type='text' placeholder='seafood, seafood, seafood...'/>
+                <input type='text' placeholder='seafood, seafood, seafood...' value={this.state.find} onChange={this.update('find')}/>
                 <h2>Near</h2>
-                <input type='text' placeholder='Los Angeles, CA'/>
-                <i className="fa fa-search"></i>
-            </div>
+                <input type='text' placeholder='Los Angeles, CA'value={this.state.near} onChange={this.update('near')}/>
+                <i className="fa fa-search" onClick={this.clickHandler}/>
+            </form>
         )
     }
 }

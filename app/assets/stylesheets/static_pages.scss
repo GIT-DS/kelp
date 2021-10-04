@@ -4,9 +4,10 @@
 
 $colored-background: #66D4AE;
 $links: #03A6A6;
+$footer-color: rgba(32, 151, 120, 0.616);
 
 body{
-    background:white;
+    background-color: rgba(32, 151, 120, 0.616);
     font-family: "Helvetica Neue", Helvetica,Arial,sans-serif;
 }
 
@@ -34,12 +35,13 @@ a{
     // align-items: center;
     background: $colored-background;
     width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     font-size: 50px;
     font-weight: bold;
     color: white;
     text-decoration: none;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .other-nav-bar img{
     margin-left: 10px;
@@ -133,30 +135,35 @@ a{
     border-radius: 5px;
     background:white;
     overflow: hidden;
-}
-.search-bar > * {
-    border: none;
-    padding:5px;
-    display:flex;
-    align-items: center;
-}
+    * {
+        border: none;
+        padding-top:5px;
+        padding-bottom:5px;
+        display:flex;
+        align-items: center;
+    }
+    h2 {
+        font-weight: bold;
+        padding-left: 5px;
+    }
+    input, input:focus-visible {
+        outline: none;
+        padding-left: 5px;
+    }
 
-.search-bar h2 {
-    font-weight: bold;
-}
+    i {
+        display:flex;
+        background: $colored-background;
+        padding-right: 15px;
+        padding-left: 15px;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    i:hover{
+        cursor: pointer;
+    }
 
-.search-bar input:focus-visible {
-    outline: none;
-}
-
-.search-bar i {
-    display:flex;
-    background: $colored-background;
-    padding-right: 15px;
-    padding-left: 15px;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
 }
 
 

@@ -3,16 +3,17 @@ $fade: rgba(0, 0, 0, 0.226);
 
 
 .review-form-container{
+    background: white;
     display:flex;
     position: center;
     flex-direction: column;
-
+    
     .other-nav-bar{
         padding: 0;
     }
-
+    
     .review-form-content{
-
+        
         form{
             display: flex;
             flex-direction: column;

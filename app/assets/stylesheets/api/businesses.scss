@@ -9,6 +9,8 @@ $fade: rgba(0, 0, 0, 0.226);
 .business-index{
     display:flex;
     flex-direction: column;
+    background: white;
+    padding-bottom: 50px;
 }
 
 
@@ -18,7 +20,7 @@ $fade: rgba(0, 0, 0, 0.226);
     justify-content: space-between;
     .businesses-map{
         width: 50%;
-        height: .8* 100vh;
+        height: auto;
     }
     #business-list{
         display: flex;

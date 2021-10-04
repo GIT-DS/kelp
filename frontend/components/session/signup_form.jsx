@@ -30,9 +30,17 @@ class SignupForm extends React.Component{
         this.props.removeErrors()
     }
 
+    errorMessage(field, type){
+        let errors = this.props.errors.map(error => error.split(' ')[0])
+        if ( type === 'id' && errors.filter( error => error === field).length > 0) return 'error-field'
+        if (type === 'message') return <p id='error-message'>{this.props.errors.filter(error => error.split(' ')[0] === field)}</p>
+         
+        return null;
+    }
+
 
     render (){ 
-        
+        let errors = this.props.errors.map(error => error.split(' ')[0])
         return (
             <div className="form-page">
                 <OtherNavBar/>
@@ -47,22 +55,35 @@ class SignupForm extends React.Component{
                         </p>
                         <form className="session-form" onSubmit={this.handleSubmit}>
                             
-                            <input type='text' placeholder='Username' value={this.state.username} onChange={this.update('username')}/>
+                            <input type='text' id={this.errorMessage('Username', 'id')} placeholder='Username' value={this.state.username} onChange={this.update('username')}/>
+                            {this.errorMessage('Username', 'message')}
 
-                            <input type='email' placeholder='Email' value={this.state.email} onChange={this.update('email')}/>
+                            <input type='email' id={this.errorMessage('Email', 'id')} placeholder='Email' value={this.state.email} onChange={this.update('email')}/>
+                            {this.errorMessage('Email', 'message')}
+
                             <div className='name-container'>
-                                <input type='text' placeholder='First Name' value={this.state.firstName} onChange={this.update('first_name')}/>
-                                <input type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.update('last_name')}/>
+                                <div id='first-name-container'>
+                                    <input type='text' id={this.errorMessage('First', 'id')} placeholder='First Name' value={this.state.firstName} onChange={this.update('first_name')}/>
+                                    {this.errorMessage('First', 'message')}
+                                </div>
+
+                                <div id='last-name-container'>
+                                    <input type='text' id={this.errorMessage('Last', 'id')}placeholder='Last Name' value={this.state.lastName} onChange={this.update('last_name')}/>
+                                    {this.errorMessage('Last', 'message')}
+                                    
+                                </div>
+
                             </div>
                         
-                            <input type='number' placeholder='ZIP Code' value={this.state.zipcode} onChange={this.update('zip_code')} min='00001'max='99999'/>
-                            
-                            <input type type='password' placeholder='Password' value={this.state.password} onChange={this.update('password')} />
-                            
+                            <input type='number' id={this.errorMessage('Zip', 'id')} placeholder='ZIP Code' value={this.state.zipcode} onChange={this.update('zip_code')} min='00501'max='99999'/>
+                            {this.errorMessage('Zip', 'message')}
+
+                            <input type type='password' id={this.errorMessage('Password', 'id')} placeholder='Password' value={this.state.password} onChange={this.update('password')} />
+                            {this.errorMessage('Password', 'message')}
+
                             <button className='green-button'>Sign Up</button>
                             <p className='align-right'>Already on Kelp? <Link to='/login'>Log in</Link></p>
                         </form>
-                        {this.props.errors.map((error, i) => <li key={i}>{error}</li>)}
                     </div>
                     <img id='form-image'src={window.formimage} width='300' height='300'/>
                 </div>

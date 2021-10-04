@@ -30,9 +30,6 @@ class CreateReviewForm extends React.Component{
         
         this.props.submitForm(snake)
 
-
-
-        console.log(this.state)
         this.props.history.push(`/businesses/${this.state.businessId}`)
     }
     

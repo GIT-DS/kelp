@@ -8,11 +8,27 @@ import BusinessBox from './business_box';
 class Businesses extends React.Component{
     constructor(props){
         super(props)
-        // this.map = google.maps.Map;
         this.makeMap = this.makeMap.bind(this)
+        this.state = {b: []}
+        this.filter = this.filter.bind(this)
+
     }
+    
+    filter(find, near){
+        let businesses = this.props.businesses
+        if (find !== '0'){ businesses = businesses.filter(business => business.categories.map(cat => cat.toLowerCase()).includes(find.toLowerCase()))}
+        if (near !== '0'){ businesses = businesses.filter(business => business.city.toLowerCase() === near.toLowerCase())}
+        let preState = {b: businesses};
+
+        // if (this.state !== preState) return null;
+        this.setState(preState);
+    }
+    
+    
     componentDidMount(){
-        this.props.fetchAllBusinesses()
+        this.props.fetchAllBusinesses().then(()=> this.filter(this.props.find, this.props.near))
+        
+        // this.businesses = this.filter(this.props.find, this.props.near)
     }
 
     componentDidUpdate(){
@@ -20,8 +36,10 @@ class Businesses extends React.Component{
     }
 
     makeMap(){
+        let cent = {lat: 34.0462312861572, lng: -118.26394516974035}
+        if (this.state.b.length === 1) cent = {lat: this.state.b[0].latitude, lng: this.state.b[0].longitude}
         this.map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 34.0462312861572, lng: -118.26394516974035},
+            center: cent,
             zoom: 11,
             disableDefaultUI: true,
             styles: [
@@ -32,7 +50,7 @@ class Businesses extends React.Component{
                 }
             ]
         })
-        this.props.businesses.map((business, i) => {
+        this.state.b.map((business, i) => {
 
             let {latitude, longitude, title} = business
             let marker = new google.maps.Marker({
@@ -57,7 +75,11 @@ class Businesses extends React.Component{
                 <BusinessNavBarContainer/>
                 <div className='business-index-content'>
                     <div id='business-list'>
-                        {this.props.businesses.map((business,i) => <Link to={`/businesses/${business.id}`}><BusinessBox business={business} key={i} index={i}/></Link>)}
+                        {this.state.b.map((business,i) => (
+                        // <Link to={`/businesses/${business.id}`}>
+                            <BusinessBox business={business} key={i} index={i}/>
+                        // {/* </Link> */}
+                        ))}
                     </div>
                     <div className='businesses-map' id='map'></div>
                 </div>
