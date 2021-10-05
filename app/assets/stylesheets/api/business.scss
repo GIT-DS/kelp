@@ -49,11 +49,14 @@ $border: rgba(0, 0, 0, 0.103);
 .social-bar{
     display:flex;
     width: 50%;
-}
-.social-bar * {
-    font-size: 15px;
-    padding: 5px;
-    margin: 5px;
+    * {
+        font-size: 15px;
+        padding: 5px;
+        margin: 5px;
+    }
+    .clear-button{
+        width: 50%;
+    }
 }
 
 #review-button{

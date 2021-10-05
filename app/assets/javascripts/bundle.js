@@ -319,24 +319,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
-var SocialBar = function SocialBar(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "social-bar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/reviews/create/suggestions",
-    className: "green-button",
-    id: "review-button"
-  }, "Write a Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "clear-button"
-  }, "Add Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "clear-button"
-  }, "Share"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "clear-button"
-  }, "Save"));
-};
+
+var SocialBar = /*#__PURE__*/function (_React$Component) {
+  _inherits(SocialBar, _React$Component);
+
+  var _super = _createSuper(SocialBar);
+
+  function SocialBar(props) {
+    var _this;
+
+    _classCallCheck(this, SocialBar);
+
+    _this = _super.call(this, props);
+    _this.backHandler = _this.backHandler.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SocialBar, [{
+    key: "backHandler",
+    value: function backHandler(e) {
+      this.props.history.goBack();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "social-bar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        to: "/reviews/".concat(this.props.businessId, "/create"),
+        className: "green-button",
+        id: "review-button"
+      }, "Write a Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "clear-button",
+        onClick: this.backHandler
+      }, "Back to Businesses"));
+    }
+  }]);
+
+  return SocialBar;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SocialBar);
 
@@ -474,6 +519,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       if (this.props.business) {
         var _this$props$business2 = this.props.business,
+            id = _this$props$business2.id,
             title = _this$props$business2.title,
             timeOpen = _this$props$business2.timeOpen,
             timeClose = _this$props$business2.timeClose,
@@ -495,6 +541,8 @@ var Business = /*#__PURE__*/function (_React$Component) {
         var LTOS = this.formatTime(localTimeOpen);
         var LTCS = this.formatTime(localTimeClose);
         var currDay = new Date().getDay();
+        var addressMap = "".concat(address.split(' ').join('+'), "+").concat(city.split(' ').join('+'), "+").concat(state, "+").concat(zipCode);
+        console.log(addressMap);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_business_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -521,7 +569,10 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "business-content"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "left-content"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_components_social_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_business_components_social_bar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          history: this.props.history,
+          businessId: id
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
           id: "review-hr"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "location-hours"
@@ -537,7 +588,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
           className: "map-address"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, zipCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "border-button",
-          href: "https://www.google.com/maps/dir//".concat(latitude, ",+").concat(longitude, "/")
+          href: "https://www.google.com/maps/dir//".concat(addressMap, "/")
         }, "Get Directions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "day-hours-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -573,7 +624,7 @@ var Business = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "side-directions"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          href: "https://www.google.com/maps/dir//".concat(latitude, ",+").concat(longitude, "/")
+          href: "https://www.google.com/maps/dir//".concat(addressMap, "/")
         }, "Get Directions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, city, ", ", state, " ", zipCode)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
           className: "fas fa-directions"
         }))))));
@@ -824,25 +875,37 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
     key: "filter",
     value: function filter(find, near) {
       var businesses = this.props.businesses;
+      var findArr = [];
+      if (this.props.find === '0' && this.props.near === '0') findArr = businesses;
 
       if (this.props.find && this.props.near) {
         if (find !== '0') {
-          businesses = businesses.filter(function (business) {
+          var title = businesses.filter(function (business) {
+            return business.title.toLowerCase().split(' ').includes(find.toLowerCase());
+          });
+          var category = businesses.filter(function (business) {
             return business.categories.map(function (cat) {
               return cat.toLowerCase();
             }).includes(find.toLowerCase());
           });
+          findArr = findArr.concat(title, category);
         }
 
         if (near !== '0') {
-          businesses = businesses.filter(function (business) {
-            return business.city.toLowerCase() === near.toLowerCase();
-          });
+          if (find === '0') {
+            findArr = businesses.filter(function (business) {
+              return business.city.toLowerCase() === near.toLowerCase();
+            });
+          } else {
+            findArr = findArr.filter(function (business) {
+              return business.city.toLowerCase() === near.toLowerCase();
+            });
+          }
         }
       }
 
       this.setState({
-        b: businesses
+        b: findArr
       });
     }
   }, {
@@ -853,6 +916,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
       this.props.fetchAllBusinesses().then(function () {
         return _this2.setState(_this2.filter(_this2.props.find, _this2.props.near));
       });
+      window.scrollTo(0, top);
     }
   }, {
     key: "componentDidUpdate",
@@ -961,7 +1025,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log(ownProps);
   return {
     businesses: Object.values(state.entities.businesses),
     find: (0,_util_search_util__WEBPACK_IMPORTED_MODULE_3__.findTerm)(ownProps.location.search),
@@ -2559,12 +2622,12 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         className: "search-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Find"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        placeholder: "seafood, seafood, seafood...",
+        placeholder: "seafood, bars, gastropubs...",
         value: this.state.find,
         onChange: this.update('find')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Near"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        placeholder: "Los Angeles, CA",
+        placeholder: "Los Angeles, Pasadena",
         value: this.state.near,
         onChange: this.update('near')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {

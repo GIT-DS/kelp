@@ -20,7 +20,6 @@ p{
     align-items: center;
     background: $colored-background;
     width: 100%;
-    overflow: hidden;
     // padding: 10px;
 }
 a{
@@ -103,7 +102,7 @@ a{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -127,6 +126,7 @@ a{
 }
 .landing-search-container > * {
     background:none;
+    overflow:hidden;
 }
 .search-bar {
     display:flex;
@@ -134,7 +134,6 @@ a{
     justify-content: center;
     border-radius: 5px;
     background:white;
-    overflow: hidden;
     * {
         border: none;
         padding-top:5px;

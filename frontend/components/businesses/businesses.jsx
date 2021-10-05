@@ -15,20 +15,36 @@ class Businesses extends React.Component{
         this.count = 0
     }
     
+
+
     filter(find, near){
         let businesses = this.props.businesses
+        let findArr = [];
+        if (this.props.find === '0' && this.props.near === '0') findArr = businesses
         if (this.props.find && this.props.near) {
-        if (find !== '0'){ businesses = businesses.filter(business => business.categories.map(cat => cat.toLowerCase()).includes(find.toLowerCase()))}
-        if (near !== '0'){ businesses = businesses.filter(business => business.city.toLowerCase() === near.toLowerCase())}
-        }
+            if (find !== '0'){
+                let title = (businesses.filter(business => business.title.toLowerCase().split(' ').includes(find.toLowerCase())))
+                let category = businesses.filter(business => business.categories.map(cat => cat.toLowerCase()).includes(find.toLowerCase()))
+                findArr = findArr.concat(title, category)
+            }
 
-        this.setState({b: businesses})
+            if (near !== '0'){ 
+                if (find === '0') {
+                findArr = businesses.filter(business => business.city.toLowerCase() === near.toLowerCase())
+                } else {
+                    findArr = findArr.filter(business => business.city.toLowerCase() === near.toLowerCase())
+                }
+            } 
+
+        }
+        this.setState({b: findArr})
 
     }
     
     componentDidMount(){
         this.props.fetchAllBusinesses()
         .then(()=> this.setState(this.filter(this.props.find, this.props.near)))
+        window.scrollTo(0,top)
     }
 
     componentDidUpdate(prevProps){

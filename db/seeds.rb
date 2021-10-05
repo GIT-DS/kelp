@@ -101,8 +101,8 @@ b1 = Business.create!({
     city: 'Los Angeles',
     state: 'CA',
     zip_code: '90012',
-    latitude: 34.067347503798935, 
-    longitude: -118.2408155940718
+    latitude: 34.0630105974283, 
+    longitude: -118.2405532741371
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/restaurants/rockin/o.jpg')
@@ -115,12 +115,12 @@ b2 = Business.create!({
     time_close: '07:00 PM PST',
     website: '',
     cost: '$$$',
-    address: '800 W. Olympic Blvd A-160',
+    address: '800 W. Olympic Blvd A160',
     city: 'Los Angeles',
     state: 'CA',
     zip_code: '90015',
-    latitude: 34.0462312861572, 
-    longitude: -118.26394516974035, 
+    latitude: 34.04431098152374, 
+    longitude: -118.26546505890268
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/user_photos/q.jpg')
@@ -137,8 +137,8 @@ b3 = Business.create!({
     city: 'Los Angeles',
     state: 'CA',
     zip_code: '90041',
-    latitude: 34.0817306086936,  
-    longitude: -118.25981087533094, 
+    latitude: 34.13277943497066, 
+    longitude: -118.2163246487503 
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/senor.jpg')
@@ -156,8 +156,8 @@ b4 = Business.create!({
     city: 'Los Angeles',
     state: 'CA',
     zip_code: '90020',
-    latitude: 34.06373485044009,
-    longitude: -118.29908174559397, 
+    latitude: 34.06338087933894, 
+    longitude: -118.29900206037992
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/emc.jpg')
@@ -175,36 +175,140 @@ b5 = Business.create!({
     city: 'Pasadena',
     state: 'CA',
     zip_code: '91103',
-    latitude: 34.14753454251796, 
-    longitude: -118.150296772164, 
+    latitude: 34.147402036139034, 
+    longitude: -118.15030490831988
 })
 
 file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/fishwives.jpg')
 b5.photos.attach(io: file, filename: 'fishwives.jpg')
 
 
-# b3 = Business.create!({
-#     title: "",
-#     phone_num: '',
-#     time_open: '',
-#     time_close: '',
-#     website: '',
-#     cost: '',
-#     address: '',
-#     city: '',
-#     state: 'CA',
-#     zip_code: '',
-#     latitude: , 
-#     longitude: , 
-# })
+b6 = Business.create!({
+    title: "Playa Del Carmen Seafood & Grill",
+    phone_num: '(626) 345-5956',
+    time_open: '12:00 PM PST',
+    time_close: '10:00 PM PST',
+    website: 'playadelcarmenrestaurant.com',
+    cost: '$',
+    address: '950 E Colorado Blvd Ste 202',
+    city: 'Pasadena',
+    state: 'CA',
+    zip_code: '91106',
+    latitude: 34.145715320802566, 
+    longitude: -118.1304967008879
+})
 
-# file = open('')
-# b3.photos.attach(io: file, filename: '')
-
-
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/playa.jpg')
+b6.photos.attach(io: file, filename: 'playa.jpg')
 
 
+b7 = Business.create!({
+    title: "Saso",
+    phone_num: '(626) 808-4976',
+    time_open: '6:00 PM PST',
+    time_close: '11:00 PM PST',
+    website: 'sasobistro.com',
+    cost: '$$$',
+    address: '37 S El Molino Ave',
+    city: 'Pasadena',
+    state: 'CA',
+    zip_code: '91101',
+    latitude: 34.14520947706918,
+    longitude: -118.13718640349327
+})
 
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/saso.jpg')
+b7.photos.attach(io: file, filename: 'saso.jpg')
+
+b8 = Business.create!({
+    title: "Bodegon No 69",
+    phone_num: '(626) 421-6180',
+    time_open: '5:00 PM PST',
+    time_close: '10:00 PM PST',
+    website: 'bodegon69',
+    cost: '$$',
+    address: '69 N Raymond Ave',
+    city: 'Pasadena',
+    state: 'CA',
+    zip_code: '91103',
+    latitude: 34.14715470715395, 
+    longitude: -118.14913168832003, 
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/bodegon.jpg')
+b8.photos.attach(io: file, filename: 'bodegon.jpg')
+
+b9 = Business.create!({
+    title: "Holy Crab",
+    phone_num: '(626) 461-5011',
+    time_open: '12:30 PM PST',
+    time_close: '9:45 PM PST',
+    website: 'holycrabca.com',
+    cost: '$$',
+    address: '400 S Baldwin Ave Ste 2325',
+    city: 'Arcadia',
+    state: 'CA',
+    zip_code: '91007',
+    latitude: 34.13371086548888, 
+    longitude: -118.05234487848631,
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/hcrab.png')
+b9.photos.attach(io: file, filename: 'hcrab.png')
+
+b10 = Business.create!({
+    title: "The Boiling Crab",
+    phone_num: '(747) 201-3346',
+    time_open: '4:00 PM PST',
+    time_close: '11:00 PM PST',
+    website: 'theboilingcrab.com',
+    cost: '$$',
+    address: '140 Palm Ave Ste 210',
+    city: 'Burbank',
+    state: 'CA',
+    zip_code: '91502',
+    latitude: 34.18188122451207, 
+    longitude: -118.31110164231018, 
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/boilingcrab.jpg')
+b10.photos.attach(io: file, filename: 'boilingcrab.jpg')
+
+b11 = Business.create!({
+    title: "California Fish Grill",
+    phone_num: '(747) 223-5242',
+    time_open: '12:00 PM PST',
+    time_close: '10:00 PM PST',
+    website: 'cafishgrill.com',
+    cost: '$',
+    address: '551 N Hollywood Way',
+    city: 'Burbank',
+    state: 'CA',
+    zip_code: '91505',
+    latitude: 34.16049640826344,
+    longitude: -118.34395842816673
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/cafishgrill.jpg')
+b11.photos.attach(io: file, filename: 'cafishgrill.jpg')
+
+b12 = Business.create!({
+    title: "Octopus Japanese Restaurant",
+    phone_num: '(818) 556-6622',
+    time_open: '12:30 PM PST',
+    time_close: '11:00 PM PST',
+    website: 'octopusrestaurant.com',
+    cost: '$$',
+    address: '227 E Palm Ave',
+    city: 'Burbank',
+    state: 'CA',
+    zip_code: '91502',
+    latitude: 34.18294199085147, 
+    longitude: -118.31043959883708
+})
+
+file = open('https://kelp-yelp-clone-seeds.s3.us-west-1.amazonaws.com/octopus.jpg')
+b12.photos.attach(io: file, filename: 'octopus')
 
 
 
@@ -246,7 +350,40 @@ Review.create!({
     business_id: b5.id
 })
 
+Review.create!({
+    rating: 5,
+    comment: "WOW",
+    user_id: u1.id,
+    business_id: b6.id
+})
 
+Review.create!({
+    rating: 4,
+    comment: "This place is good!",
+    user_id: u1.id,
+    business_id: b7.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Holy Crab this is amazing!",
+    user_id: u1.id,
+    business_id: b9.id
+})
+
+Review.create!({
+    rating: 3,
+    comment: "the Tacos were alright",
+    user_id: u1.id,
+    business_id: b11.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "They didn't actually have octopus, but the tuna was goooood!",
+    user_id: u1.id,
+    business_id: b12.id
+})
 
 ## user 2 reviews
 Review.create!({
@@ -284,12 +421,40 @@ Review.create!({
     business_id: b5.id
 })
 
-# Review.create!({
-#     rating: ,
-#     comment: "",
-#     user_id: u2.id,
-#     business_id: b.id
-# })
+Review.create!({
+    rating: 5,
+    comment: "Gotta give one of these places a good review",
+    user_id: u2.id,
+    business_id: b6.id
+})
+
+Review.create!({
+    rating: 1,
+    comment: "WHAT IS A BODEGON?!?!?!?",
+    user_id: u2.id,
+    business_id: b8.id
+})
+
+Review.create!({
+    rating: 1,
+    comment: "Holy Crab this is bad!",
+    user_id: u2.id,
+    business_id: b9.id
+})
+
+Review.create!({
+    rating: 1,
+    comment: "I'm angry!",
+    user_id: u2.id,
+    business_id: b11.id
+})
+
+Review.create!({
+    rating: 1,
+    comment: "Where's the octopus?",
+    user_id: u2.id,
+    business_id: b12.id
+})
 
 ## user 3 reviews
 
@@ -327,12 +492,41 @@ Review.create!({
     business_id: b5.id
 })
 
-# Review.create!({
-#     rating: ,
-#     comment: "",
-#     user_id: u3.id,
-#     business_id: b.id
-# })
+Review.create!({
+    rating: 5,
+    comment: "Amazing!",
+    user_id: u3.id,
+    business_id: b6.id
+})
+
+Review.create!({
+    rating: 4,
+    comment: "Nice place!",
+    user_id: u3.id,
+    business_id: b7.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "The crab was good!",
+    user_id: u3.id,
+    business_id: b9.id
+})
+
+
+Review.create!({
+    rating: 5,
+    comment: "Pretty good!",
+    user_id: u3.id,
+    business_id: b11.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Nice and clean!",
+    user_id: u3.id,
+    business_id: b12.id
+})
 
 ## user 4 reviews
 
@@ -370,12 +564,26 @@ Review.create!({
     business_id: b5.id
 })
 
-# Review.create!({
-#     rating: ,
-#     comment: "",
-#     user_id: u4.id,
-#     business_id: b.id
-# })
+Review.create!({
+    rating: 5,
+    comment: "Great Food, Great Environment",
+    user_id: u4.id,
+    business_id: b8.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "The crawfish were so big here! Had a great time with family",
+    user_id: u4.id,
+    business_id: b10.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Rolls on rolls!",
+    user_id: u4.id,
+    business_id: b12.id
+})
 
 ## user 5 reviews
 
@@ -414,13 +622,33 @@ Review.create!({
     business_id: b5.id
 })
 
-# Review.create!({
-#     rating: ,
-#     comment: "",
-#     user_id: u5.id,
-#     business_id: b.id
-# })
+Review.create!({
+    rating: 5,
+    comment: "Great Tostadas",
+    user_id: u5.id,
+    business_id: b6.id
+})
 
+Review.create!({
+    rating: 4,
+    comment: "Amazing!",
+    user_id: u5.id,
+    business_id: b7.id
+})
+
+Review.create!({
+    rating: 2,
+    comment: "Too Messy!",
+    user_id: u5.id,
+    business_id: b10.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "My server was really nice!",
+    user_id: u5.id,
+    business_id: b12.id
+})
 
 ## user 6 reviews
 
@@ -477,12 +705,50 @@ Review.create!({
     business_id: b5.id
 })
 
-# Review.create!({
-#     rating: ,
-#     comment: "",
-#     user_id: u6.id,
-#     business_id: b.id
-# })
+Review.create!({
+    rating: 5,
+    comment: "Typed this on my $600 keyboard",
+    user_id: u6.id,
+    business_id: b6.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Gold jewelry shining so bright
+    Strawberry champagne on ice
+    Lucky for you, that's what I like, that's what I like
+    Lucky for you, that's what I like, that's what I like
+    Sex by the fire at night
+    Silk sheets and diamonds all white
+    Lucky for you, that's what I like, that's what I like
+    Lucky for you, that's what I like, that's what I like",
+    user_id: u6.id,
+    business_id: b8.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Oh, I want something just like this
+    I want something just like this",
+    user_id: u6.id,
+    business_id: b10.id
+})
+
+Review.create!({
+    rating: 5,
+    comment: "Overthinking's got me drinking
+    Messing with my head, whoa
+    Tell me what you hate about me
+    Whatever it is, I'm sorry
+    Yeah, yeah, yeah, yeah, yeah, yeah
+    I know I can be dramatic
+    But everybody said we had it
+    Yeah, yeah, yeah, yeah, yeah, yeah
+    I'm coming to terms with a broken heart
+    I guess that sometimes good things fall apart",
+    user_id: u6.id,
+    business_id: b12.id
+})
 
 
 #Categories
@@ -523,9 +789,37 @@ c9 = Category.create!({
     title: 'Wine Bars'
 })
 
-# c7 = Category.create!({
-#     title: ''
-# })
+c10 = Category.create!({
+    title: 'Tacos'
+})
+
+c11 = Category.create!({
+    title: 'Cocktail Bars'
+})
+
+c12 = Category.create!({
+    title: 'Basque'
+})
+
+c13 = Category.create!({
+    title: 'Latin American'
+})
+
+c14 = Category.create!({
+    title: 'Peruvian'
+})
+
+c15 = Category.create!({
+    title: 'Cajun-Creole'
+})
+
+c16 = Category.create!({
+    title: 'Fish and Chips'
+})
+
+c17 = Category.create!({
+    title: 'Japanese'
+})
 
 #Business Categories
 
@@ -599,7 +893,105 @@ BusinessCategory.create!({
     business_id: b5.id
 })
 
-# bc6 = BusinessCategory.create!({
-#     category_id: .id,
-#     business_id: .id
-# })
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b6.id
+})
+
+BusinessCategory.create!({
+    category_id: c5.id,
+    business_id: b6.id
+})
+
+BusinessCategory.create!({
+    category_id: c10.id,
+    business_id: b6.id
+})
+
+BusinessCategory.create!({
+    category_id: c11.id,
+    business_id: b6.id
+})
+
+
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b7.id
+})
+
+BusinessCategory.create!({
+    category_id: c12.id,
+    business_id: b7.id
+})
+
+BusinessCategory.create!({
+    category_id: c11.id,
+    business_id: b7.id
+})
+
+BusinessCategory.create!({
+    category_id: c11.id,
+    business_id: b8.id
+})
+
+BusinessCategory.create!({
+    category_id: c13.id,
+    business_id: b8.id
+})
+
+BusinessCategory.create!({
+    category_id: c14.id,
+    business_id: b8.id
+})
+
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b9.id
+})
+
+
+BusinessCategory.create!({
+    category_id: c15.id,
+    business_id: b9.id
+})
+
+
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b10.id
+})
+
+BusinessCategory.create!({
+    category_id: c15.id,
+    business_id: b10.id
+})
+
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b11.id
+})
+
+BusinessCategory.create!({
+    category_id: c10.id,
+    business_id: b11.id
+})
+
+BusinessCategory.create!({
+    category_id: c16.id,
+    business_id: b11.id
+})
+
+BusinessCategory.create!({
+    category_id: c1.id,
+    business_id: b12.id
+})
+
+BusinessCategory.create!({
+    category_id: c8.id,
+    business_id: b12.id
+})
+
+BusinessCategory.create!({
+    category_id: c17.id,
+    business_id: b12.id
+})

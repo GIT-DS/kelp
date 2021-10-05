@@ -25,9 +25,9 @@ class SearchBar extends React.Component{
         return(
             <form className='search-bar'>
                 <h2>Find</h2>
-                <input type='text' placeholder='seafood, seafood, seafood...' value={this.state.find} onChange={this.update('find')}/>
+                <input type='text' placeholder='seafood, bars, gastropubs...' value={this.state.find} onChange={this.update('find')}/>
                 <h2>Near</h2>
-                <input type='text' placeholder='Los Angeles, CA' value={this.state.near} onChange={this.update('near')}/>
+                <input type='text' placeholder='Los Angeles, Pasadena' value={this.state.near} onChange={this.update('near')}/>
                 <i className="fa fa-search" onClick={this.clickHandler}/>
             </form>
         )
