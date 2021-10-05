@@ -12,14 +12,15 @@ import EditReviewFormContainer from "./reviews/review_form/edit_review_form_cont
 import ReviewSuggestionContainer from "./reviews/review_form/review_suggestions/review_suggestions_container";
 import CreateReviewFormContainer from "./reviews/review_form/create_review_form_container";
 
-const App = () => (
+const App = (props) => {
+  return(
   <div id='appId'>
     <Switch>
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <ProtectedRoute path='/reviews/:reviewId/edit' component={EditReviewFormContainer}/>
       <ProtectedRoute path='/reviews/:businessId/create' component={CreateReviewFormContainer}/>
-      <ProtectedRoute path='/reviews/create/suggestions' component={ReviewSuggestionContainer}/>
+      <Route path='/reviews/create/suggestions' history={props.history} component={ReviewSuggestionContainer}/>
       {/* <Route path='/businesses/:find/:near' component={BusinessesContainer}/> */}
       <Route path='/businesses?find=:find&near=:near' component={BusinessesContainer}/>
       <Route path='/businesses/:id' component={BusinessContainer}/>
@@ -28,6 +29,7 @@ const App = () => (
       <Route component={MissingPage} />
     </Switch>
   </div>
-);
+  )
+};
 
 export default App;

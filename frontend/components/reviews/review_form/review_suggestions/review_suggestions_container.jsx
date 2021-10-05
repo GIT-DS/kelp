@@ -5,7 +5,8 @@ import ReviewSuggestion from './review_suggestions';
 
 
 const mapStateToProps = (state)=>({
-    businesses: Object.values(state.entities.businesses)
+    businesses: Object.values(state.entities.businesses),
+    currentUser: state.session.id
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -15,6 +15,7 @@ class SearchBar extends React.Component{
     }
 
     clickHandler(e){
+        e.preventDefault();
         let find = this.state.find
         let near = this.state.near
         this.props.history.push(`/businesses?find=${find === '' ? 0 : find}&near=${near === '' ? 0 : near}`)
@@ -28,7 +29,7 @@ class SearchBar extends React.Component{
                 <input type='text' placeholder='seafood, bars, gastropubs...' value={this.state.find} onChange={this.update('find')}/>
                 <h2>Near</h2>
                 <input type='text' placeholder='Los Angeles, Pasadena' value={this.state.near} onChange={this.update('near')}/>
-                <i className="fa fa-search" onClick={this.clickHandler}/>
+                <button onClick={this.clickHandler}><i className="fa fa-search" /></button>
             </form>
         )
     }

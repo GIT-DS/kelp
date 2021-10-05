@@ -265,7 +265,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var App = function App() {
+var App = function App(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "appId"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.AuthRoute, {
@@ -280,8 +280,9 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.ProtectedRoute, {
     path: "/reviews/:businessId/create",
     component: _reviews_review_form_create_review_form_container__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__.ProtectedRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/reviews/create/suggestions",
+    history: props.history,
     component: _reviews_review_form_review_suggestions_review_suggestions_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/businesses?find=:find&near=:near",
@@ -2280,7 +2281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _businesses_business_box__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../businesses/business_box */ "./frontend/components/businesses/business_box.jsx");
 /* harmony import */ var _nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../nav_bar/other_nav_bar */ "./frontend/components/nav_bar/other_nav_bar.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../session/login_form_container */ "./frontend/components/session/login_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2308,6 +2310,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var ReviewSuggestion = /*#__PURE__*/function (_React$Component) {
   _inherits(ReviewSuggestion, _React$Component);
 
@@ -2328,19 +2331,24 @@ var ReviewSuggestion = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       if (!this.props.businesses) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "suggestion-content"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Been to these businesses recently?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "business-suggestions"
-      }, this.props.businesses.map(function (business, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          to: "/reviews/".concat(business.id, "/create")
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_businesses_business_box__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          business: business,
-          key: i,
-          index: i
-        }));
-      })));
+
+      if (!this.props.currentUser) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "suggestion-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Been to these businesses recently?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "business-suggestions"
+        }, this.props.businesses.map(function (business, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            to: "/reviews/".concat(business.id, "/create"),
+            key: i
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_businesses_business_box__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            business: business,
+            index: i
+          }));
+        })));
+      }
     }
   }]);
 
@@ -2373,7 +2381,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    businesses: Object.values(state.entities.businesses)
+    businesses: Object.values(state.entities.businesses),
+    currentUser: state.session.id
   };
 };
 
@@ -2609,6 +2618,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "clickHandler",
     value: function clickHandler(e) {
+      e.preventDefault();
       var find = this.state.find;
       var near = this.state.near;
       this.props.history.push("/businesses?find=".concat(find === '' ? 0 : find, "&near=").concat(near === '' ? 0 : near));
@@ -2628,10 +2638,11 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         placeholder: "Los Angeles, Pasadena",
         value: this.state.near,
         onChange: this.update('near')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
-        className: "fa fa-search",
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.clickHandler
-      }));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "fa fa-search"
+      })));
     }
   }]);
 
@@ -2705,6 +2716,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var LoginForm = /*#__PURE__*/function (_React$Component) {
   _inherits(LoginForm, _React$Component);
 
@@ -2722,6 +2734,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.demoSubmit = _this.demoSubmit.bind(_assertThisInitialized(_this));
+    _this.success = false;
     return _this;
   }
 
@@ -2738,11 +2751,13 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.processForm(this.state); // .then(()=>this.props.history.push('/'))
+      this.history.push(this.previous);
+      this.props.processForm(this.state);
     }
   }, {
     key: "demoSubmit",
-    value: function demoSubmit() {
+    value: function demoSubmit(e) {
+      e.preventDefault();
       this.props.processForm({
         username: 'alpha',
         password: 'alpha'
@@ -2839,6 +2854,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _login_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login_form */ "./frontend/components/session/login_form.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+
 
 
 
@@ -2861,7 +2878,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_login_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -3511,7 +3528,8 @@ var Auth = function Auth(_ref) {
   var Component = _ref.component,
       path = _ref.path,
       loggedIn = _ref.loggedIn,
-      exact = _ref.exact;
+      exact = _ref.exact,
+      history = _ref.history;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__.Route, {
     path: path,
     exact: exact,
@@ -3527,13 +3545,14 @@ var Protected = function Protected(_ref2) {
   var Component = _ref2.component,
       path = _ref2.path,
       loggedIn = _ref2.loggedIn,
-      exact = _ref2.exact;
+      exact = _ref2.exact,
+      history = _ref2.history;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__.Route, {
     path: path,
     exact: exact,
     render: function render(props) {
       return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router__WEBPACK_IMPORTED_MODULE_2__.Redirect, {
-        to: "/login"
+        to: "login"
       });
     }
   });

@@ -151,10 +151,11 @@ a{
         padding-left: 5px;
     }
 
-    i {
+    button {
         display:flex;
         background: $colored-background;
         padding-right: 15px;
+        width: auto;
         padding-left: 15px;
         align-items: center;
         justify-content: center;

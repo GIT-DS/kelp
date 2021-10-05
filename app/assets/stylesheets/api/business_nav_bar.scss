@@ -1,5 +1,6 @@
 $border: rgba(0, 0, 0, 0.103);
 $fade: rgba(0, 0, 0, 0.226);
+$colored-background: #66D4AE;
 .business-nav{
     display: flex;
     justify-content: space-around;
@@ -25,15 +26,16 @@ $fade: rgba(0, 0, 0, 0.226);
         display: flex;
         justify-content: space-between;
         height:50%;
-        padding-top: 5px;
-        padding-bottom: 5px;
         input{
             padding: 5px;
             width: auto;            
         }
         h2{
+            padding-top: 5px;
+            padding-bottom: 5px;
             padding-left: 10px;
         }
+
     }
     
     #business-logo{

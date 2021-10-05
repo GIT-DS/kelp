@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from 'react'
 import OtherNavBar from "../nav_bar/other_nav_bar";
+import { Redirect } from "react-router";
 
 
 class LoginForm extends React.Component{
@@ -12,6 +13,7 @@ class LoginForm extends React.Component{
           };
         this.handleSubmit = this.handleSubmit.bind(this)
         this.demoSubmit = this.demoSubmit.bind(this)
+        this.success = false;
     }
 
     update(field){
@@ -20,17 +22,20 @@ class LoginForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
+        this.history.push(this.previous)
         this.props.processForm(this.state)
-        // .then(()=>this.props.history.push('/'))
     }
     
-    demoSubmit(){
+    demoSubmit(e){
+        e.preventDefault();
         this.props.processForm({username:'alpha', password:'alpha'})
+
     }
 
     componentWillUnmount(){
         this.props.removeErrors()
     }
+
 
     errorId(){
         if (this.props.errors.length > 0 ) return 'error-field'
