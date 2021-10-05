@@ -34,19 +34,7 @@ const Footer = props => {
                     </a>
                 
                 </div>
-                <div className="col">
-                    <p className="col-title">Languages</p>
-                    <br />
-                    <Link to="#" className="col-content">
-                    English
-                    </Link>
-                    <br />
-                    <p className="col-title">Countries</p>
-                    <br />
-                    <Link to="#" className="col-content">
-                    United States
-                    </Link>
-                </div>
+                
             </div>
         </footer>
     </div>

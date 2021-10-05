@@ -68,7 +68,6 @@ class Business extends React.Component{
             let LTCS = this.formatTime(localTimeClose)
             let currDay = new Date().getDay()
             let addressMap = `${address.split(' ').join('+')}+${city.split(' ').join('+')}+${state}+${zipCode}`
-            console.log(addressMap) 
             return (
             <div className='business-show'>
                 <BusinessNavBarContainer/>

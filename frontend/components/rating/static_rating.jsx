@@ -25,11 +25,8 @@ const StaticRating = props => {
 
     let created = ""
     if (props.createdAt !== undefined){
-        let date = new Date(props.createdAt)
-        let month = date.getMonth()
-        let day = date.getDay()
-        let year = date.getFullYear()
-        created = <p id='created'>{month}/{day}/{year}</p>
+        let date = new Date(props.createdAt).toLocaleDateString('en-US',{month: '2-digit',day: '2-digit', year:'numeric'})
+        created = <p id='created'>{date}</p>
     }
     return (
     <div id='rating-bar'>

@@ -350,21 +350,12 @@ var SocialBar = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(SocialBar);
 
   function SocialBar(props) {
-    var _this;
-
     _classCallCheck(this, SocialBar);
 
-    _this = _super.call(this, props);
-    _this.backHandler = _this.backHandler.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(SocialBar, [{
-    key: "backHandler",
-    value: function backHandler(e) {
-      this.props.history.goBack();
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -373,9 +364,9 @@ var SocialBar = /*#__PURE__*/function (_React$Component) {
         to: "/reviews/".concat(this.props.businessId, "/create"),
         className: "green-button",
         id: "review-button"
-      }, "Write a Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "clear-button",
-        onClick: this.backHandler
+      }, "Write a Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        to: "/businesses?find=0&near=0",
+        className: "clear-button"
       }, "Back to Businesses"));
     }
   }]);
@@ -542,7 +533,6 @@ var Business = /*#__PURE__*/function (_React$Component) {
         var LTCS = this.formatTime(localTimeClose);
         var currDay = new Date().getDay();
         var addressMap = "".concat(address.split(' ').join('+'), "+").concat(city.split(' ').join('+'), "+").concat(state, "+").concat(zipCode);
-        console.log(addressMap);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_business_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -872,8 +862,25 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Businesses, [{
+    key: "includes",
+    value: function includes(key, field) {
+      var str1 = key.toString().toLowerCase().split(' ').join('');
+      var str2 = field.toLowerCase().split(' ').join('');
+      if (str1 === str2) return true;
+
+      for (var i = 0; i < str1.length; i++) {
+        for (var j = i; j < str1.length; j++) {
+          if (str1.substring(i, j) === str2) return true;
+        }
+      }
+
+      return false;
+    }
+  }, {
     key: "filter",
     value: function filter(find, near) {
+      var _this2 = this;
+
       var businesses = this.props.businesses;
       var findArr = [];
       if (this.props.find === '0' && this.props.near === '0') findArr = businesses;
@@ -881,12 +888,12 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
       if (this.props.find && this.props.near) {
         if (find !== '0') {
           var title = businesses.filter(function (business) {
-            return business.title.toLowerCase().split(' ').includes(find.toLowerCase());
+            return _this2.includes(business.title, find);
           });
           var category = businesses.filter(function (business) {
-            return business.categories.map(function (cat) {
-              return cat.toLowerCase();
-            }).includes(find.toLowerCase());
+            return business.categories.some(function (cat) {
+              return _this2.includes(cat, find);
+            });
           });
           findArr = findArr.concat(title, category);
         }
@@ -894,11 +901,11 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
         if (near !== '0') {
           if (find === '0') {
             findArr = businesses.filter(function (business) {
-              return business.city.toLowerCase() === near.toLowerCase();
+              return _this2.includes(business.address, near) || _this2.includes(business.state, near) || _this2.includes(business.city, near) || _this2.includes(business.zipCode, near);
             });
           } else {
             findArr = findArr.filter(function (business) {
-              return business.city.toLowerCase() === near.toLowerCase();
+              return _this2.includes(business.address, near) || _this2.includes(business.state, near) || _this2.includes(business.city, near) || _this2.includes(business.zipCode, near);
             });
           }
         }
@@ -911,10 +918,10 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.props.fetchAllBusinesses().then(function () {
-        return _this2.setState(_this2.filter(_this2.props.find, _this2.props.near));
+        return _this3.setState(_this3.filter(_this3.props.find, _this3.props.near));
       });
       window.scrollTo(0, top);
     }
@@ -930,7 +937,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "makeMap",
     value: function makeMap() {
-      var _this3 = this;
+      var _this4 = this;
 
       var cent = {
         lat: 34.0462312861572,
@@ -961,7 +968,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
             lat: latitude,
             lng: longitude
           },
-          map: _this3.map,
+          map: _this4.map,
           label: title.slice(0, 1),
           title: title,
           animation: google.maps.Animation.DROP
@@ -1128,7 +1135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _email__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./email */ "./frontend/components/footer/email.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
@@ -1162,19 +1168,7 @@ var Footer = function Footer(props) {
     className: "col-title"
   }, "Other Projects"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://git-ds.github.io/my_pug_too_fat/"
-  }, "My Pug Too Fat")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "col"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "col-title"
-  }, "Languages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "#",
-    className: "col-content"
-  }, "English"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "col-title"
-  }, "Countries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "#",
-    className: "col-content"
-  }, "United States")))));
+  }, "My Pug Too Fat")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -1678,13 +1672,14 @@ var StaticRating = function StaticRating(props) {
   var created = "";
 
   if (props.createdAt !== undefined) {
-    var date = new Date(props.createdAt);
-    var month = date.getMonth();
-    var day = date.getDay();
-    var year = date.getFullYear();
+    var date = new Date(props.createdAt).toLocaleDateString('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric'
+    });
     created = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
       id: "created"
-    }, month, "/", day, "/", year);
+    }, date);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2121,11 +2116,9 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      if (!this.props.review) {
-        this.props.fetchReview(this.props.match.params.reviewId).then(function (res) {
-          return _this2.setState(res.review);
-        });
-      }
+      this.props.fetchReview(this.props.match.params.reviewId).then(function (res) {
+        return _this2.setState(res.review);
+      });
     }
   }, {
     key: "update",
@@ -2211,7 +2204,8 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
       }, this.radioButtons(5), this.radioButtons(4), this.radioButtons(3), this.radioButtons(2), this.radioButtons(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         id: "comment",
         value: this.state.comment,
-        onChange: this.update('comment')
+        onChange: this.update('comment'),
+        placeholder: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos  sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam recusandae alias error harum maxime adipisci amet laborum. Perspiciatis  minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit  quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur  fugiat, temporibus enim commodi iusto libero magni deleniti quod quam  consequuntur! Commodi minima excepturi repudiandae velit hic maxime doloremque. Quaerat provident commodi consectetur veniam similique ad  earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo  fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam  totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam  quasi aliquam eligendi, placeat qui corporis!"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.submitHandler
       }, this.props.formType))));

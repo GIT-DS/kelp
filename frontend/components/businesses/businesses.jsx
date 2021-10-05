@@ -15,6 +15,20 @@ class Businesses extends React.Component{
         this.count = 0
     }
     
+    includes(key, field){
+        let str1 = key.toString().toLowerCase().split(' ').join('')
+        let str2 = field.toLowerCase().split(' ').join('')
+
+        if (str1 === str2) return true;
+        for(let i = 0; i < str1.length; i++){
+            for(let j = i; j < str1.length; j++){
+                if (str1.substring(i,j) === str2) return true
+            }
+        }
+        return false;
+    }
+
+    
 
 
     filter(find, near){
@@ -23,16 +37,26 @@ class Businesses extends React.Component{
         if (this.props.find === '0' && this.props.near === '0') findArr = businesses
         if (this.props.find && this.props.near) {
             if (find !== '0'){
-                let title = (businesses.filter(business => business.title.toLowerCase().split(' ').includes(find.toLowerCase())))
-                let category = businesses.filter(business => business.categories.map(cat => cat.toLowerCase()).includes(find.toLowerCase()))
+                let title = (businesses.filter(business => this.includes(business.title, find)))
+                let category = businesses.filter(business => business.categories.some(cat => this.includes(cat, find)))
                 findArr = findArr.concat(title, category)
             }
 
             if (near !== '0'){ 
                 if (find === '0') {
-                findArr = businesses.filter(business => business.city.toLowerCase() === near.toLowerCase())
+                    findArr = businesses.filter(business => 
+                        this.includes(business.address, near) 
+                        || this.includes(business.state, near)
+                        || this.includes(business.city, near) 
+                        || this.includes(business.zipCode, near)
+                    )
                 } else {
-                    findArr = findArr.filter(business => business.city.toLowerCase() === near.toLowerCase())
+                    findArr = findArr.filter(business => 
+                        this.includes(business.address, near) 
+                        || this.includes(business.state, near) 
+                        || this.includes(business.city, near) 
+                        || this.includes(business.zipCode, near)
+                    )
                 }
             } 
 
