@@ -125,7 +125,7 @@ class Businesses extends React.Component{
                             </Link>
                         ))}
                     </div>
-                    <div className='businesses-map' id='map'></div>
+                    <div id='map-container'><div className='businesses-map' id='map'></div></div>
                 </div>
             </div>
         )

@@ -996,9 +996,11 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
           index: i
         }));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "map-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "businesses-map",
         id: "map"
-      })));
+      }))));
     }
   }]);
 

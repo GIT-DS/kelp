@@ -24,4 +24,7 @@
 .col{
     display:flex;
     flex-direction: column;
+    a{
+        padding-bottom: 5px;
+    }
 }
