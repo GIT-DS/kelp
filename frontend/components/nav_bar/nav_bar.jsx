@@ -27,6 +27,7 @@ class NavBar extends React.Component{
             <div className='nav-bar'>
                 <ul>
                     <li><Link to='/reviews/create/suggestions'>Write a Review</Link></li>
+                    <li><Link to='/businesses/0/0'>Businesses</Link></li>
                 </ul> 
                 {navRight}
             </div>
