@@ -68,7 +68,7 @@ class Businesses extends React.Component{
     componentDidMount(){
         this.props.fetchAllBusinesses()
         .then(()=> this.setState(this.filter(this.props.find, this.props.near)))
-        window.scrollTo(0,top)
+        
     }
 
     componentDidUpdate(prevProps){
@@ -76,6 +76,7 @@ class Businesses extends React.Component{
             this.filter(this.props.find, this.props.near)
         }
         this.makeMap()
+        window.scrollTo(0,0)
     }
 
 

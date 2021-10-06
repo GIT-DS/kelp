@@ -963,7 +963,6 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
       this.props.fetchAllBusinesses().then(function () {
         return _this3.setState(_this3.filter(_this3.props.find, _this3.props.near));
       });
-      window.scrollTo(0, top);
     }
   }, {
     key: "componentDidUpdate",
@@ -973,6 +972,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
       }
 
       this.makeMap();
+      window.scrollTo(0, 0);
     }
   }, {
     key: "makeMap",
