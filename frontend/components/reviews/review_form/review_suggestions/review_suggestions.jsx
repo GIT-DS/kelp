@@ -3,6 +3,7 @@ import BusinessBox from '../../../businesses/business_box'
 import OtherNavBar from '../../../nav_bar/other_nav_bar'
 import { Link } from 'react-router-dom'
 import LoginFormContainer from '../../../session/login_form_container'
+import BusinessBoxContainer from '../../../businesses/business_box_container'
 
 class ReviewSuggestion extends React.Component{
     constructor(props){
@@ -25,7 +26,7 @@ class ReviewSuggestion extends React.Component{
                 <OtherNavBar />
                 <h1>Been to these businesses recently?</h1>
                 <div className='business-suggestions'>
-                    {this.props.businesses.map((business, i) => <Link to={`/reviews/${business.id}/create`} key={i}><BusinessBox business={business} index={i}/></Link>)}
+                    {this.props.businesses.map((business, i) => <Link to={`/reviews/${business.id}/create`} key={i}><BusinessBoxContainer business={business} index={i}/></Link>)}
                 </div>
             </div>
         )
