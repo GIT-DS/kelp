@@ -81,7 +81,7 @@ class Business extends React.Component{
                         <div id='sub-info'>
                             <p>{cost}</p>
                             <p>●</p>
-                            {categories.map((cat,i) => <Link to={`/businesses?find=${cat}`} key={i}>{cat}{i < categories.length - 1 ? ',  ' : ''}</Link>)}
+                            {categories.map((cat,i) => <Link to={`/businesses?find=${cat}&near=0`} key={i} id='category-link'>{cat}{i < categories.length - 1 ? ',  ' : ''}</Link>)}
                         </div>
                         <p> {this.open()} {LTOS} - {LTCS}</p>
                     </div>

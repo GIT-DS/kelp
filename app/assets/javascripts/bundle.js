@@ -572,8 +572,9 @@ var Business = /*#__PURE__*/function (_React$Component) {
           id: "sub-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, cost), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "\u25CF"), categories.map(function (cat, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-            to: "/businesses?find=".concat(cat),
-            key: i
+            to: "/businesses?find=".concat(cat, "&near=0"),
+            key: i,
+            id: "category-link"
           }, cat, i < categories.length - 1 ? ',  ' : '');
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, " ", this.open(), " ", LTOS, " - ", LTCS))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "business-content"
