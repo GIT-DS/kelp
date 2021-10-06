@@ -9,13 +9,18 @@ $fade: rgba(0, 0, 0, 0.226);
 .business-index{
     display:flex;
     flex-direction: column;
-    background: white;
+    background: rgba(255, 255, 255, 0.808);
     padding-bottom: 50px;
+
+    .business-box{
+        background: white;
+    }
 }
 
 
 
 .business-index-content{
+    margin-top: 20px;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -85,15 +90,15 @@ $fade: rgba(0, 0, 0, 0.226);
         padding-right: 5px;
     }
 }
-.business-index{
+// .business-index{
 
 
-    .business-nav{
+//     .business-nav{
 
-        position: -webkit-sticky; /* Safari */
-        position: sticky;
-        top:0;
-        align-self: flex-start;
-        height: 10%;
-    }
-}
+//         position: -webkit-sticky; /* Safari */
+//         position: sticky;
+//         top:0;
+//         align-self: flex-start;
+//         height: 10%;
+//     }
+// }

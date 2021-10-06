@@ -18,7 +18,7 @@ class NavBar extends React.Component{
                 navRight = (
                 <ul>
                     <li>
-                        <button onClick={()=>this.props.logout()} className='clear-button'>Log Out</button>
+                        <Link onClick={()=>this.props.logout()} className='clear-button'>Log Out</Link>
                     </li>
                 </ul>
             )}

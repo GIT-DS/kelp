@@ -1,7 +1,7 @@
 $border: rgba(0, 0, 0, 0.103);
 
 .business-show{
-    background: white;
+    background: rgba(255, 255, 255, 0.808);
 }
 
 #category-link{
@@ -53,13 +53,15 @@ $border: rgba(0, 0, 0, 0.103);
 .social-bar{
     display:flex;
     width: 50%;
+    padding-bottom: 20px;
     * {
         font-size: 15px;
-        padding: 5px;
+        padding: 10px;
         margin: 5px;
     }
     .clear-button{
         width: 50%;
+        text-align: center;
     }
 }
 
@@ -132,7 +134,8 @@ $border: rgba(0, 0, 0, 0.103);
     }
 
     ul{
-        padding: 10px;
+        padding: 20px;
+        background: white;
     }
     li{
         padding-top: 15px;
@@ -151,6 +154,11 @@ $border: rgba(0, 0, 0, 0.103);
 
 .left-content{
     width: 50%;
+    padding: 100px;
+    padding-top: 50px;
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 5px;
 }
 
 #side-hr{

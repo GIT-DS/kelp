@@ -4,22 +4,20 @@ $colored-background: #66D4AE;
 .business-nav{
     display: flex;
     justify-content: space-around;
-    border-bottom: 1px solid $border; 
     height: 100px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+
     width: 100%;
-    margin-bottom: 20px;
+
     z-index: 999;
-    background: white;
+    background: rgba(255, 255, 255, 0.808);
 
     .nav-bar{
-        background: white;
+
         padding-right: 20px;
     }
 
     a{
-        color: black;
+        color: white;
     }
     .search-bar{
         border: 1px solid $border;
@@ -43,6 +41,9 @@ $colored-background: #66D4AE;
         flex-direction: row;
         align-items: center;
         padding-left: 50px;
+        h1{
+            color: white;
+        }
         img{
             height: 50px;
         }
