@@ -10,7 +10,7 @@ class SocialBar extends React.Component {
             <Link to={`/reviews/${this.props.businessId}/create`} className='green-button' id='review-button'>Write a Review</Link>
             <Link to='/businesses?find=0&near=0' className='clear-button' >Back to Businesses</Link>
         </div>
-        )
+        )   
     }
 }
 

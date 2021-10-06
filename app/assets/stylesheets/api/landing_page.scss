@@ -1,0 +1,17 @@
+#business-suggestions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.808);
+    h1{
+        margin-bottom: 15px;
+    }
+    #popular-businesses{
+        .business-box{
+            background: white;
+        }
+    }
+}

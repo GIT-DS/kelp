@@ -4,6 +4,8 @@ import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import LandingPage from "./landing_page/landing_page";
+import LandingPageContainer from "./landing_page/landing_page_container";
+
 import BusinessesContainer from "./businesses/businesses_container";
 import BusinessContainer from "./businesses/business_container";
 import MissingPage from "./error_page/missing";
@@ -25,7 +27,7 @@ const App = (props) => {
       <Route path='/businesses?find=:find&near=:near' component={BusinessesContainer}/>
       <Route path='/businesses/:id' component={BusinessContainer}/>
       <Route exact path='/businesses' component={BusinessesContainer}/>
-      <Route exact path='/' component={LandingPage} />
+      <Route exact path='/' component={LandingPageContainer} />
       <Route component={MissingPage} />
     </Switch>
   </div>
