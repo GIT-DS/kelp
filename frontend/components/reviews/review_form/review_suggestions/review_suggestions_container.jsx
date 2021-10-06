@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
     fetchAllBusiness: () => dispatch(fetchAllBusinesses())
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReviewSuggestion))
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewSuggestion)
