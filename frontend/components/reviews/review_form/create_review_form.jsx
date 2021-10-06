@@ -7,7 +7,7 @@ class CreateReviewForm extends React.Component{
         super(props)
         this.state = this.props.review
         this.submitHandler = this.submitHandler.bind(this)
-
+        this.clickHandler = this.clickHandler.bind(this)
     }
     
     componentDidMount(){
@@ -52,21 +52,36 @@ class CreateReviewForm extends React.Component{
                 return ""
         }   
     }
+
+    clickHandler(e, value){
+        this.setState({rating: value})
+    }
                     
-    radioButtons(number){
-        const logo = <img src={window.smalllogo}/>
+    radioButtons(){
         
+        let kelpFilled = value => (
+            <div id='filled' onClick={ e =>this.clickHandler(e, value)} value={value} key={value}>
+                <img id='small' src={window.logo} width='10' height='10'/>
+            </div> 
+        )
+        let kelpUnfilled = value => (
+            <div id='unfilled'onClick={e =>this.clickHandler(e, value)} value={value} key={value}>
+                <img id='small' src={window.logo} width='10' height='10'/> 
+            </div>
+        )
+        let ratingContent = []
+        for(let i = 0; i < this.state.rating; i++){
+            ratingContent.push(kelpFilled(i))
+        }
+        for(let i= this.state.rating + 1; i <= 5 ; i++){
+            ratingContent.push(kelpUnfilled(i))
+        }
+    
+
         return (
-            
-            <>
-                <input id={`rating${number}`}
-                    name="rating" 
-                    type="radio" value={`${number}`} 
-                    className="radio-btn hide" 
-                    onChange={this.update('rating')}  
-                    />
-                <label htmlFor={`rating${number}`}>{logo}</label>
-            </>
+        <div id='interactive-rating-bar'>
+            {ratingContent.map(rating => rating)}
+        </div>
         )
     }
     
@@ -96,18 +111,14 @@ class CreateReviewForm extends React.Component{
                     <form>
                             <div id='inputs'>
                                 <div className='radio-container'>
-                                    <div className='rating' id={this.errorMessage('Rating', 'id')}>
-                                        {this.radioButtons(5)}
-                                        {this.radioButtons(4)}
-                                        {this.radioButtons(3)}
-                                        {this.radioButtons(2)}
-                                        {this.radioButtons(1)}
-                                    </div>
+                                    {this.radioButtons()}
+
                                     <p>{this.reviewDescription()}</p>
                                 </div>
                                 {this.errorMessage('Rating', 'message')}
 
-                            <div className='text-area-container' id={this.errorMessage('Comment', 'id')}><textarea 
+                            <div className='text-area-container' id={this.errorMessage('Comment', 'id')}>
+                                <textarea 
                                 className='comment'
                                 value={this.state.comment} 
                                 onChange={this.update('comment')}
@@ -128,7 +139,7 @@ class CreateReviewForm extends React.Component{
             </div>
         )
 
-    }
+}
 }
 
 export default CreateReviewForm

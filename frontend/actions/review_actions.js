@@ -2,6 +2,7 @@ export const RECEIVE_ALL_REVIEWS = 'RECEIVE_ALL_REVIEWS'
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW'
 export const RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS'
 export const REMOVE_REVIEW_ERRORS = 'REMOVE_REVIEW_ERRORS'
+export const REMOVE_REVIEW = 'REMOVE_REVIEW'
 
 import * as ReviewUtil from '../util/review_api_util'
 
@@ -14,6 +15,11 @@ const receiveAllReviews = reviews => {
 const receiveReview = review => ({
     type: RECEIVE_REVIEW,
     review
+})
+
+const removeReview = reviewId => ({
+    type: REMOVE_REVIEW,
+    reviewId
 })
 
 export const receiveReviewErrors = errors => ({
@@ -45,3 +51,7 @@ export const updateReview = (review) => dispatch => {
         dispatch(receiveReview(review)),
         error => dispatch(receiveReviewErrors(error)))
 }
+
+export const deleteReview = reviewId => dispatch => (
+    ReviewUtil.deleteReview(reviewId).then(()=>dispatch(removeReview(reviewId)))
+)

@@ -51,6 +51,23 @@ $fade: rgba(0, 0, 0, 0.226);
                 .radio-container{
                     display: flex;
                     align-items: center;
+                    #interactive-rating-bar {
+                        display: flex;
+                        align-items: center;
+                        #filled{
+                            border-radius: 5px;
+                            margin-right: 5px;
+                            width: auto;
+                        }
+                        #unfilled{
+                            border-radius: 5px;
+                            margin-right: 5px;
+                            width: auto;
+                        }
+                    }
+                }
+                p{
+                    margin-left: 10px;
                 }
 
             }
@@ -66,63 +83,7 @@ $fade: rgba(0, 0, 0, 0.226);
 
 
 
-            .txt-center {
-                text-align: center;
-            }
-            .hide {
-                display: none;
-            }
             
-            .clear {
-                float: none;
-                clear: both;
-            }
-            
-            .rating {
-                display:flex;
-                justify-content: flex-end;
-                align-items: center;
-                width: auto;
-                direction: rtl;
-                text-align: center;
-                position: relative;
-            }
-            
-            .rating > label {
-                float: left;
-                display: inline;
-                margin-right: 3px;
-                position: relative;
-                padding-left: 5px;
-                padding-right: 5px;
-                // padding: 5px;
-                cursor: pointer;
-                background-color: $fade;
-                border-radius: 5px;
-                img{
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-                }
-            }
-            
-            .rating > label:hover,
-            .rating > label:hover ~ label,
-            .rating > input.radio-btn:checked ~ label {
-                color: transparent;
-            }
-            
-            .rating > label:hover:after,
-            .rating > label:hover ~ label:after,
-            .rating > input.radio-btn:checked ~ label:after,
-            .rating > input.radio-btn:checked ~ label:after {
-                content: image-url('small_kelp_logo.png');
-                position: absolute;
-                left: 0;
-                background-color: $colored-background;
-                border-radius: 5px;
-                padding: 5px;
-            }
-
 
 
 

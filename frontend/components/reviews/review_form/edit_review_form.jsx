@@ -7,22 +7,23 @@ class EditReviewForm extends React.Component{
         super(props)
         this.state = {}
         this.submitHandler = this.submitHandler.bind(this)
+        this.clickHandler = this.clickHandler.bind(this)
+        this.deleteHandler = this.deleteHandler.bind(this)
     }
 
     componentDidMount (){
         this.props.fetchReview(this.props.match.params.reviewId).then(()=> {
-            console.log(this.props)
+            if (!this.props.review) this.props.history.goBack()
             let {rating, comment, userId, businessId, id} = this.props.review
             this.setState({
+                businessId: businessId,
                 rating: rating,
                 comment: comment,
                 userId: userId,
                 id: id,
-                businessId: businessId,
                 error: ''
 
             })
-            
         })
         
     }
@@ -47,6 +48,14 @@ class EditReviewForm extends React.Component{
         .then(() => this.props.history.push(`/businesses/${this.state.businessId}`))
     }
 
+    clickHandler(e, value){
+        this.setState({rating: value})
+    }
+
+    deleteHandler(e){
+        this.props.deleteReview(this.props.review.id).then(()=> this.props.history.goBack())
+    }
+
     errorId(){
         if (this.state.error !== "") return 'error-field'
         return null;
@@ -69,22 +78,36 @@ class EditReviewForm extends React.Component{
         }
     }
 
-    radioButtons(number){
-        const logo = <img src={window.smalllogo}/>
+
+
+    radioButtons(){
+
+
+        let kelpFilled = value => (
+            <div id='filled' onClick={ e =>this.clickHandler(e, value)} value={value} key={value}>
+                <img id='small' src={window.logo} width='10' height='10'/>
+            </div> 
+        )
+        let kelpUnfilled = value => (
+            <div id='unfilled'onClick={e =>this.clickHandler(e, value)} value={value} key={value}>
+                <img id='small' src={window.logo} width='10' height='10'/> 
+            </div>
+        )
+        let ratingContent = []
+        for(let i = 0; i < this.state.rating; i++){
+            ratingContent.push(kelpFilled(i))
+        }
+        for(let i= this.state.rating + 1; i <= 5 ; i++){
+            ratingContent.push(kelpUnfilled(i))
+        }
+    
 
         return (
-            
-            <>
-                <input id={`rating${number}`}
-                    name="rating" 
-                    type="radio" value={`${number}`} 
-                    className="radio-btn hide" 
-                    onChange={this.update('rating')}  
-                />
-                <label htmlFor={`rating${number}`}>{logo}</label>
-            </>
+        <div id='interactive-rating-bar'>
+            {ratingContent.map(rating => rating)}
+        </div>
         )
-        }
+    }
 
     render(){
 
@@ -108,18 +131,13 @@ class EditReviewForm extends React.Component{
                 <div className='review-form-content'>
                     <h1><Link to={`/businesses/${this.props.review.businessId}`}>{this.props.review.businessTitle}</Link></h1>
                     <form>
-                            <div id='inputs'>
-                                <div className='radio-container'>
-                                    <div className='rating' >
-                                        {this.radioButtons(5)}
-                                        {this.radioButtons(4)}
-                                        {this.radioButtons(3)}
-                                        {this.radioButtons(2)}
-                                        {this.radioButtons(1)}
-                                    </div>
-                                    <p>{this.reviewDescription()}</p>
-                                </div>
+                        <div id='inputs'>
+                            <div className='radio-container'>
+                                {this.radioButtons()}
 
+                                <p>{this.reviewDescription()}</p>
+                            </div>
+                        
                             <div className='text-area-container' id={this.errorId()}>
                                 <textarea 
                                 className='comment' 
@@ -131,6 +149,8 @@ class EditReviewForm extends React.Component{
                         </div>
 
                         <button onClick={this.submitHandler}>{this.props.formType}</button>
+                        <br/>
+                        <button onClick={this.deleteHandler}>Delete Review</button>
                     </form>
                 </div>
             </div>
