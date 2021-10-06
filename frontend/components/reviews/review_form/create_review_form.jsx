@@ -28,11 +28,14 @@ class CreateReviewForm extends React.Component{
             business_id: businessId
         }
         
-        this.props.submitForm(snake)
-
-        this.props.history.push(`/businesses/${this.state.businessId}`)
+        this.props.submitForm(snake).then(()=>this.props.history.push(`/businesses/${this.state.businessId}`))
+        
     }
     
+    componentWillUnmount(){
+        this.props.removeReviewErrors();
+    }
+
     reviewDescription(){
         switch(parseInt(this.state.rating)){
             case 1:
@@ -67,10 +70,20 @@ class CreateReviewForm extends React.Component{
         )
     }
     
+    errorMessage(field, type){
+        let errors = this.props.errors.map(error => error.split(' ')[0])
+        if ( type === 'id' && errors.filter( error => error === field).length > 0) return 'error-field'
+        if (type === 'message') return <p id='error-message'>{this.props.errors.filter(error => error.split(' ')[0] === field)}</p>
+         
+        return null;
+    }
+
+
     render(){
-        
         if (!this.props.business) return null
-        
+        let errors;
+        (this.props.errors.length > 0) ? errors = this.props.errors.map( (error, i) => <li key={i}>{error}</li>)  : errors = ''
+
         return(
             <div className='review-form-container'>
                 <OtherNavBar/>
@@ -83,7 +96,7 @@ class CreateReviewForm extends React.Component{
                     <form>
                             <div id='inputs'>
                                 <div className='radio-container'>
-                                    <div className='rating'>
+                                    <div className='rating' id={this.errorMessage('Rating', 'id')}>
                                         {this.radioButtons(5)}
                                         {this.radioButtons(4)}
                                         {this.radioButtons(3)}
@@ -92,9 +105,10 @@ class CreateReviewForm extends React.Component{
                                     </div>
                                     <p>{this.reviewDescription()}</p>
                                 </div>
+                                {this.errorMessage('Rating', 'message')}
 
-                            <textarea 
-                                id='comment' 
+                            <div className='text-area-container' id={this.errorMessage('Comment', 'id')}><textarea 
+                                className='comment'
                                 value={this.state.comment} 
                                 onChange={this.update('comment')}
                                 placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
@@ -104,6 +118,8 @@ class CreateReviewForm extends React.Component{
                                 eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
                                 sunt in culpa qui officia deserunt mollit anim id est laborum.'
                                 />
+                            </div>
+                                {this.errorMessage('Comment','message')}
                         </div>
 
                         <button onClick={this.submitHandler}>{this.props.formType}</button>

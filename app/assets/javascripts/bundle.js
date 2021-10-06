@@ -62,6 +62,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALL_REVIEWS": () => (/* binding */ RECEIVE_ALL_REVIEWS),
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "RECEIVE_REVIEW_ERRORS": () => (/* binding */ RECEIVE_REVIEW_ERRORS),
+/* harmony export */   "REMOVE_REVIEW_ERRORS": () => (/* binding */ REMOVE_REVIEW_ERRORS),
+/* harmony export */   "receiveReviewErrors": () => (/* binding */ receiveReviewErrors),
+/* harmony export */   "removeReviewErrors": () => (/* binding */ removeReviewErrors),
 /* harmony export */   "fetchAllReviews": () => (/* binding */ fetchAllReviews),
 /* harmony export */   "fetchReview": () => (/* binding */ fetchReview),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
@@ -70,6 +74,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_api_util */ "./frontend/util/review_api_util.js");
 var RECEIVE_ALL_REVIEWS = 'RECEIVE_ALL_REVIEWS';
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var RECEIVE_REVIEW_ERRORS = 'RECEIVE_REVIEW_ERRORS';
+var REMOVE_REVIEW_ERRORS = 'REMOVE_REVIEW_ERRORS';
 
 
 var receiveAllReviews = function receiveAllReviews(reviews) {
@@ -86,6 +92,17 @@ var receiveReview = function receiveReview(review) {
   };
 };
 
+var receiveReviewErrors = function receiveReviewErrors(errors) {
+  return {
+    type: RECEIVE_REVIEW_ERRORS,
+    errors: errors
+  };
+};
+var removeReviewErrors = function removeReviewErrors() {
+  return {
+    type: REMOVE_REVIEW_ERRORS
+  };
+};
 var fetchAllReviews = function fetchAllReviews(businessId) {
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReviews(businessId).then(function (reviews) {
@@ -104,13 +121,15 @@ var createReview = function createReview(review) {
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (review) {
       return dispatch(receiveReview(review));
+    }, function (error) {
+      return dispatch(receiveReviewErrors(error));
     });
   };
 };
 var updateReview = function updateReview(review) {
   return function (dispatch) {
-    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.updateReview(review).then(function (review) {
-      return dispatch(receiveReview(review));
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__.updateReview(review).then(dispatch(receiveReview(review)), function (error) {
+      return dispatch(receiveReviewErrors(error));
     });
   };
 };
@@ -1919,6 +1938,8 @@ var CreateReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submitHandler",
     value: function submitHandler(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var _this$state = this.state,
           rating = _this$state.rating,
@@ -1931,8 +1952,14 @@ var CreateReviewForm = /*#__PURE__*/function (_React$Component) {
         user_id: userId,
         business_id: businessId
       };
-      this.props.submitForm(snake);
-      this.props.history.push("/businesses/".concat(this.state.businessId));
+      this.props.submitForm(snake).then(function () {
+        return _this3.props.history.push("/businesses/".concat(_this3.state.businessId));
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeReviewErrors();
     }
   }, {
     key: "reviewDescription",
@@ -1975,9 +2002,31 @@ var CreateReviewForm = /*#__PURE__*/function (_React$Component) {
       }, logo));
     }
   }, {
+    key: "errorMessage",
+    value: function errorMessage(field, type) {
+      var errors = this.props.errors.map(function (error) {
+        return error.split(' ')[0];
+      });
+      if (type === 'id' && errors.filter(function (error) {
+        return error === field;
+      }).length > 0) return 'error-field';
+      if (type === 'message') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "error-message"
+      }, this.props.errors.filter(function (error) {
+        return error.split(' ')[0] === field;
+      }));
+      return null;
+    }
+  }, {
     key: "render",
     value: function render() {
       if (!this.props.business) return null;
+      var errors;
+      this.props.errors.length > 0 ? errors = this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: i
+        }, error);
+      }) : errors = '';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "review-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_other_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1989,13 +2038,17 @@ var CreateReviewForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "radio-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "rating"
-      }, this.radioButtons(5), this.radioButtons(4), this.radioButtons(3), this.radioButtons(2), this.radioButtons(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
-        id: "comment",
+        className: "rating",
+        id: this.errorMessage('Rating', 'id')
+      }, this.radioButtons(5), this.radioButtons(4), this.radioButtons(3), this.radioButtons(2), this.radioButtons(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), this.errorMessage('Rating', 'message'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "text-area-container",
+        id: this.errorMessage('Comment', 'id')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+        className: "comment",
         value: this.state.comment,
         onChange: this.update('comment'),
         placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,  sunt in culpa qui officia deserunt mollit anim id est laborum."
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      })), this.errorMessage('Comment', 'message')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.submitHandler
       }, this.props.formType))));
     }
@@ -2039,7 +2092,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       businessId: ownProps.match.params.businessId
     },
     formType: 'Create Review',
-    business: state.entities.businesses[ownProps.match.params.businessId]
+    business: state.entities.businesses[ownProps.match.params.businessId],
+    errors: state.ui.errors.reviewErrors
   };
 };
 
@@ -2050,6 +2104,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     fetchBusiness: function fetchBusiness() {
       return dispatch((0,_actions_business_actions__WEBPACK_IMPORTED_MODULE_2__.fetchBusiness)(ownProps.match.params.businessId));
+    },
+    removeReviewErrors: function removeReviewErrors() {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_3__.removeReviewErrors)());
     }
   };
 };
@@ -2121,9 +2178,29 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchReview(this.props.match.params.reviewId).then(function (res) {
-        return _this2.setState(res.review);
+      this.props.fetchReview(this.props.match.params.reviewId).then(function () {
+        console.log(_this2.props);
+        var _this2$props$review = _this2.props.review,
+            rating = _this2$props$review.rating,
+            comment = _this2$props$review.comment,
+            userId = _this2$props$review.userId,
+            businessId = _this2$props$review.businessId,
+            id = _this2$props$review.id;
+
+        _this2.setState({
+          rating: rating,
+          comment: comment,
+          userId: userId,
+          id: id,
+          businessId: businessId,
+          error: ''
+        });
       });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeReviewErrors();
     }
   }, {
     key: "update",
@@ -2137,9 +2214,26 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submitHandler",
     value: function submitHandler(e) {
+      var _this4 = this;
+
       e.preventDefault();
-      this.props.submitForm(this.state);
-      this.props.history.push("/businesses/".concat(this.state.businessId));
+
+      if (this.state.comment === '') {
+        this.setState({
+          error: "Comment can't be blank"
+        });
+        return;
+      }
+
+      this.props.submitForm(this.state).then(function () {
+        return _this4.props.history.push("/businesses/".concat(_this4.state.businessId));
+      });
+    }
+  }, {
+    key: "errorId",
+    value: function errorId() {
+      if (this.state.error !== "") return 'error-field';
+      return null;
     }
   }, {
     key: "reviewDescription",
@@ -2206,12 +2300,16 @@ var EditReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "radio-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "rating"
-      }, this.radioButtons(5), this.radioButtons(4), this.radioButtons(3), this.radioButtons(2), this.radioButtons(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
-        id: "comment",
+      }, this.radioButtons(5), this.radioButtons(4), this.radioButtons(3), this.radioButtons(2), this.radioButtons(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.reviewDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "text-area-container",
+        id: this.errorId()
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+        className: "comment",
         value: this.state.comment,
-        onChange: this.update('comment'),
-        placeholder: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos  sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam recusandae alias error harum maxime adipisci amet laborum. Perspiciatis  minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit  quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur  fugiat, temporibus enim commodi iusto libero magni deleniti quod quam  consequuntur! Commodi minima excepturi repudiandae velit hic maxime doloremque. Quaerat provident commodi consectetur veniam similique ad  earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo  fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore  suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam  totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam  quasi aliquam eligendi, placeat qui corporis!"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onChange: this.update('comment')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "error-message"
+      }, this.state.error)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.submitHandler
       }, this.props.formType))));
     }
@@ -2248,7 +2346,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     review: state.entities.reviews[ownProps.match.params.reviewId],
     formType: 'Update Review',
-    sessionId: state.session.id
+    sessionId: state.session.id,
+    errors: state.ui.errors.reviewErrors
   };
 };
 
@@ -2259,6 +2358,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchReview: function fetchReview(reviewId) {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__.fetchReview)(reviewId));
+    },
+    removeReviewErrors: function removeReviewErrors() {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__.removeReviewErrors)());
     }
   };
 };
@@ -2753,7 +2855,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.history.push(this.previous);
       this.props.processForm(this.state);
     }
   }, {
@@ -3184,14 +3285,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _review_errors_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./review_errors_reducer */ "./frontend/reducers/review_errors_reducer.js");
+/* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
 
 
-var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  sessionErrors: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  sessionErrors: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  reviewErrors: _review_errors_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/review_errors_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/review_errors_reducer.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+
+
+var reviewErrorsReducer = function reviewErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW_ERRORS:
+      return action.errors.responseJSON;
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW_ERRORS:
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reviewErrorsReducer);
 
 /***/ }),
 

@@ -15,7 +15,7 @@ class Api::ReviewsController < ApplicationController
 
     def create
         @review = Review.new(review_params)
-        if @review.save!
+        if @review.save
             render :show
         else
             render json: @review.errors.full_messages, status: 401
@@ -24,11 +24,10 @@ class Api::ReviewsController < ApplicationController
 
     def update
         @review = Review.find_by(id: params[:id])
-        if @review
-            @review.update(review_params)
+        if @review && @review.update(review_params)
             render :show
         else
-            render json: ['Invalid']
+            render json: ['Could not update, one or fields are missing'], status: 401
         end
     end
 

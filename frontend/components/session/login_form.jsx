@@ -22,7 +22,6 @@ class LoginForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.history.push(this.previous)
         this.props.processForm(this.state)
     }
     

@@ -35,7 +35,7 @@ class SignupForm extends React.Component{
         if ( type === 'id' && errors.filter( error => error === field).length > 0) return 'error-field'
         if (type === 'message') return <p id='error-message'>{this.props.errors.filter(error => error.split(' ')[0] === field)}</p>
          
-        return null;
+        return null;    
     }
 
 
@@ -68,7 +68,7 @@ class SignupForm extends React.Component{
                                 </div>
 
                                 <div id='last-name-container'>
-                                    <input type='text' id={this.errorMessage('Last', 'id')}placeholder='Last Name' value={this.state.lastName} onChange={this.update('last_name')}/>
+                                    <input type='text' id={this.errorMessage('Last', 'id')} placeholder='Last Name' value={this.state.lastName} onChange={this.update('last_name')}/>
                                     {this.errorMessage('Last', 'message')}
                                     
                                 </div>

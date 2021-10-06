@@ -1,17 +1,19 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { fetchReview, updateReview } from '../../../actions/review_actions';
+import { fetchReview, updateReview, removeReviewErrors} from '../../../actions/review_actions';
 import EditReviewForm from './edit_review_form';
 
 const mapStateToProps = (state,ownProps)=>({
     review: state.entities.reviews[ownProps.match.params.reviewId],
     formType: 'Update Review',
-    sessionId: state.session.id
+    sessionId: state.session.id,
+    errors: state.ui.errors.reviewErrors,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     submitForm: (review) => dispatch(updateReview(review)),
-    fetchReview: (reviewId) => dispatch(fetchReview(reviewId))
+    fetchReview: (reviewId) => dispatch(fetchReview(reviewId)),
+    removeReviewErrors: () => dispatch(removeReviewErrors())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditReviewForm)

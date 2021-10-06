@@ -8,22 +8,48 @@ class EditReviewForm extends React.Component{
         this.state = {}
         this.submitHandler = this.submitHandler.bind(this)
     }
-    componentDidMount(){
-        this.props.fetchReview(this.props.match.params.reviewId)
-            .then(res => this.setState(res.review))
 
+    componentDidMount (){
+        this.props.fetchReview(this.props.match.params.reviewId).then(()=> {
+            console.log(this.props)
+            let {rating, comment, userId, businessId, id} = this.props.review
+            this.setState({
+                rating: rating,
+                comment: comment,
+                userId: userId,
+                id: id,
+                businessId: businessId,
+                error: ''
+
+            })
+            
+        })
+        
     }
 
 
+    componentWillUnmount(){
+        this.props.removeReviewErrors()
+    }
 
     update(field){
+        
         return e => this.setState({[field]: e.currentTarget.value})
     }
 
     submitHandler(e){
         e.preventDefault();
+        if (this.state.comment === ''){
+            this.setState({error: "Comment can't be blank"})
+            return
+        }
         this.props.submitForm(this.state)
-        this.props.history.push(`/businesses/${this.state.businessId}`)
+        .then(() => this.props.history.push(`/businesses/${this.state.businessId}`))
+    }
+
+    errorId(){
+        if (this.state.error !== "") return 'error-field'
+        return null;
     }
 
     reviewDescription(){
@@ -84,7 +110,7 @@ class EditReviewForm extends React.Component{
                     <form>
                             <div id='inputs'>
                                 <div className='radio-container'>
-                                    <div className='rating'>
+                                    <div className='rating' >
                                         {this.radioButtons(5)}
                                         {this.radioButtons(4)}
                                         {this.radioButtons(3)}
@@ -94,32 +120,14 @@ class EditReviewForm extends React.Component{
                                     <p>{this.reviewDescription()}</p>
                                 </div>
 
-                            <textarea 
-                                id='comment' 
+                            <div className='text-area-container' id={this.errorId()}>
+                                <textarea 
+                                className='comment' 
                                 value={this.state.comment} 
                                 onChange={this.update('comment')}
-                                placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                                optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                                obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                                nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                                tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-                                quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-                                sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-                                recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
-                                minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
-                                quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
-                                fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
-                                consequuntur! Commodi minima excepturi repudiandae velit hic maxime
-                                doloremque. Quaerat provident commodi consectetur veniam similique ad 
-                                earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo 
-                                fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore 
-                                suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
-                                modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam 
-                                totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam 
-                                quasi aliquam eligendi, placeat qui corporis!"
                                 />
+                            </div>
+                            <p id='error-message'>{this.state.error}</p>
                         </div>
 
                         <button onClick={this.submitHandler}>{this.props.formType}</button>
