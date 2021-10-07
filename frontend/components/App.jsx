@@ -23,7 +23,6 @@ const App = (props) => {
       <ProtectedRoute path='/reviews/:reviewId/edit' component={EditReviewFormContainer}/>
       <ProtectedRoute path='/reviews/:businessId/create' component={CreateReviewFormContainer}/>
       <Route path='/reviews/create/suggestions' history={props.history} component={ReviewSuggestionContainer}/>
-      {/* <Route path='/businesses/:find/:near' component={BusinessesContainer}/> */}
       <Route path='/businesses?find=:find&near=:near' component={BusinessesContainer}/>
       <Route path='/businesses/:id' component={BusinessContainer}/>
       <Route exact path='/businesses' component={BusinessesContainer}/>
