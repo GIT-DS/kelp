@@ -64,6 +64,6 @@ https://kelp-yelp-clone.herokuapp.com/
 
 ![Search Demo](https://user-images.githubusercontent.com/39077702/136597018-a4d38359-79fb-4ec5-8eba-f2149ae08134.gif "Search Demo")
 
-This functionality was pretty challenging. I was able to accomplish this via comparing the query string to various columns in my schema.
+This functionality was pretty challenging. I was able to accomplish this via comparing the query string to the various associations and columns of my businesses.
 
 ![Filter Algorithm Demo](https://user-images.githubusercontent.com/39077702/136597625-038de8d4-e1f4-4d2f-b99f-0055e095a2bd.png "Filter Algorithm Demo")
