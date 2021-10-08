@@ -58,6 +58,19 @@ https://kelp-yelp-clone.herokuapp.com/
 
 ![Business Show Demo](https://user-images.githubusercontent.com/39077702/136595172-dfa4bacd-3839-42f9-a874-f7d7d071bb59.png "Business Show Demo")
 
+When I first started this MVP, i had no idea how much information actually goes into a show page. I had to grab various pieces of information from the business, the reviews, and the users, all of which are on different tables of my database. Additionally, I had to contend with image hosting on amazon S3 for the first time. I was able to successfully gather all this information by abstracting out components and pulling information needed through jbuilder.
+
+```ruby
+json.extract! business, :id, :title, :phone_num, :time_open, :time_close, :cost, :address, :state, :city, :zip_code, :longitude, :latitude
+
+categories = []
+business.categories.each do |cat|
+    categories.push(cat.title)
+end
+json.categories categories
+
+json.photosUrl business.photos.map {|file| url_for(file)}
+```
 
 ## Search
 + Users can search for Businesses based on their location, title, or category
@@ -66,4 +79,35 @@ https://kelp-yelp-clone.herokuapp.com/
 
 This functionality was pretty challenging. I was able to accomplish this via comparing the query string to the various associations and columns of my businesses.
 
-![Filter Algorithm Demo](https://user-images.githubusercontent.com/39077702/136597625-038de8d4-e1f4-4d2f-b99f-0055e095a2bd.png "Filter Algorithm Demo")
+```javascript
+    filter(find, near){
+        let businesses = this.props.businesses
+        let findArr = [];
+        if (this.props.find === '0' && this.props.near === '0') findArr = businesses
+        if (this.props.find && this.props.near) {
+            if (find !== '0'){
+                let title = (businesses.filter(business => this.includes(business.title, find)))
+                let category = businesses.filter(business => business.categories.some(cat => this.includes(cat, find)))
+                findArr = findArr.concat(title, category)
+            }
+            if (near !== '0'){ 
+                if (find === '0') {
+                    findArr = businesses.filter(business => 
+                        this.includes(business.address, near) 
+                        || this.includes(business.state, near)
+                        || this.includes(business.city, near) 
+                        || this.includes(business.zipCode, near)
+                    )
+                } else {
+                    findArr = findArr.filter(business => 
+                        this.includes(business.address, near) 
+                        || this.includes(business.state, near) 
+                        || this.includes(business.city, near) 
+                        || this.includes(business.zipCode, near)
+                    )
+                }
+            } 
+        }
+        this.setState({b: findArr})
+    }
+ ```
