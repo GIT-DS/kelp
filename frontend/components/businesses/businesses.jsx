@@ -41,7 +41,6 @@ class Businesses extends React.Component{
                 let category = businesses.filter(business => business.categories.some(cat => this.includes(cat, find)))
                 findArr = findArr.concat(title, category)
             }
-
             if (near !== '0'){ 
                 if (find === '0') {
                     findArr = businesses.filter(business => 
@@ -59,10 +58,8 @@ class Businesses extends React.Component{
                     )
                 }
             } 
-
         }
         this.setState({b: findArr})
-
     }
     
     componentDidMount(){
