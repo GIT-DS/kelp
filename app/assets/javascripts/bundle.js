@@ -3131,7 +3131,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "Password"
       }), this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-          key: i
+          key: i,
+          id: "error-message"
         }, error);
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "#",

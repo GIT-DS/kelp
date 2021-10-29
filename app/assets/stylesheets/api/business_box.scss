@@ -4,7 +4,13 @@ $border: rgba(0, 0, 0, 0.103);
     border-radius: 5px;
     margin: 5px;
     padding: 10px;
-    button{
-        cursor: pointer;
+
+    .business-box-content h2{
+        color: #038C5A;
     }
+}
+
+#business-box-categories button{
+    color: black;
+    font-weight: bold;
 }

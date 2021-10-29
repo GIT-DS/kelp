@@ -59,7 +59,7 @@ class LoginForm extends React.Component{
                             <input required type='text' id={this.errorId()} value={this.state.username} onChange={this.update('username')} placeholder='Username'/>
 
                             <input required type='password' id={this.errorId()} value={this.state.password} onChange={this.update('password')} placeholder='Password'/>
-                            {this.props.errors.map((error, i) => <p key={i}>{error}</p>)}
+                            {this.props.errors.map((error, i) => <p key={i} id='error-message'>{error}</p>)}
                             <Link to='#' className='align-right'>Forgot password?</Link>
                             <button className='green-button' onClick={this.handleSubmit}>Log In</button>
                             <p id='line'>or</p>
