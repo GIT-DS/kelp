@@ -1,27 +1,26 @@
 # Thanks for viewing Kelp!
 Kelp is a seafood based business information and review website.
 
-# Website
-https://kelp-yelp-clone.herokuapp.com/
+# [Live](https://kelp-yelp-clone.herokuapp.com/)
 
 # Techonologies
 
-## Backend
+### Backend
 + Ruby on Rails
 
-## Front-end
+### Front-end
 + React and Redux
 
-## Database
+### Database
 + PostgreSQL
 
-## Web design and styling
+### Web design and styling
 + HTML & CSS
 
-## Image Hosting
+### Image Hosting
 + Amazon S3
 
-## Map
+### Map
 + Google Maps API
 
 # Highlights
