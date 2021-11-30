@@ -1027,7 +1027,7 @@ var Businesses = /*#__PURE__*/function (_React$Component) {
         className: "business-index-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "business-list"
-      }, this.state.b.map(function (business, i) {
+      }, this.state.b.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "There are no results with those search parameters") : "", this.state.b.map(function (business, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
           to: "/businesses/".concat(business.id),
           key: i

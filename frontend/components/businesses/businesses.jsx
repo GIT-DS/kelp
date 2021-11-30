@@ -112,11 +112,13 @@ class Businesses extends React.Component{
 
 
     render(){
+
         return (
             <div className='business-index'>
                 <BusinessNavBarContainer/>
                 <div className='business-index-content'>
                     <div id='business-list'>
+                        {this.state.b.length === 0 ? <p>There are no results with those search parameters</p> : ""}
                         {this.state.b.map((business,i) => (
                             <Link to={`/businesses/${business.id}`} key={i}>
                                 <BusinessBoxContainer business={business}  index={i}/>
